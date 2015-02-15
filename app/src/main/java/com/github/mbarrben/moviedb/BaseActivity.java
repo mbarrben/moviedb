@@ -1,12 +1,12 @@
 package com.github.mbarrben.moviedb;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import butterknife.ButterKnife;
 import dagger.ObjectGraph;
 import java.util.List;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 
   private ObjectGraph activityScopeGraph;
 
