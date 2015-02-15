@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/movies_item_view_showin">
 
-  <TextView
-      android:id="@+id/movies_item_title"
+  <ImageView
+      android:id="@+id/movies_item_picture"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:gravity="center"
-      tools:text="Jupiter Ascending"/>
+      android:layout_height="match_parent"
+      android:contentDescription="@string/movies_item_picture_description"/>
 
 </merge>

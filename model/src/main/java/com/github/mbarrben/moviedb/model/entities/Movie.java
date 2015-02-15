@@ -5,14 +5,16 @@ import java.util.ArrayList;
 
 public class Movie {
 
+  private static final String POSTER_PREFIX = "http://image.tmdb.org/t/p/w500";
+
   @SerializedName("id") private String id;
   @SerializedName("title") private String title;
-  @SerializedName("overview") private String overview;
+  @SerializedName("poster_path") private String posterPath;
 
-  public Movie(String id, String title, String overview) {
+  public Movie(String id, String title, String posterPath) {
     this.id = id;
     this.title = title;
-    this.overview = overview;
+    this.posterPath = posterPath;
   }
 
   public String getId() {
@@ -23,8 +25,8 @@ public class Movie {
     return title;
   }
 
-  public String getOverview() {
-    return overview;
+  public String getPosterPath() {
+    return POSTER_PREFIX + posterPath;
   }
 
   public static class List extends ArrayList<Movie> {

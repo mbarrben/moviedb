@@ -4,14 +4,16 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.TextView;
+import android.widget.ImageView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.github.mbarrben.moviedb.R;
+import com.github.mbarrben.moviedb.model.entities.Movie;
+import com.squareup.picasso.Picasso;
 
-public class MovieItemLayout extends CardView {
+public class MovieItemLayout extends CardView implements MovieView {
 
-  @InjectView(R.id.movies_item_title) TextView title;
+  @InjectView(R.id.movies_item_picture) ImageView picture;
 
   public MovieItemLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
@@ -24,7 +26,12 @@ public class MovieItemLayout extends CardView {
     ButterKnife.inject(this);
   }
 
-  public void setTitle(CharSequence text) {
-    title.setText(text);
+  @Override
+  public void render(Movie movie) {
+    picture.setContentDescription(movie.getTitle());
+    Picasso.with(getContext())
+        .load(movie.getPosterPath())
+        .fit()
+        .into(picture);
   }
 }

@@ -25,8 +25,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
   @Override
   public void onBindViewHolder(MovieViewHolder holder, int position) {
-    CharSequence title = list.get(position).getTitle();
-    holder.view.setTitle(title);
+    holder.view.render(list.get(position));
   }
 
   @Override
