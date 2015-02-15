@@ -4,6 +4,6 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    compile project(':common')
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
+  compile project(':common')
+  compile 'com.squareup.retrofit:retrofit:1.9.0'
 }

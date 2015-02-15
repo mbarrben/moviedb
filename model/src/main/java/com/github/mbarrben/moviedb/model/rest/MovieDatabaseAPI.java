@@ -6,6 +6,5 @@ import retrofit.http.Query;
 
 public interface MovieDatabaseAPI {
 
-    @GET("/movie/popular")
-    void getPopularMovies(@Query("api_key") String apiKey, Callback<PopularMoviesApiResponse> callback);
+  @GET("/movie/popular") void getPopularMovies(@Query("api_key") String apiKey, Callback<PopularMoviesApiResponse> callback);
 }

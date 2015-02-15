@@ -4,6 +4,6 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    compile project(':common')
-    compile project(':model')
+  compile project(':common')
+  compile project(':model')
 }
