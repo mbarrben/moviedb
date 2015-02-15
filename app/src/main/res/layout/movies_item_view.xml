@@ -1,14 +1,14 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:showIn="@layout/showin_relativelayout">
+    tools:showIn="@layout/movies_item_view_showin">
 
   <TextView
       android:id="@+id/movies_item_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:gravity="center"
       tools:text="Jupiter Ascending"/>
 
 </merge>

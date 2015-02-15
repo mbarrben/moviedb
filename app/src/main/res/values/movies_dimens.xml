@@ -1,0 +1,7 @@
+<resources>
+  <dimen name="insets">5dp</dimen>
+  <dimen name="card_elevation">5dp</dimen>
+  <dimen name="card_corner_radius">2dp</dimen>
+  <dimen name="card_width">196dp</dimen>
+  <dimen name="card_height">248dp</dimen>
+</resources>
