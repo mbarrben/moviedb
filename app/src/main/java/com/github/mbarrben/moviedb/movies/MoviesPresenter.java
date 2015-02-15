@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 public interface MoviesPresenter {
 

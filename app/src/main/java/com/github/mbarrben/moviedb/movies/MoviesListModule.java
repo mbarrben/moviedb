@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 import com.github.mbarrben.moviedb.di.DomainModule;
 import com.github.mbarrben.moviedb.di.UIBus;
@@ -13,7 +13,7 @@ import dagger.Provides;
         DomainModule.class
     },
     injects = {
-        MainActivity.class, MainFragment.class
+        MoviesActivity.class, MoviesFragment.class
     })
 public class MoviesListModule {
 

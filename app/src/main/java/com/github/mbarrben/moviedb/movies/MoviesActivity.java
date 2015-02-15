@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 import android.os.Bundle;
 import com.github.mbarrben.moviedb.BaseActivity;
@@ -6,12 +6,12 @@ import com.github.mbarrben.moviedb.R;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MoviesActivity extends BaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.movies_activity);
   }
 
   @Override

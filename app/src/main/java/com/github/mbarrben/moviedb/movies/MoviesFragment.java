@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,14 +7,14 @@ import com.github.mbarrben.moviedb.BaseFragment;
 import com.github.mbarrben.moviedb.R;
 import javax.inject.Inject;
 
-public class MainFragment extends BaseFragment {
+public class MoviesFragment extends BaseFragment {
 
   @Inject MoviesPresenter presenter;
   @InjectView(R.id.movies_view) MoviesViewLayout moviesView;
 
   @Override
   protected int getFragmentLayout() {
-    return R.layout.fragment_main;
+    return R.layout.movies_fragment;
   }
 
   @Override

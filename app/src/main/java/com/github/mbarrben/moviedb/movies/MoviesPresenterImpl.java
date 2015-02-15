@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 import com.github.mbarrben.moviedb.domain.GetMovies;
 import com.github.mbarrben.moviedb.model.entities.Movie;

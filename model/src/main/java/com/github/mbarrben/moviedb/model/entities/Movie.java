@@ -1,12 +1,13 @@
 package com.github.mbarrben.moviedb.model.entities;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class Movie {
 
-  private String id;
-  private String title;
-  private String overview;
+  @SerializedName("id") private String id;
+  @SerializedName("title") private String title;
+  @SerializedName("overview") private String overview;
 
   public Movie(String id, String title, String overview) {
     this.id = id;

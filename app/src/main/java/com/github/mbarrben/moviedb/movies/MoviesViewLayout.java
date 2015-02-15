@@ -1,10 +1,11 @@
-package com.github.mbarrben.moviedb.movielist;
+package com.github.mbarrben.moviedb.movies;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.github.mbarrben.moviedb.R;
@@ -12,22 +13,23 @@ import com.github.mbarrben.moviedb.model.entities.Movie;
 
 public class MoviesViewLayout extends RelativeLayout implements MoviesView {
 
-  @InjectView(R.id.movies_textview) TextView textView;
+  @InjectView(R.id.movies_recycler) RecyclerView recyclerView;
 
   public MoviesViewLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
-    LayoutInflater.from(context).inflate(R.layout.view_movies, this);
+    LayoutInflater.from(context).inflate(R.layout.movies_view, this);
   }
 
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
     ButterKnife.inject(this);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
   }
 
   @Override
   public void showMovies(Movie.List movies) {
-    Movie movie = movies.get(0);
-    textView.setText(movie.getTitle());
+    MoviesAdapter adapter = new MoviesAdapter(getContext(), movies);
+    recyclerView.setAdapter(adapter);
   }
 }
