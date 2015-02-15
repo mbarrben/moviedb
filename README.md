@@ -28,8 +28,8 @@ API_KEY = <YOUR API KEY HERE>
 
 ## Bibliography
 
-* [A useful stack on android][3] by [Saul MM][4]
-* [EffectiveAndroidUI][5] by [Pedro Vicente Gómez Sánchez][6]
+* [A useful stack on android][3] by [Saul MM][4] for MVP architecture and UI
+* [EffectiveAndroidUI][5] by [Pedro Vicente Gómez Sánchez][6] for dependency injection
 
 
 ## License
