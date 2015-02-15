@@ -1,7 +1,6 @@
 # Local configuration file (sdk path, etc)
 local.properties
 
-
 ### Intellij ###
 *.iml
 
@@ -11,3 +10,6 @@ local.properties
 ### Gradle ###
 .gradle
 build/
+
+### Private info ###
+private.properties

@@ -15,6 +15,6 @@ import dagger.Provides;
 public final class ModelModule {
 
   @Provides MovieRepository provideGetMovies(@RestBus Bus modelBus) {
-    return new RestMovieRepository(modelBus, BuildConfig.DEBUG);
+    return new RestMovieRepository(modelBus, BuildConfig.DEBUG, BuildConfig.API_KEY);
   }
 }

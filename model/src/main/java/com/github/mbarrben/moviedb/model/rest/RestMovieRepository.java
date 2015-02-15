@@ -11,13 +11,15 @@ import retrofit.client.Response;
 public final class RestMovieRepository implements MovieRepository {
 
   public static final String MOVIE_DB_HOST = "http://api.themoviedb.org/3/";
-  public static final String API_KEY = "87a901020f496977f9d6d508c5d186ec";
 
   private final MovieDatabaseAPI api;
   private final Bus bus;
+  private final String apiKey;
 
-  public RestMovieRepository(Bus bus, boolean debug) {
+  public RestMovieRepository(Bus bus, boolean debug, String apiKey) {
     this.bus = bus;
+    this.apiKey = apiKey;
+
     RestAdapter adapter = new RestAdapter.Builder().setEndpoint(MOVIE_DB_HOST)
         .setLogLevel(debug ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
         .build();
@@ -27,7 +29,7 @@ public final class RestMovieRepository implements MovieRepository {
 
   @Override
   public void getMovies() {
-    api.getPopularMovies(API_KEY, new Callback<PopularMoviesApiResponse>() {
+    api.getPopularMovies(apiKey, new Callback<PopularMoviesApiResponse>() {
       @Override
       public void success(PopularMoviesApiResponse popularMoviesApiResponse, Response response) {
         Movie.List movies = popularMoviesApiResponse.getResults();
