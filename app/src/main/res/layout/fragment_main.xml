@@ -1,12 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.github.mbarrben.moviedb.movielist.MoviesViewLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movies_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.mbarrben.moviedb.movielist.MainActivity">
-
-  <TextView
-      android:text="@string/hello_world"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"/>
-
-</RelativeLayout>
+    tools:context="com.github.mbarrben.moviedb.movielist.MainActivity"/>

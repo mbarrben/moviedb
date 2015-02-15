@@ -27,6 +27,12 @@ public abstract class BaseFragment extends Fragment {
     injectViews(view);
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    ButterKnife.reset(this);
+  }
+
   protected abstract int getFragmentLayout();
 
   private void injectDependencies() {
