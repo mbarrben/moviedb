@@ -2,30 +2,25 @@ package com.github.mbarrben.moviedb.domain;
 
 import com.github.mbarrben.moviedb.model.MovieRepository;
 import com.github.mbarrben.moviedb.model.entities.Movie;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
+import rx.Observable;
+import rx.Scheduler;
 
 public class GetMoviesImpl implements GetMovies {
 
   private final MovieRepository repo;
-  private final Bus uiBus;
-  private final Bus modelBus;
+  private final Scheduler subscribeScheduler;
+  private final Scheduler observeScheduler;
 
-  public GetMoviesImpl(MovieRepository repo, Bus modelBus, Bus uiBus) {
+  public GetMoviesImpl(MovieRepository repo, Scheduler subscribeScheduler, Scheduler observeScheduler) {
     this.repo = repo;
-    this.uiBus = uiBus;
-    this.modelBus = modelBus;
+    this.subscribeScheduler = subscribeScheduler;
+    this.observeScheduler = observeScheduler;
   }
 
   @Override
-  public void get() {
-    modelBus.register(this);
-    repo.getMovies();
-  }
-
-  @Subscribe
-  public void OnMoviesReceived(Movie.List movies) {
-    uiBus.post(movies);
-    modelBus.unregister(this);
+  public Observable<Movie.List> get() {
+    return repo.getMovies()
+        .subscribeOn(subscribeScheduler)
+        .observeOn(observeScheduler);
   }
 }

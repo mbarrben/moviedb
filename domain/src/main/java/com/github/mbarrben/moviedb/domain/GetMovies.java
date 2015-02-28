@@ -1,5 +1,8 @@
 package com.github.mbarrben.moviedb.domain;
 
+import com.github.mbarrben.moviedb.model.entities.Movie;
+import rx.Observable;
+
 public interface GetMovies {
-  void get();
+  Observable<Movie.List> get();
 }

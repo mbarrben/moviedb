@@ -1,19 +1,20 @@
 package com.github.mbarrben.moviedb.di;
 
-import com.squareup.otto.Bus;
-import com.squareup.otto.ThreadEnforcer;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @Module(library = true)
 public final class CommonModule {
 
-  @UIBus @Provides @Singleton Bus provideUiBus() {
-    return new Bus();
+  @UIScheduler @Provides @Singleton Scheduler provideUiScheduler() {
+    return AndroidSchedulers.mainThread();
   }
 
-  @RestBus @Provides @Singleton Bus provideRestBus() {
-    return new Bus(ThreadEnforcer.ANY);
+  @IOScheduler @Provides @Singleton Scheduler provideIOScheduler() {
+    return Schedulers.io();
   }
 }

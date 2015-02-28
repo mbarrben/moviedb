@@ -30,4 +30,9 @@ public class MoviesViewLayout extends RelativeLayout implements MoviesView {
     MoviesAdapter adapter = new MoviesAdapter(getContext(), movies);
     recyclerView.setAdapter(adapter);
   }
+
+  @Override
+  public void showError() {
+
+  }
 }

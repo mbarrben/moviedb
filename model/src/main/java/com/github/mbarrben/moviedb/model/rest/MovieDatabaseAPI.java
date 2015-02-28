@@ -1,10 +1,10 @@
 package com.github.mbarrben.moviedb.model.rest;
 
-import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
+import rx.Observable;
 
 public interface MovieDatabaseAPI {
 
-  @GET("/movie/popular") void getPopularMovies(@Query("api_key") String apiKey, Callback<PopularMoviesApiResponse> callback);
+  @GET("/movie/popular") Observable<PopularMoviesApiResponse> getPopularMovies(@Query("api_key") String apiKey);
 }

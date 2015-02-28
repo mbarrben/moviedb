@@ -3,9 +3,9 @@ package com.github.mbarrben.moviedb.di;
 import com.github.mbarrben.moviedb.domain.GetMovies;
 import com.github.mbarrben.moviedb.domain.GetMoviesImpl;
 import com.github.mbarrben.moviedb.model.MovieRepository;
-import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;
+import rx.Scheduler;
 
 @Module(
     includes = {
@@ -14,7 +14,11 @@ import dagger.Provides;
     library = true)
 public final class DomainModule {
 
-  @Provides GetMovies provideGetMovies(MovieRepository movieRepository, @UIBus Bus uiBus, @RestBus Bus modelBus) {
-    return new GetMoviesImpl(movieRepository, modelBus, uiBus);
+  @Provides GetMovies provideGetMovies(
+      MovieRepository movieRepository,
+      @IOScheduler Scheduler subscribeScheduler,
+      @UIScheduler Scheduler observeScheduler
+  ) {
+    return new GetMoviesImpl(movieRepository, subscribeScheduler, observeScheduler);
   }
 }
