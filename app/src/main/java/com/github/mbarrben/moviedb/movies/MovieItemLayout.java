@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.github.mbarrben.moviedb.R;
+import com.github.mbarrben.moviedb.domain.movies.MovieView;
 import com.github.mbarrben.moviedb.model.entities.Movie;
 import com.squareup.picasso.Picasso;
 

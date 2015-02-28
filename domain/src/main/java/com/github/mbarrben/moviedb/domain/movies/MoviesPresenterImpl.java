@@ -1,9 +1,6 @@
-package com.github.mbarrben.moviedb.movies;
+package com.github.mbarrben.moviedb.domain.movies;
 
-import android.support.annotation.NonNull;
-import com.github.mbarrben.moviedb.domain.GetMovies;
 import com.github.mbarrben.moviedb.model.entities.Movie;
-import javax.inject.Inject;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -14,13 +11,12 @@ public class MoviesPresenterImpl implements MoviesPresenter {
   private MoviesView view;
   private Subscription subscription;
 
-  @Inject
   public MoviesPresenterImpl(GetMovies getMovies) {
     this.getMovies = getMovies;
   }
 
   @Override
-  public void onViewCreated(@NonNull MoviesView view) {
+  public void onViewCreated(MoviesView view) {
     this.view = view;
     checkView();
     subscription = getMovies.get()

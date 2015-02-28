@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.domain;
+package com.github.mbarrben.moviedb.domain.movies;
 
 import com.github.mbarrben.moviedb.model.MovieRepository;
 import com.github.mbarrben.moviedb.model.entities.Movie;

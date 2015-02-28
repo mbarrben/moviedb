@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.github.mbarrben.moviedb.R;
+import com.github.mbarrben.moviedb.domain.movies.MoviesView;
 import com.github.mbarrben.moviedb.model.entities.Movie;
 
 public class MoviesViewLayout extends RelativeLayout implements MoviesView {

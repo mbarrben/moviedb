@@ -5,6 +5,7 @@ import android.view.View;
 import butterknife.InjectView;
 import com.github.mbarrben.moviedb.BaseFragment;
 import com.github.mbarrben.moviedb.R;
+import com.github.mbarrben.moviedb.domain.movies.MoviesPresenter;
 import javax.inject.Inject;
 
 public class MoviesFragment extends BaseFragment {

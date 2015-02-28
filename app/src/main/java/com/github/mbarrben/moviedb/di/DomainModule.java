@@ -1,7 +1,7 @@
 package com.github.mbarrben.moviedb.di;
 
-import com.github.mbarrben.moviedb.domain.GetMovies;
-import com.github.mbarrben.moviedb.domain.GetMoviesImpl;
+import com.github.mbarrben.moviedb.domain.movies.GetMovies;
+import com.github.mbarrben.moviedb.domain.movies.GetMoviesImpl;
 import com.github.mbarrben.moviedb.model.MovieRepository;
 import dagger.Module;
 import dagger.Provides;
