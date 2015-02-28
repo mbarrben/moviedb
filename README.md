@@ -22,8 +22,9 @@ Android project following MVP architecture heavily based on https://github.com/s
 4. Add the API key to the `private.properties` file as follows:
 
 
-    API_KEY = <YOUR API KEY HERE>
-
+```
+API_KEY = <YOUR API KEY HERE>
+```
 
 ## Bibliography
 
