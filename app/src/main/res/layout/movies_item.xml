@@ -1,4 +1,4 @@
-<com.github.mbarrben.moviedb.movies.MovieItemLayout
+<com.github.mbarrben.moviedb.movies.view.MovieItemLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/card_width"

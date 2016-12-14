@@ -1,12 +1,14 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/movies_item_view_showin">
+    tools:showIn="@layout/movies_item_view_showin"
+    >
 
   <ImageView
-      android:id="@+id/movies_item_picture"
+      android:id="@+id/picture"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:contentDescription="@string/movies_item_picture_description"/>
+      android:contentDescription="@string/movies_item_picture_description"
+      />
 
 </merge>

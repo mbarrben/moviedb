@@ -1,8 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'retrolambda'
+apply plugin: 'kotlin'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+  test.java.srcDirs += 'src/test/kotlin'
+}
 
 dependencies {
   compile project(':common')

@@ -4,5 +4,5 @@
     android:id="@+id/fragment_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.github.mbarrben.moviedb.movies.MoviesFragment"
-    tools:context="com.github.mbarrben.moviedb.movies.MoviesActivity"/>
+    android:name="com.github.mbarrben.moviedb.movies.view.MoviesFragment"
+    tools:context="com.github.mbarrben.moviedb.movies.view.MoviesActivity"/>

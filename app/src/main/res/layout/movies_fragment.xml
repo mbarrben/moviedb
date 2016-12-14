@@ -1,7 +1,7 @@
-<com.github.mbarrben.moviedb.movies.MoviesViewLayout
+<com.github.mbarrben.moviedb.movies.view.MoviesViewLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movies_view"
+    android:id="@+id/moviesView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.mbarrben.moviedb.movies.MoviesActivity"/>
+    tools:context="com.github.mbarrben.moviedb.movies.view.MoviesActivity"/>

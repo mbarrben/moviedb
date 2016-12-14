@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/movies_view_showin">
 
-  <com.github.mbarrben.moviedb.movies.MoviesRecyclerView
-      android:id="@+id/movies_recycler"
+  <com.github.mbarrben.moviedb.movies.view.MoviesRecyclerView
+      android:id="@+id/moviesRecycler"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:columnWidth="@dimen/card_width"/>
