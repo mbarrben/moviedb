@@ -34,6 +34,7 @@ ext {
           rx_android: '1.1.0',
           rx_kotlin : '0.60.0',
           support   : '25.1.0',
+          timber    : '4.4.0'
       ]
   ]
 
@@ -65,5 +66,6 @@ ext {
       retrofit_rx    : "com.squareup.retrofit2:adapter-rxjava:$versions.libs.retrofit",
       rx_android     : "io.reactivex:rxandroid:$versions.libs.rx_android",
       rx_kotlin      : "io.reactivex:rxkotlin:$versions.libs.rx_kotlin",
+      timber         : "com.jakewharton.timber:timber:$versions.libs.timber"
   ]
 }

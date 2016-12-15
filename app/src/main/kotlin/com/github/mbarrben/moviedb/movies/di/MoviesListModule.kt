@@ -4,6 +4,8 @@ import com.github.mbarrben.moviedb.BuildConfig
 import com.github.mbarrben.moviedb.di.IOScheduler
 import com.github.mbarrben.moviedb.di.UIScheduler
 import com.github.mbarrben.moviedb.domain.movies.GetMovies
+import com.github.mbarrben.moviedb.extensions.Timber
+import com.github.mbarrben.moviedb.extensions.d
 import com.github.mbarrben.moviedb.model.MovieRepository
 import com.github.mbarrben.moviedb.model.rest.NetworkClient
 import com.github.mbarrben.moviedb.model.rest.RestMovieRepository
@@ -17,5 +19,8 @@ class MoviesListModule {
     return GetMovies(repo, subscribe, observe)
   }
 
-  @Provides fun provideMovieRepository(): MovieRepository = RestMovieRepository(NetworkClient.create(), BuildConfig.API_KEY)
+  @Provides fun provideMovieRepository(): MovieRepository = RestMovieRepository(
+      NetworkClient.create({ message -> Timber.tag("Retrofit").d { message } }),
+      BuildConfig.API_KEY
+  )
 }
