@@ -5,6 +5,7 @@ import com.github.mbarrben.moviedb.di.IOScheduler
 import com.github.mbarrben.moviedb.di.UIScheduler
 import com.github.mbarrben.moviedb.domain.movies.GetMovies
 import com.github.mbarrben.moviedb.model.MovieRepository
+import com.github.mbarrben.moviedb.model.rest.NetworkClient
 import com.github.mbarrben.moviedb.model.rest.RestMovieRepository
 import dagger.Module
 import dagger.Provides
@@ -16,5 +17,5 @@ class MoviesListModule {
     return GetMovies(repo, subscribe, observe)
   }
 
-  @Provides fun provideMovieRepository(): MovieRepository = RestMovieRepository(BuildConfig.DEBUG, BuildConfig.API_KEY)
+  @Provides fun provideMovieRepository(): MovieRepository = RestMovieRepository(NetworkClient.create(), BuildConfig.API_KEY)
 }

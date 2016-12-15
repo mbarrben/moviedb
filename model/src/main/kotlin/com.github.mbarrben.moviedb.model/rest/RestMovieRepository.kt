@@ -2,20 +2,19 @@ package com.github.mbarrben.moviedb.model.rest
 
 import com.github.mbarrben.moviedb.model.MovieRepository
 import com.github.mbarrben.moviedb.model.entities.Movie
-import retrofit.RestAdapter.Builder
-import retrofit.RestAdapter.LogLevel.FULL
-import retrofit.RestAdapter.LogLevel.NONE
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import rx.Observable
 
-class RestMovieRepository(debug: Boolean, val apiKey: String) : MovieRepository {
+class RestMovieRepository(client: OkHttpClient, val apiKey: String) : MovieRepository {
 
-  companion object {
-    private val MOVIE_DB_HOST = "http://api.themoviedb.org/3/"
-  }
-
-  private val api = Builder()
-      .setEndpoint(MOVIE_DB_HOST)
-      .setLogLevel(if (debug) FULL else NONE)
+  private val api = Retrofit.Builder()
+      .baseUrl(MovieDatabaseAPI.BASE_URL)
+      .client(client)
+      .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+      .addConverterFactory(GsonConverterFactory.create())
       .build()
       .create(MovieDatabaseAPI::class.java)
 
