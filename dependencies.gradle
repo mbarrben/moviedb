@@ -1,0 +1,62 @@
+allprojects {
+  repositories {
+    jcenter()
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+  }
+}
+
+ext {
+  android_build = [
+      build_tools: '25.0.2',
+      compile_sdk: 25,
+      min_sdk    : 14,
+      target_sdk : 25
+  ]
+
+  versions = [
+      common       : [
+          kotlin: '1.1-M03'
+      ],
+
+      build_plugins: [
+          gradle: '2.3.0-alpha2'
+      ],
+
+      libs         : [
+          anko      : '0.8.3',
+          dagger    : '2.8',
+          inject    : '1',
+          jsr250    : '1.0',
+          picasso   : '2.5.2',
+          retrofit  : '1.9.0',
+          rx_android: '1.1.0',
+          rx_kotlin : '0.60.0',
+          support   : '25.1.0'
+      ]
+  ]
+
+  build_plugins = [
+      gradle: "com.android.tools.build:gradle:$versions.build_plugins.gradle",
+      kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.common.kotlin"
+  ]
+
+  libs = [
+      support        : [
+          appcompat   : "com.android.support:appcompat-v7:$versions.libs.support",
+          cardview    : "com.android.support:cardview-v7:$versions.libs.support",
+          recyclerview: "com.android.support:recyclerview-v7:$versions.libs.support"
+      ],
+
+      anko           : "org.jetbrains.anko:anko-sdk15:$versions.libs.anko",
+      anko_support   : "org.jetbrains.anko:anko-support-v4:$versions.libs.anko",
+      dagger         : "com.google.dagger:dagger:$versions.libs.dagger",
+      dagger_compiler: "com.google.dagger:dagger-compiler:$versions.libs.dagger",
+      inject         : "javax.inject:javax.inject:$versions.libs.inject",
+      jsr250         : "javax.annotation:jsr250-api:$versions.libs.jsr250",
+      kotlin         : "org.jetbrains.kotlin:kotlin-stdlib:$versions.common.kotlin",
+      picasso        : "com.squareup.picasso:picasso:$versions.libs.picasso",
+      retrofit       : "com.squareup.retrofit:retrofit:$versions.libs.retrofit",
+      rx_android     : "io.reactivex:rxandroid:$versions.libs.rx_android",
+      rx_kotlin      : "io.reactivex:rxkotlin:$versions.libs.rx_kotlin"
+  ]
+}

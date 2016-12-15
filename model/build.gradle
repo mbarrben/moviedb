@@ -7,5 +7,5 @@ sourceSets {
 
 dependencies {
   compile project(':common')
-  compile 'com.squareup.retrofit:retrofit:1.9.0'
+  compile libs.retrofit
 }

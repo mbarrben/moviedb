@@ -7,13 +7,13 @@ privateProperties.load(new FileInputStream("private.properties"))
 def apiKey = privateProperties['API_KEY']
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+  compileSdkVersion android_build.compile_sdk
+  buildToolsVersion android_build.build_tools
 
   defaultConfig {
     applicationId "com.github.mbarrben.moviedb"
-    minSdkVersion 14
-    targetSdkVersion 25
+    minSdkVersion android_build.min_sdk
+    targetSdkVersion android_build.target_sdk
     versionCode 1
     versionName "1.0"
     vectorDrawables.useSupportLibrary = true
@@ -53,16 +53,18 @@ dependencies {
   compile project(':common')
   compile project(':domain')
 
-  compile 'com.android.support:appcompat-v7:25.1.0'
-  compile 'com.android.support:recyclerview-v7:25.1.0'
-  compile 'com.android.support:cardview-v7:25.1.0'
+  compile libs.support.appcompat
+  compile libs.support.cardview
+  compile libs.support.recyclerview
 
-  compile 'com.squareup.picasso:picasso:2.5.2'
+  compile libs.picasso
 
-  compile "org.jetbrains.anko:anko-sdk15:$anko_version"
-  compile 'io.reactivex:rxandroid:1.1.0'
+  compile libs.anko
+  compile libs.anko_support
+  compile libs.rx_android
+  compile libs.rx_kotlin
 
-  kapt 'com.google.dagger:dagger-compiler:2.8'
-  compile 'com.google.dagger:dagger:2.8'
-  provided 'javax.annotation:jsr250-api:1.0'
+  kapt libs.dagger_compiler
+  compile libs.dagger
+  provided libs.jsr250
 }

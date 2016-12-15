@@ -1,7 +1,7 @@
 apply plugin: 'kotlin'
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  compile 'io.reactivex:rxkotlin:0.60.0'
-  compile 'javax.inject:javax.inject:1'
+  compile libs.kotlin
+  compile libs.rx_kotlin
+  compile libs.inject
 }
