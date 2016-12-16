@@ -1,0 +1,15 @@
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    apply from: '../dependencies.gradle'
+
+    compile gradleApi()
+    compile localGroovy()
+
+    testCompile libs.test.junit
+    testCompile(libs.test.assertj) { exclude module: 'support-annotations' }
+}

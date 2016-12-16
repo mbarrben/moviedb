@@ -6,10 +6,11 @@ import dagger.Provides
 import rx.Scheduler
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import javax.inject.Named
 
 @Module
 class ApplicationModule(val context: Context) {
   @Provides fun provideApplicationContext() = context
-  @Provides @UIScheduler fun provideUiScheduler(): Scheduler = AndroidSchedulers.mainThread()
-  @Provides @IOScheduler fun provideIOScheduler(): Scheduler = Schedulers.io()
+  @Provides @Named("UI") fun provideUiScheduler(): Scheduler = AndroidSchedulers.mainThread()
+  @Provides @Named("IO") fun provideIOScheduler(): Scheduler = Schedulers.io()
 }

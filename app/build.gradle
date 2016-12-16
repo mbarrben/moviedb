@@ -2,10 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-Properties privateProperties = new Properties()
-privateProperties.load(new FileInputStream("private.properties"))
-def apiKey = privateProperties['API_KEY']
-
 android {
   compileSdkVersion android_build.compile_sdk
   buildToolsVersion android_build.build_tools
@@ -18,7 +14,10 @@ android {
     versionName "1.0"
     vectorDrawables.useSupportLibrary = true
 
-    buildConfigField "String", "API_KEY", "\"${apiKey}\""
+    Properties privateProperties = DefaultProperties.create()
+
+    buildConfigField "String", "API_KEY", "\"${privateProperties['API_KEY']}\""
+    buildConfigField "String", "API_READ_ACCESS_TOKEN", "\"${privateProperties['API_READ_ACCESS_TOKEN']}\""
   }
 
   buildTypes {

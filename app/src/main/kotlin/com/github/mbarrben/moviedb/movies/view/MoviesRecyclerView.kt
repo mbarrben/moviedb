@@ -1,12 +1,10 @@
 package com.github.mbarrben.moviedb.movies.view
 
-import android.R.attr
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import com.github.mbarrben.moviedb.extensions.use
-import com.github.mbarrben.moviedb.movies.view.MovieItemDecoration
 
 class MoviesRecyclerView(context: Context, attrs: AttributeSet) : RecyclerView(context, attrs) {
 
@@ -32,7 +30,7 @@ class MoviesRecyclerView(context: Context, attrs: AttributeSet) : RecyclerView(c
   private fun initColumnsWidth(context: Context, attrs: AttributeSet?) {
     checkNotNull(attrs) { "attrs can't be null" }
 
-    val attrsArray = intArrayOf(attr.columnWidth)
+    val attrsArray = intArrayOf(android.R.attr.columnWidth)
 
     context.obtainStyledAttributes(attrs, attrsArray).use {
       columnWidth = getDimensionPixelSize(0, -1)

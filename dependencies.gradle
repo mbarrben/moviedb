@@ -24,10 +24,12 @@ ext {
 
       libs         : [
           anko      : '0.8.3',
+          assertj   : '1.1.1',
           dagger    : '2.8',
           gson      : '2.8.0',
           inject    : '1',
           jsr250    : '1.0',
+          junit     : '4.12',
           okhttp    : '3.5.0',
           picasso   : '2.5.2',
           retrofit  : '2.1.0',
@@ -48,6 +50,11 @@ ext {
           appcompat   : "com.android.support:appcompat-v7:$versions.libs.support",
           cardview    : "com.android.support:cardview-v7:$versions.libs.support",
           recyclerview: "com.android.support:recyclerview-v7:$versions.libs.support"
+      ],
+
+      test           : [
+          junit  : "junit:junit:$versions.libs.junit",
+          assertj: "com.squareup.assertj:assertj-android:$versions.libs.assertj"
       ],
 
       anko           : "org.jetbrains.anko:anko-sdk15:$versions.libs.anko",
