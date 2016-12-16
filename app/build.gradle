@@ -57,6 +57,7 @@ dependencies {
   compile libs.support.recyclerview
 
   compile libs.picasso
+  compile libs.picasso_downloader
   compile libs.timber
   compile libs.byteunits
 

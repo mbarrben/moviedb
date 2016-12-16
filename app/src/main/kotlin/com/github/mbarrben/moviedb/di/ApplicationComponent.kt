@@ -4,6 +4,7 @@ import android.content.Context
 import com.github.mbarrben.moviedb.BaseActivity
 import com.github.mbarrben.moviedb.MovieDbApp
 import com.github.mbarrben.moviedb.movies.view.MoviesActivity
+import com.squareup.picasso.Picasso
 import dagger.Component
 import okhttp3.OkHttpClient
 import rx.Scheduler
@@ -20,4 +21,5 @@ interface ApplicationComponent {
   @Named("UI") fun provideUiScheduler(): Scheduler
   @Named("IO") fun provideIOScheduler(): Scheduler
   fun provideOkHttpClient(): OkHttpClient
+  fun providePicasso(): Picasso
 }

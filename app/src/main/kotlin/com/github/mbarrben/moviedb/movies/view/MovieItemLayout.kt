@@ -5,19 +5,30 @@ import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.movies.MovieView
+import com.github.mbarrben.moviedb.extensions.getComponent
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.load
 import com.github.mbarrben.moviedb.model.entities.Movie
+import com.github.mbarrben.moviedb.movies.di.MoviesListComponent
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movies_item_view.view.picture
+import javax.inject.Inject
 
 class MovieItemLayout(context: Context, attrs: AttributeSet) : CardView(context, attrs), MovieView {
 
+  @Inject lateinit var picasso: Picasso
+
   init {
     inflate(R.layout.movies_item_view, true)
+    inject()
   }
 
   override fun render(movie: Movie) {
     picture.contentDescription = movie.title
-    picture.load(movie.posterPath()) { fit() }
+    picture.load(picasso, movie.posterPath()) { fit() }
+  }
+
+  private fun inject() {
+    getComponent(MoviesListComponent::class.java).inject(this)
   }
 }
