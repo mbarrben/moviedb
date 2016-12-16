@@ -58,6 +58,7 @@ dependencies {
 
   compile libs.picasso
   compile libs.timber
+  compile libs.byteunits
 
   compile libs.anko
   compile libs.anko_support

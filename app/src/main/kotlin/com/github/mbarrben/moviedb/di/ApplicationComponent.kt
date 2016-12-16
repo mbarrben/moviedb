@@ -5,6 +5,7 @@ import com.github.mbarrben.moviedb.BaseActivity
 import com.github.mbarrben.moviedb.MovieDbApp
 import com.github.mbarrben.moviedb.movies.view.MoviesActivity
 import dagger.Component
+import okhttp3.OkHttpClient
 import rx.Scheduler
 import javax.inject.Named
 import javax.inject.Singleton
@@ -18,4 +19,5 @@ interface ApplicationComponent {
   fun context(): Context
   @Named("UI") fun provideUiScheduler(): Scheduler
   @Named("IO") fun provideIOScheduler(): Scheduler
+  fun provideOkHttpClient(): OkHttpClient
 }

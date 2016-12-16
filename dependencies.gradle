@@ -25,6 +25,7 @@ ext {
       libs         : [
           anko      : '0.8.3',
           assertj   : '1.1.1',
+          byteunits : '0.9.1',
           dagger    : '2.8',
           gson      : '2.8.0',
           inject    : '1',
@@ -59,6 +60,7 @@ ext {
 
       anko           : "org.jetbrains.anko:anko-sdk15:$versions.libs.anko",
       anko_support   : "org.jetbrains.anko:anko-support-v4:$versions.libs.anko",
+      byteunits      : "com.jakewharton.byteunits:byteunits:$versions.libs.byteunits",
       dagger         : "com.google.dagger:dagger:$versions.libs.dagger",
       dagger_compiler: "com.google.dagger:dagger-compiler:$versions.libs.dagger",
       gson           : "com.google.code.gson:gson:$versions.libs.gson",
