@@ -1,7 +1,9 @@
 <resources>
+
   <dimen name="insets">5dp</dimen>
   <dimen name="card_elevation">5dp</dimen>
   <dimen name="card_corner_radius">2dp</dimen>
-  <dimen name="card_width">170dp</dimen>
-  <dimen name="card_height">240dp</dimen>
+
+  <integer name="card_span_count">2</integer>
+
 </resources>

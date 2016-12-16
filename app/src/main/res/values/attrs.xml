@@ -1,0 +1,14 @@
+<resources>
+
+  <declare-styleable name="ProportionalImageView">
+    <attr
+        format="integer"
+        name="proportionHeight"
+        />
+    <attr
+        format="integer"
+        name="proportionWidth"
+        />
+  </declare-styleable>
+
+</resources>

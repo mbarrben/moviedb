@@ -11,12 +11,18 @@ import kotlinx.android.synthetic.main.movies_view.view.moviesRecycler
 
 class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(context, attrs), MoviesView {
 
+  private val adapter = MoviesAdapter()
+
   init {
     inflate(R.layout.movies_view, attachToRoot = true)
+//    moviesRecycler.layoutManager = GridAutoFitLayoutManager(context, context.resources.getDimensionPixelOffset(R.dimen.card_width))
+    moviesRecycler.setHasFixedSize(true)
+    moviesRecycler.addItemDecoration(MovieItemDecoration(context))
+    moviesRecycler.adapter = adapter
   }
 
   override fun showMovies(movies: List) {
-    moviesRecycler.adapter = MoviesAdapter(movies)
+    adapter.movies = movies
   }
 
   override fun showError() = Unit
