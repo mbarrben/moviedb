@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.view
+package com.github.mbarrben.moviedb.movies.view.widget
 
 import android.content.Context
 import android.support.v7.widget.AppCompatImageView

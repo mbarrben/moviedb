@@ -5,7 +5,7 @@
     tools:showIn="@layout/movies_item_view_showin"
     >
 
-  <com.github.mbarrben.moviedb.movies.view.ProportionalImageView
+  <com.github.mbarrben.moviedb.movies.view.widget.ProportionalImageView
       android:id="@+id/picture"
       android:layout_width="match_parent"
       android:layout_height="match_parent"

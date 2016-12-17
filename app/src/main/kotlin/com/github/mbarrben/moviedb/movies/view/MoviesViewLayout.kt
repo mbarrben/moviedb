@@ -13,8 +13,10 @@ import com.github.mbarrben.moviedb.domain.movies.MoviesView
 import com.github.mbarrben.moviedb.extensions.Timber
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.model.entities.Movie
-import com.github.mbarrben.moviedb.movies.view.Type.LOADING
-import com.github.mbarrben.moviedb.movies.view.Type.MOVIE
+import com.github.mbarrben.moviedb.movies.view.adapter.MoviesAdapter
+import com.github.mbarrben.moviedb.movies.view.adapter.Type
+import com.github.mbarrben.moviedb.movies.view.adapter.Type.LOADING
+import com.github.mbarrben.moviedb.movies.view.adapter.Type.MOVIE
 import com.jakewharton.rxbinding.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding.support.v7.widget.scrollEvents
 import kotlinx.android.synthetic.main.movies_view.view.moviesRecycler

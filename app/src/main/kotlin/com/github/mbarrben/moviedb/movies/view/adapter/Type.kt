@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.view
+package com.github.mbarrben.moviedb.movies.view.adapter
 
 enum class Type(val value: Int) {
   MOVIE(0), LOADING(1);
