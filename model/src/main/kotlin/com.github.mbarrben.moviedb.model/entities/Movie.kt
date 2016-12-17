@@ -3,7 +3,7 @@ package com.github.mbarrben.moviedb.model.entities
 import com.google.gson.annotations.SerializedName
 
 data class Movie(
-    @SerializedName("id") val id: String,
+    @SerializedName("id") val id: Long,
     @SerializedName("title") val title: String,
     @SerializedName("poster_path") private val posterPathLastSegment: String
 ) {
