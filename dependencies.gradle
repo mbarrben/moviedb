@@ -37,6 +37,7 @@ ext {
           retrofit          : '2.1.0',
           rx_android        : '1.1.0',
           rx_kotlin         : '0.60.0',
+          rxbindings        : '1.0.0',
           support           : '25.1.0',
           timber            : '4.4.0'
       ]
@@ -48,6 +49,10 @@ ext {
   ]
 
   libs = [
+      rxbindings        : [
+          recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbindings"
+      ],
+
       support           : [
           appcompat   : "com.android.support:appcompat-v7:$versions.libs.support",
           cardview    : "com.android.support:cardview-v7:$versions.libs.support",
