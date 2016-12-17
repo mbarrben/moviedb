@@ -4,5 +4,5 @@ import com.github.mbarrben.moviedb.model.entities.Movie
 import rx.Observable
 
 interface MovieRepository {
-  fun getMovies(): Observable<Movie.List>
+  fun getMovies(page: Int = 1): Observable<Movie.List>
 }

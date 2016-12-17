@@ -18,6 +18,6 @@ class RestMovieRepository(client: OkHttpClient, val apiKey: String) : MovieRepos
       .build()
       .create(MovieDatabaseAPI::class.java)
 
-  override fun getMovies(): Observable<Movie.List> = api.getPopularMovies(apiKey)
-      .map { it.results }
+  override fun getMovies(page: Int): Observable<Movie.List> = api.popular(apiKey, page)
+      .map { Movie.List(it.page, it.results) }
 }

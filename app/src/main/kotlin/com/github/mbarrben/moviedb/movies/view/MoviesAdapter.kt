@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 
 class MoviesAdapter : Adapter<ViewHolder>() {
 
-  var movies: Movie.List by Delegates.observable(Movie.List()) { _, _, _ -> notifyDataSetChanged() }
+  var movies: Movie.List by Delegates.observable(Movie.List(1, emptyList())) { _, _, _ -> notifyDataSetChanged() }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.movies_item) as MovieItemLayout)
 

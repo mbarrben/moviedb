@@ -1,7 +1,6 @@
 package com.github.mbarrben.moviedb.model.entities
 
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
 
 data class Movie(
     @SerializedName("id") val id: String,
@@ -15,5 +14,7 @@ data class Movie(
 
   fun posterPath() = POSTER_PREFIX + posterPathLastSegment
 
-  class List : ArrayList<Movie>()
+  data class List(val page: Int, val movies: kotlin.collections.List<Movie>) : kotlin.collections.List<Movie> by movies {
+    operator fun plus(elements: Movie.List) = Movie.List(elements.page, movies + elements.movies)
+  }
 }

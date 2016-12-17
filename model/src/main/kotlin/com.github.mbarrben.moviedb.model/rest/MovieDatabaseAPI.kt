@@ -10,5 +10,5 @@ interface MovieDatabaseAPI {
     val BASE_URL = "http://api.themoviedb.org/3/"
   }
 
-  @GET("movie/popular") fun getPopularMovies(@Query("api_key") apiKey: String): Observable<PopularMoviesApiResponse>
+  @GET("movie/popular") fun popular(@Query("api_key") apiKey: String, @Query("page") page: Int = 1): Observable<PopularMoviesApiResponse>
 }
