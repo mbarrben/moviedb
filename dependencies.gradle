@@ -2,6 +2,7 @@ allprojects {
   repositories {
     jcenter()
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+    maven { url "https://jitpack.io" }
   }
 }
 
@@ -15,11 +16,11 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1-M03'
+          kotlin: '1.1-M04'
       ],
 
       build_plugins: [
-          gradle: '2.3.0-alpha2'
+          gradle: '2.3.0-beta1'
       ],
 
       libs         : [

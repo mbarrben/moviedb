@@ -9,7 +9,7 @@ import timber.log.Timber.DebugTree
 
 class MovieDbApp : Application() {
 
-  val applicationComponent: ApplicationComponent = DaggerApplicationComponent.builder()
+  var applicationComponent: ApplicationComponent = DaggerApplicationComponent.builder()
       .applicationModule(ApplicationModule(this))
       .build()
 
