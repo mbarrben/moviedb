@@ -25,7 +25,7 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations.initMocks
 import rx.lang.kotlin.emptyObservable
 
-@RunWith(AndroidJUnit4::class) @LargeTest class MoviesActivityShould {
+@RunWith(AndroidJUnitRunner::class) @LargeTest class MoviesActivityShould {
 
   @JvmField @Rule var daggerRule: DaggerMockRule<ApplicationComponent> = DaggerMockRule(
       ApplicationComponent::class.java,
