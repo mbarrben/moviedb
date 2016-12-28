@@ -50,6 +50,7 @@ ext {
 
   libs = [
       rxbindings        : [
+          basic       : "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.libs.rxbindings",
           recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbindings"
       ],
 

@@ -57,6 +57,7 @@ dependencies {
   compile libs.support.recyclerview
 
   compile libs.rxbindings.recyclerview
+  compile libs.rxbindings.basic
 
   compile libs.picasso
   compile libs.picasso_downloader

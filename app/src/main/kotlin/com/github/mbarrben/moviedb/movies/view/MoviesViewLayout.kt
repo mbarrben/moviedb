@@ -66,4 +66,5 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
       .doOnEach { showLoading() }
       .doOnEach { Timber.d { "infinite scroll" } }
 
+  override fun movieClicks() = moviesAdapter.itemClicks
 }
