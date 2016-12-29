@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
 import android.util.AttributeSet
+import android.view.View
 import android.widget.RelativeLayout
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.movies.MoviesView
@@ -67,4 +68,9 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
       .doOnEach { Timber.d { "infinite scroll" } }
 
   override fun movieClicks() = moviesAdapter.itemClicks
+
+  fun findMoviePosterView(movie: Movie): View? {
+    val pos = moviesAdapter.findPositionById(movie.id)
+    return moviesRecycler.layoutManager.findViewByPosition(pos)
+  }
 }

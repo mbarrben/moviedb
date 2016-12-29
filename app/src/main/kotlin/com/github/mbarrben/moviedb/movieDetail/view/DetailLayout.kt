@@ -11,6 +11,7 @@ import com.github.mbarrben.moviedb.domain.moviesDetail.DetailView
 import com.github.mbarrben.moviedb.extensions.getComponent
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.load
+import com.github.mbarrben.moviedb.extensions.transitionName
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MovieDetailComponent
 import com.jakewharton.rxbinding.view.clicks
@@ -29,15 +30,15 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
 
   @Inject lateinit var picasso: Picasso
 
+  val activity: AppCompatActivity = (context as AppCompatActivity).apply {
+    setSupportActionBar(toolbar)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    supportPostponeEnterTransition()
+  }
+
   init {
     inflate(R.layout.detail_view, attachToRoot = true)
-
     inject()
-
-    with(context as AppCompatActivity) {
-      setSupportActionBar(toolbar)
-      supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
   }
 
   override fun render(movie: Movie) {
@@ -46,7 +47,9 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     releaseDate.text = getMediumDateFormat(context).format(movie.releaseDate)
     ratingBar.rating = movie.voteAverage / 2
     votes.text = context.resources.getQuantityString(R.plurals.vote_count, movie.voteCount, movie.voteCount)
-    poster.load(picasso, movie.posterPath())
+
+    poster.transitionName("transition")
+    poster.load(picasso, movie.posterPath()) { activity.supportStartPostponedEnterTransition() }
 
     fab.clicks().subscribe {
       Snackbar.make(fab, "Replace with your own action ${movie.title}", Snackbar.LENGTH_LONG)

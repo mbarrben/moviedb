@@ -44,4 +44,8 @@ class MoviesAdapter : Adapter<ViewHolder>() {
   override fun getItemCount() = movies.size + if (loading) 1 else 0
 
   override fun getItemId(position: Int) = if (position < movies.size) movies[position].id else -1
+
+  fun findPositionById(id: Long) = movies.withIndex()
+      .first({ it.value.id == id })
+      .index
 }
