@@ -30,7 +30,7 @@ class MovieItemLayout(context: Context, attrs: AttributeSet) : CardView(context,
   override fun render(movie: Movie) {
     this.movie = movie
     picture.contentDescription = movie.title
-    picture.load(picasso, movie.posterPath()) { fit() }
+    picture.load(picasso, movie.posterPath(), config = { fit() })
   }
 
   override fun movieClicks(): Observable<Movie> = clicks().filter { movie != null }
