@@ -5,6 +5,7 @@ import com.github.mbarrben.moviedb.di.ActivityModule
 import com.github.mbarrben.moviedb.di.ApplicationComponent
 import com.github.mbarrben.moviedb.di.PerActivity
 import com.github.mbarrben.moviedb.movieDetail.DetailActivity
+import com.github.mbarrben.moviedb.movieDetail.DetailFragment
 import dagger.Component
 
 @PerActivity
@@ -15,5 +16,6 @@ import dagger.Component
     )
 )
 interface MovieDetailComponent : ActivityComponent {
-  fun inject(detailActivity: DetailActivity)
+  fun inject(activity: DetailActivity)
+  fun inject(fragment: DetailFragment)
 }
