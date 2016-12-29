@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity"
+    tools:showIn="@layout/detail_fragment"
     >
 
   <android.support.design.widget.AppBarLayout
