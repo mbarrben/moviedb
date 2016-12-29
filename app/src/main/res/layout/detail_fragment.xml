@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.mbarrben.moviedb.movieDetail.DetailLayout
+<com.github.mbarrben.moviedb.movieDetail.view.DetailLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.github.mbarrben.moviedb.movieDetail.DetailActivity"
+    tools:context="com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity"
     />

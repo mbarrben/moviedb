@@ -4,8 +4,8 @@ import com.github.mbarrben.moviedb.di.ActivityComponent
 import com.github.mbarrben.moviedb.di.ActivityModule
 import com.github.mbarrben.moviedb.di.ApplicationComponent
 import com.github.mbarrben.moviedb.di.PerActivity
-import com.github.mbarrben.moviedb.movieDetail.DetailActivity
-import com.github.mbarrben.moviedb.movieDetail.DetailFragment
+import com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity
+import com.github.mbarrben.moviedb.movieDetail.view.platform.DetailFragment
 import dagger.Component
 
 @PerActivity

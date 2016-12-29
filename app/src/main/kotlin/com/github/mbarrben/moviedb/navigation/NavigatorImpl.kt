@@ -4,7 +4,7 @@ import android.app.Activity
 import com.github.mbarrben.moviedb.domain.navigation.Navigator
 import com.github.mbarrben.moviedb.extensions.fromJson
 import com.github.mbarrben.moviedb.model.entities.Movie
-import com.github.mbarrben.moviedb.movieDetail.DetailActivity
+import com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity
 import com.google.gson.Gson
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject

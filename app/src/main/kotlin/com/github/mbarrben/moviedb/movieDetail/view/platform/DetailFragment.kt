@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movieDetail
+package com.github.mbarrben.moviedb.movieDetail.view.platform
 
 import android.os.Bundle
 import android.view.View

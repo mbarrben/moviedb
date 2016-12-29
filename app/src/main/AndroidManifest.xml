@@ -31,7 +31,7 @@
     </activity>
 
     <activity
-        android:name=".movieDetail.DetailActivity"
+        android:name=".movieDetail.view.platform.DetailActivity"
         android:parentActivityName=".movies.view.platform.MoviesActivity"
         android:theme="@style/AppTheme.NoActionBar"
         tools:targetApi="jelly_bean">

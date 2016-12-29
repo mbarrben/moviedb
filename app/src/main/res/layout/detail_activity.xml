@@ -2,8 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_detail"
-    android:name="com.github.mbarrben.moviedb.movieDetail.DetailFragment"
+    android:name="com.github.mbarrben.moviedb.movieDetail.view.platform.DetailFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.mbarrben.moviedb.movieDetail.DetailActivity"
+    tools:context="com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity"
     />

@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movieDetail
+package com.github.mbarrben.moviedb.movieDetail.view.platform
 
 import com.github.mbarrben.moviedb.BaseActivity
 import com.github.mbarrben.moviedb.R
