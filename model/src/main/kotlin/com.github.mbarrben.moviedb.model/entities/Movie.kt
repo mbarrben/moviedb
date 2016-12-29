@@ -11,10 +11,10 @@ data class Movie(
     @SerializedName("release_date") val releaseDate: Date,
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("genre_ids") val genreIds: kotlin.collections.List<Long>,
+    @SerializedName("vote_count") val voteCount: Int,
+    @SerializedName("vote_average") val voteAverage: Float,
     @SerializedName("poster_path") private val posterPathLastSegment: String,
-    @SerializedName("backdrop_path") private val backdropPathLastSegment: String,
-    @SerializedName("vote_count") private val voteCount: Long,
-    @SerializedName("vote_average") private val voteAverage: Float
+    @SerializedName("backdrop_path") private val backdropPathLastSegment: String
 ) {
 
   companion object {

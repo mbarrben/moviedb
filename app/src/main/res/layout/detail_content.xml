@@ -1,18 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/text_margin"
     tools:context="com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity"
-    tools:showIn="@layout/detail_view"
     >
 
   <TextView
-      android:layout_width="match_parent"
+      android:id="@+id/overview"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:text="@string/large_text"
+      android:layout_marginTop="8dp"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/titleOverview"
+      tools:text="A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy."
       />
 
-</LinearLayout>
+  <TextView
+      android:id="@+id/titleOverview"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:text="@string/title_overview"
+      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/titleReleaseDate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/title_release_date"
+      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/overview"
+      />
+
+  <TextView
+      android:id="@+id/releaseDate"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      app:layout_constraintBaseline_toBaselineOf="@+id/titleReleaseDate"
+      app:layout_constraintBottom_toBottomOf="@+id/titleReleaseDate"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toRightOf="@+id/titleReleaseDate"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/titleReleaseDate"
+      tools:text="December 14th, 2016"
+      />
+
+  <TextView
+      android:id="@+id/titleRating"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/title_rating"
+      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/titleReleaseDate"
+      />
+
+  <RatingBar
+      android:id="@+id/ratingBar"
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      android:isIndicator="true"
+      android:numStars="5"
+      android:paddingTop="2dp"
+      android:rating="4"
+      android:stepSize="0.1"
+      app:layout_constraintBottom_toBottomOf="@+id/titleRating"
+      app:layout_constraintLeft_toRightOf="@+id/titleRating"
+      app:layout_constraintTop_toTopOf="@+id/titleRating"
+      app:layout_constraintVertical_bias="0.0"
+      style="@style/Widget.AppCompat.RatingBar.Small"
+      />
+
+  <TextView
+      android:id="@+id/votes"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      app:layout_constraintBaseline_toBaselineOf="@+id/titleRating"
+      app:layout_constraintLeft_toRightOf="@+id/ratingBar"
+      tools:text="(941 votes)"
+      />
+
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/large_text"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/titleRating"
+      />
+
+</android.support.constraint.ConstraintLayout>

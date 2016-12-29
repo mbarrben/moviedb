@@ -56,6 +56,7 @@ dependencies {
   compile libs.support.cardview
   compile libs.support.recyclerview
   compile libs.support.design
+  compile libs.support.constraint
 
   compile libs.rxbindings.recyclerview
   compile libs.rxbindings.basic
