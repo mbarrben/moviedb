@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.mbarrben.moviedb">
 
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -31,6 +31,16 @@
       </intent-filter>
     </activity>
 
+    <activity
+        android:name=".movieDetail.DetailActivity"
+        android:label="@string/title_activity_detail"
+        android:parentActivityName=".movies.view.platform.MoviesActivity"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:targetApi="jelly_bean">
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value="com.github.mbarrben.moviedb.movies.view.platform.MoviesActivity"/>
+    </activity>
   </application>
 
 </manifest>

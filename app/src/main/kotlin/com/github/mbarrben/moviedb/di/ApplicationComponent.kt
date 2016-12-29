@@ -4,6 +4,7 @@ import android.content.Context
 import com.github.mbarrben.moviedb.BaseActivity
 import com.github.mbarrben.moviedb.MovieDbApp
 import com.github.mbarrben.moviedb.movies.view.platform.MoviesActivity
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import dagger.Component
 import okhttp3.OkHttpClient
@@ -18,8 +19,9 @@ interface ApplicationComponent {
   fun inject(activity: MoviesActivity)
   fun inject(activity: BaseActivity)
   fun context(): Context
-  @Named("UI") fun provideUiScheduler(): Scheduler
-  @Named("IO") fun provideIOScheduler(): Scheduler
-  fun provideOkHttpClient(): OkHttpClient
-  fun providePicasso(): Picasso
+  @Named("UI") fun uiScheduler(): Scheduler
+  @Named("IO") fun iOScheduler(): Scheduler
+  fun okHttpClient(): OkHttpClient
+  fun picasso(): Picasso
+  fun gson() : Gson
 }
