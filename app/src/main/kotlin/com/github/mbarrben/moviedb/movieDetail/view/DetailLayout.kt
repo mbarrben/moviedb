@@ -48,6 +48,7 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     ratingBar.rating = movie.voteAverage / 2
     votes.text = context.resources.getQuantityString(R.plurals.vote_count, movie.voteCount, movie.voteCount)
 
+    poster.contentDescription = movie.title
     poster.transitionName("transition")
     poster.load(picasso, movie.posterPath()) { activity.supportStartPostponedEnterTransition() }
 
