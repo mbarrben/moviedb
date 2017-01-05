@@ -70,8 +70,5 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
 
   override fun movieClicks() = moviesAdapter.itemClicks
 
-  fun findMoviePosterView(movie: Movie): View? {
-    val pos = moviesAdapter.findPositionById(movie.id)
-    return moviesRecycler.layoutManager.findViewByPosition(pos)
-  }
+  fun findMoviePosterView(movie: Movie): View? = moviesRecycler.findViewHolderForItemId(movie.id).itemView
 }
