@@ -30,7 +30,9 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
   init {
     inflate(R.layout.movies_view, attachToRoot = true)
 
-    val gridLayoutManager = GridLayoutManager(context, context.resources.getInteger(R.integer.card_span_count)).apply {
+    val spanCount = context.resources.getInteger(R.integer.card_span_count)
+
+    val gridLayoutManager = GridLayoutManager(context, spanCount).apply {
       spanSizeLookup = object : SpanSizeLookup() {
         override fun getSpanSize(position: Int) = when (Type.from(moviesAdapter.getItemViewType(position))) {
           MOVIE   -> 1
@@ -42,7 +44,7 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
     with(moviesRecycler) {
       layoutManager = gridLayoutManager
       setHasFixedSize(true)
-      addItemDecoration(MovieItemDecoration(context))
+      addItemDecoration(MovieItemDecoration(context, spanCount))
       adapter = moviesAdapter
     }
   }
