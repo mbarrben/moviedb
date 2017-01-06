@@ -15,17 +15,18 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1-M03'
+          kotlin: '1.1-M04'
       ],
 
       build_plugins: [
-          gradle: '2.3.0-alpha2'
+          gradle: '2.3.0-beta1'
       ],
 
       libs         : [
           anko              : '0.8.3',
           assertj           : '1.1.1',
           byteunits         : '0.9.1',
+          constraint        : '1.0.0-beta4',
           dagger            : '2.8',
           gson              : '2.8.0',
           inject            : '1',
@@ -50,12 +51,15 @@ ext {
 
   libs = [
       rxbindings        : [
+          basic       : "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.libs.rxbindings",
           recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbindings"
       ],
 
       support           : [
           appcompat   : "com.android.support:appcompat-v7:$versions.libs.support",
           cardview    : "com.android.support:cardview-v7:$versions.libs.support",
+          constraint  : "com.android.support.constraint:constraint-layout:$versions.libs.constraint",
+          design      : "com.android.support:design:$versions.libs.support",
           recyclerview: "com.android.support:recyclerview-v7:$versions.libs.support"
       ],
 

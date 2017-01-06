@@ -55,8 +55,11 @@ dependencies {
   compile libs.support.appcompat
   compile libs.support.cardview
   compile libs.support.recyclerview
+  compile libs.support.design
+  compile libs.support.constraint
 
   compile libs.rxbindings.recyclerview
+  compile libs.rxbindings.basic
 
   compile libs.picasso
   compile libs.picasso_downloader

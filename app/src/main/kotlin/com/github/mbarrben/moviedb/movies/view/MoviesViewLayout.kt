@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
 import android.util.AttributeSet
+import android.view.View
 import android.widget.RelativeLayout
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.movies.MoviesView
@@ -28,8 +29,10 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
 
   init {
     inflate(R.layout.movies_view, attachToRoot = true)
-    val gridLayoutManager = GridLayoutManager(context, context.resources.getInteger(R.integer.card_span_count))
-    with(gridLayoutManager) {
+
+    val spanCount = context.resources.getInteger(R.integer.card_span_count)
+
+    val gridLayoutManager = GridLayoutManager(context, spanCount).apply {
       spanSizeLookup = object : SpanSizeLookup() {
         override fun getSpanSize(position: Int) = when (Type.from(moviesAdapter.getItemViewType(position))) {
           MOVIE   -> 1
@@ -37,10 +40,11 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
         }
       }
     }
+
     with(moviesRecycler) {
       layoutManager = gridLayoutManager
       setHasFixedSize(true)
-      addItemDecoration(MovieItemDecoration(context))
+      addItemDecoration(MovieItemDecoration(context, spanCount))
       adapter = moviesAdapter
     }
   }
@@ -66,4 +70,7 @@ class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(c
       .doOnEach { showLoading() }
       .doOnEach { Timber.d { "infinite scroll" } }
 
+  override fun movieClicks() = moviesAdapter.itemClicks
+
+  fun findMoviePosterView(movie: Movie): View? = moviesRecycler.findViewHolderForItemId(movie.id).itemView
 }

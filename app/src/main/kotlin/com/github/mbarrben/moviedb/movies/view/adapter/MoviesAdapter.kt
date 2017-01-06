@@ -12,9 +12,12 @@ import com.github.mbarrben.moviedb.movies.view.adapter.Type.LOADING
 import com.github.mbarrben.moviedb.movies.view.adapter.Type.MOVIE
 import com.github.mbarrben.moviedb.movies.view.adapter.ViewHolder.MovieHolder
 import com.github.mbarrben.moviedb.movies.view.adapter.ViewHolder.ProgressHolder
+import rx.lang.kotlin.PublishSubject
 import kotlin.properties.Delegates
 
 class MoviesAdapter : Adapter<ViewHolder>() {
+
+  val itemClicks = PublishSubject<Movie>()
 
   var movies: Movie.List by Delegates.observable(List(1, emptyList())) { _, old, new ->
     val diffResult = DiffUtil.calculateDiff(MoviesDiffCallback(old, new))
@@ -30,7 +33,7 @@ class MoviesAdapter : Adapter<ViewHolder>() {
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (Type.from(viewType)) {
-    MOVIE   -> MovieHolder(parent.inflate(layout.movies_item) as MovieItemLayout)
+    MOVIE   -> MovieHolder(parent.inflate(layout.movies_item) as MovieItemLayout, itemClicks)
     LOADING -> ProgressHolder(parent.inflate(layout.movies_item_loading))
   }
 
@@ -41,4 +44,5 @@ class MoviesAdapter : Adapter<ViewHolder>() {
   override fun getItemCount() = movies.size + if (loading) 1 else 0
 
   override fun getItemId(position: Int) = if (position < movies.size) movies[position].id else -1
+
 }

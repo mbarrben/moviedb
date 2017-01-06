@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title_overview">Overview</string>
+  <string name="title_release_date">Release date</string>
+  <string name="title_rating">Rating</string>
+
+  <plurals name="vote_count">
+    <item quantity="one">(%1$d vote)</item>
+    <item quantity="other">(%1$d votes)</item>
+  </plurals>
+
+</resources>
