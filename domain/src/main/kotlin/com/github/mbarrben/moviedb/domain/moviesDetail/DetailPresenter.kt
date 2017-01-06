@@ -11,7 +11,5 @@ class DetailPresenter @Inject constructor(val navigator: Navigator) {
     view.render(navigator.getMovie())
   }
 
-  fun unbind() {
-
-  }
+  fun unbind() = Unit
 }
