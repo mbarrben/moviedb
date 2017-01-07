@@ -1,8 +1,11 @@
 package com.github.mbarrben.moviedb.di
 
 import android.content.Context
+import com.github.mbarrben.moviedb.BuildConfig
 import com.github.mbarrben.moviedb.extensions.Timber
 import com.github.mbarrben.moviedb.extensions.d
+import com.github.mbarrben.moviedb.model.MovieRepository
+import com.github.mbarrben.moviedb.model.rest.RestMovieRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.byteunits.DecimalByteUnit.MEGABYTES
@@ -34,6 +37,11 @@ class ApplicationModule(val context: Context) {
       .build()
 
   @Provides @Singleton fun gson(): Gson = GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+
+  @Provides fun movieRepository(
+      client: OkHttpClient,
+      gson: Gson
+  ): MovieRepository = RestMovieRepository(client, BuildConfig.API_KEY, gson)
 
   private fun createOkHttpClient(context: Context): OkHttpClient.Builder {
     val logger = HttpLoggingInterceptor.Logger({ message -> Timber.tag("Retrofit").d { message } })

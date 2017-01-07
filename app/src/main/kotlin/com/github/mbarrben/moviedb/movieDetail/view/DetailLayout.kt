@@ -8,6 +8,7 @@ import android.text.format.DateFormat.getMediumDateFormat
 import android.util.AttributeSet
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.moviesDetail.DetailView
+import com.github.mbarrben.moviedb.extensions.Timber.d
 import com.github.mbarrben.moviedb.extensions.getComponent
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.load
@@ -61,6 +62,8 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
           .show()
     }
   }
+
+  override fun details(movie: Movie) = d { "Movie details loaded: $movie" }
 
   private fun inject() = getComponent(MovieDetailComponent::class.java).inject(this)
 }

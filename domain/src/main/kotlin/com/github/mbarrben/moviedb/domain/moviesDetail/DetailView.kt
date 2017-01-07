@@ -4,4 +4,5 @@ import com.github.mbarrben.moviedb.model.entities.Movie
 
 interface DetailView {
   fun render(movie: Movie)
+  fun details(movie: Movie)
 }
