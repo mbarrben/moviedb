@@ -6,7 +6,7 @@
     >
 
   <com.github.mbarrben.moviedb.movies.view.widget.ProportionalImageView
-      android:id="@+id/picture"
+      android:id="@+id/movies_item_picture"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:contentDescription="@string/movies_item_picture_description"

@@ -16,15 +16,15 @@ import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MovieDetailComponent
 import com.jakewharton.rxbinding.view.clicks
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_content.view.overview
-import kotlinx.android.synthetic.main.detail_content.view.ratingBar
-import kotlinx.android.synthetic.main.detail_content.view.releaseDate
-import kotlinx.android.synthetic.main.detail_content.view.votes
-import kotlinx.android.synthetic.main.detail_view.view.collapsingToolbar
-import kotlinx.android.synthetic.main.detail_view.view.fab
-import kotlinx.android.synthetic.main.detail_view.view.poster
-import kotlinx.android.synthetic.main.detail_view.view.toolbar
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.detail_content.view.detail_overview as overview
+import kotlinx.android.synthetic.main.detail_content.view.detail_rating_bar as ratingBar
+import kotlinx.android.synthetic.main.detail_content.view.detail_release_date as releaseDate
+import kotlinx.android.synthetic.main.detail_content.view.detail_votes as votes
+import kotlinx.android.synthetic.main.detail_view.view.detail_collapsing_toolbar as collapsingToolbar
+import kotlinx.android.synthetic.main.detail_view.view.detail_fab as fab
+import kotlinx.android.synthetic.main.detail_view.view.detail_poster as poster
+import kotlinx.android.synthetic.main.detail_view.view.detail_toolbar as toolbar
 
 class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(context, attrs), DetailView {
 

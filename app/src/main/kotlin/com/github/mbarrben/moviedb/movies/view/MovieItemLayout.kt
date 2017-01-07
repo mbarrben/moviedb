@@ -12,9 +12,9 @@ import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MoviesListComponent
 import com.jakewharton.rxbinding.view.clicks
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.movies_item_view.view.picture
 import rx.Observable
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.movies_item_view.view.movies_item_picture as picture
 
 class MovieItemLayout @JvmOverloads constructor(
     context: Context?,
