@@ -7,7 +7,7 @@ import rx.Scheduler
 
 class GetDetails(val repo: MovieRepository, val subscribeScheduler: Scheduler, val observeScheduler: Scheduler) {
 
-  fun get(id: Long): Observable<Movie> = repo.details(id)
+  fun get(id: Long): Observable<Movie.Details> = repo.details(id)
       .subscribeOn(subscribeScheduler)
       .observeOn(observeScheduler)
 }

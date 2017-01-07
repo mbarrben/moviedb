@@ -63,7 +63,7 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     }
   }
 
-  override fun details(movie: Movie) = d { "Movie details loaded: $movie" }
+  override fun details(details: Movie.Details) = d { "Movie details loaded: $details" }
 
   private fun inject() = getComponent(MovieDetailComponent::class.java).inject(this)
 }

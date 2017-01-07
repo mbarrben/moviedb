@@ -14,5 +14,5 @@ interface MovieDatabaseAPI {
 
   @GET("movie/popular") fun popular(@Query("api_key") apiKey: String, @Query("page") page: Int = 1): Observable<PopularMoviesApiResponse>
 
-  @GET("movie/{id}") fun details(@Path("id") id: Long, @Query("api_key") apiKey: String): Observable<Movie>
+  @GET("movie/{id}") fun details(@Path("id") id: Long, @Query("api_key") apiKey: String): Observable<Movie.Details>
 }

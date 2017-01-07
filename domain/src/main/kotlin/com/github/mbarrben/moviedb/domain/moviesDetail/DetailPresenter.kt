@@ -22,9 +22,9 @@ class DetailPresenter @Inject constructor(val getDetails: GetDetails, val naviga
 
   fun unbind() = detailSubscription.unsubscribe()
 
-  private class DetailSubscriber(val view: DetailView) : Subscriber<Movie>() {
+  private class DetailSubscriber(val view: DetailView) : Subscriber<Movie.Details>() {
     override fun onCompleted() = Unit
     override fun onError(e: Throwable) = Unit
-    override fun onNext(movie: Movie) = view.details(movie)
+    override fun onNext(details: Movie.Details) = view.details(details)
   }
 }
