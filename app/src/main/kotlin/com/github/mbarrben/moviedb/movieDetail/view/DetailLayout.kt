@@ -17,6 +17,7 @@ import com.github.mbarrben.moviedb.movies.di.MovieDetailComponent
 import com.jakewharton.rxbinding.view.clicks
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.detail_content.view.detail_backdrop as backdrop
 import kotlinx.android.synthetic.main.detail_content.view.detail_overview as overview
 import kotlinx.android.synthetic.main.detail_content.view.detail_rating_bar as ratingBar
 import kotlinx.android.synthetic.main.detail_content.view.detail_release_date as releaseDate
@@ -51,6 +52,8 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     poster.contentDescription = movie.title
     poster.transitionName("transition")
     poster.load(picasso, movie.posterPath()) { activity.supportStartPostponedEnterTransition() }
+
+    backdrop.load(picasso, movie.backdropPath())
 
     fab.clicks().subscribe {
       Snackbar.make(fab, "Replace with your own action ${movie.title}", Snackbar.LENGTH_LONG)
