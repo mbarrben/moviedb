@@ -42,6 +42,9 @@ android {
     preDexLibraries true
     javaMaxHeapSize '4G'
   }
+  lintOptions {
+    lintConfig file("../quality/lint.xml")
+  }
 }
 
 kapt {

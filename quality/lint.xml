@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issue id="InvalidPackage" severity="error">
+  <ignore regexp=".*okio.*"/> <!-- Lint error caused by Okio dependency needs to be ignored https://github.com/square/okio/issues/58 -->
+</issue>
