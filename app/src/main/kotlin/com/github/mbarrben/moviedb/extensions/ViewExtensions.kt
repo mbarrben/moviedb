@@ -5,6 +5,7 @@ import android.os.Build.VERSION_CODES
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.github.mbarrben.moviedb.di.HasComponent
@@ -33,3 +34,11 @@ fun <T> View.getComponent(componentType: Class<T>): T = componentType.cast((cont
 
 @TargetApi(VERSION_CODES.LOLLIPOP)
 fun View.transitionName(name: String) = supports(VERSION_CODES.LOLLIPOP) { this.transitionName = name }
+
+fun View.show() {
+  visibility = VISIBLE
+}
+
+fun Collection<View>.show() {
+  forEach(View::show)
+}

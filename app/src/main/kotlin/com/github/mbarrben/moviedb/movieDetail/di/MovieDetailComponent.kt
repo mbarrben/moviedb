@@ -13,7 +13,8 @@ import dagger.Component
 @Component(
     dependencies = arrayOf(ApplicationComponent::class),
     modules = arrayOf(
-        ActivityModule::class
+        ActivityModule::class,
+        MovieDetailModule::class
     )
 )
 interface MovieDetailComponent : ActivityComponent {

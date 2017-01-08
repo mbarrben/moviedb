@@ -7,7 +7,7 @@ import rx.Scheduler
 
 class GetMovies(val repo: MovieRepository, val subscribeScheduler: Scheduler, val observeScheduler: Scheduler) {
 
-  fun get(page: Int = 1): Observable<Movie.List> = repo.getMovies(page)
+  fun get(page: Int = 1): Observable<Movie.List> = repo.popular(page)
       .subscribeOn(subscribeScheduler)
       .observeOn(observeScheduler)
 }

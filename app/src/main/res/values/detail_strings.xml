@@ -3,6 +3,13 @@
   <string name="title_overview">Overview</string>
   <string name="title_release_date">Release date</string>
   <string name="title_rating">Rating</string>
+  <string name="title_duration">Duration</string>
+  <string name="title_genres">Genres</string>
+  <string name="title_companies">Producers</string>
+  <string name="title_budget">Budget</string>
+  <string name="title_revenue">Revenue</string>
+  <string name="title_languages">Language</string>
+  <string name="detail_runtime_minutes">%1$d minutes</string>
 
   <plurals name="vote_count">
     <item quantity="one">(%1$d vote)</item>
