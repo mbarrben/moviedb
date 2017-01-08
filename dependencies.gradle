@@ -64,8 +64,9 @@ ext {
       ],
 
       test              : [
-          junit  : "junit:junit:$versions.libs.junit",
-          assertj: "com.squareup.assertj:assertj-android:$versions.libs.assertj"
+          junit      : "junit:junit:$versions.libs.junit",
+          junitKotlin: "org.jetbrains.kotlin:kotlin-test-junit:$versions.common.kotlin",
+          assertj    : "com.squareup.assertj:assertj-android:$versions.libs.assertj"
       ],
 
       anko              : "org.jetbrains.anko:anko-sdk15:$versions.libs.anko",

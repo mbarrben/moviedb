@@ -16,6 +16,7 @@ import com.github.mbarrben.moviedb.extensions.load
 import com.github.mbarrben.moviedb.extensions.onEnterTransitionEnd
 import com.github.mbarrben.moviedb.extensions.show
 import com.github.mbarrben.moviedb.extensions.transitionName
+import com.github.mbarrben.moviedb.misc.emojiFlag
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MovieDetailComponent
 import com.jakewharton.rxbinding.view.clicks
@@ -91,7 +92,7 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     budget.text = NumberFormat.getCurrencyInstance().format(details.budget)
     revenue.text = NumberFormat.getCurrencyInstance().format(details.revenue)
     companies.text = details.productionCompanies.joinToString(postfix = ".") { it.name }
-    countries.text = details.productionCountries.joinToString(postfix = ".") { it.name }
+    countries.text = details.productionCountries.joinToString(separator = " ") { emojiFlag(it.iso) }
     languages.text = details.spokenLanguages.joinToString(postfix = ".") { it.name }
     genres.text = details.genres.joinToString(postfix = ".") { it.name }
     tagline.text = details.tagline

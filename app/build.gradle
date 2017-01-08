@@ -74,4 +74,7 @@ dependencies {
   kapt libs.dagger_compiler
   compile libs.dagger
   provided libs.jsr250
+
+  testCompile libs.test.junit
+  testCompile libs.test.junitKotlin
 }

@@ -255,7 +255,7 @@
 
   <TextView
       android:id="@+id/detail_title_companies"
-      android:layout_width="0dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
       android:text="@string/title_companies"
@@ -265,6 +265,23 @@
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_title_languages"
+      tools:visibility="visible"
+      />
+
+  <TextView
+      android:id="@+id/detail_countries"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      android:visibility="gone"
+      app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_companies"
+      app:layout_constraintBottom_toBottomOf="@+id/detail_title_companies"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toRightOf="@+id/detail_title_companies"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/detail_title_companies"
+      tools:text="United States, United Kingdom"
       tools:visibility="visible"
       />
 
@@ -283,20 +300,6 @@
       />
 
   <TextView
-      android:id="@+id/detail_countries"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:visibility="gone"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/detail_companies"
-      tools:text="United States, United Kingdom"
-      tools:visibility="visible"
-      />
-
-  <TextView
       android:id="@+id/detail_title_budget"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -305,7 +308,7 @@
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
       android:visibility="gone"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/detail_countries"
+      app:layout_constraintTop_toBottomOf="@+id/detail_companies"
       tools:visibility="visible"
       />
 

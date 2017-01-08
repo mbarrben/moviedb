@@ -58,6 +58,6 @@ data class Country(
 )
 
 data class Language(
-    @SerializedName("iso_839_1") val iso: String,
+    @SerializedName("iso_639_1") val iso: String,
     @SerializedName("name") val name: String
 )
