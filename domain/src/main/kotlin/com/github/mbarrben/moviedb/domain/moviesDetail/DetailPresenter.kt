@@ -1,14 +1,13 @@
 package com.github.mbarrben.moviedb.domain.moviesDetail
 
 import com.github.mbarrben.moviedb.domain.navigation.Navigator
-import com.github.mbarrben.moviedb.model.entities.Movie
-import rx.Subscriber
-import rx.subscriptions.Subscriptions
+import rx.lang.kotlin.plusAssign
+import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 class DetailPresenter @Inject constructor(val getDetails: GetDetails, val navigator: Navigator) {
 
-  private var detailSubscription = Subscriptions.empty()
+  private var subscriptions = CompositeSubscription()
 
   fun bind(view: DetailView) {
     checkNotNull(view) { "Set a view before doing anything else in this presenter" }
@@ -16,15 +15,12 @@ class DetailPresenter @Inject constructor(val getDetails: GetDetails, val naviga
     val movie = navigator.getMovie()
 
     view.render(movie)
+    subscriptions += view.loaded().subscribe {
+      subscriptions += getDetails.get(movie.id).subscribe { view.details(it) }
+    }
 
-    detailSubscription = getDetails.get(movie.id).subscribe(DetailSubscriber(view))
   }
 
-  fun unbind() = detailSubscription.unsubscribe()
+  fun unbind() = subscriptions.unsubscribe()
 
-  private class DetailSubscriber(val view: DetailView) : Subscriber<Movie.Details>() {
-    override fun onCompleted() = Unit
-    override fun onError(e: Throwable) = Unit
-    override fun onNext(details: Movie.Details) = view.details(details)
-  }
 }
