@@ -15,11 +15,11 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1-M04'
+          kotlin: '1.1.0-beta-17'
       ],
 
       build_plugins: [
-          gradle: '2.3.0-beta1'
+          gradle: '2.3.0-beta2'
       ],
 
       libs         : [
@@ -40,7 +40,7 @@ ext {
           rx_kotlin         : '0.60.0',
           rxbindings        : '1.0.0',
           support           : '25.1.0',
-          timber            : '4.4.0'
+          timber            : '4.5.0'
       ]
   ]
 
