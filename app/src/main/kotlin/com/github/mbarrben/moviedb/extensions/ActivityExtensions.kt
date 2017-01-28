@@ -9,7 +9,7 @@ fun FragmentActivity.onEnterTransitionEnd(f: () -> Unit) {
     override fun onSharedElementEnd(sharedElementNames: MutableList<String>?,
                                     sharedElements: MutableList<View>?,
                                     sharedElementSnapshots: MutableList<View>?) {
-      super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
+      setEnterSharedElementCallback(object : SharedElementCallback() {})
       f()
     }
   })

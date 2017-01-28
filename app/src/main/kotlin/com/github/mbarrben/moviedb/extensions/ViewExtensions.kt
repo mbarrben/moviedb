@@ -1,10 +1,11 @@
 package com.github.mbarrben.moviedb.extensions
 
 import android.annotation.TargetApi
-import android.os.Build.VERSION_CODES
+import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -32,13 +33,17 @@ fun ImageView.load(picasso: Picasso = Picasso.with(context),
 
 fun <T> View.getComponent(componentType: Class<T>): T = componentType.cast((context as HasComponent<*>).component)
 
-@TargetApi(VERSION_CODES.LOLLIPOP)
-fun View.transitionName(name: String) = supports(VERSION_CODES.LOLLIPOP) { this.transitionName = name }
+@TargetApi(LOLLIPOP)
+fun View.transitionName(name: String) = supports(LOLLIPOP) { this.transitionName = name }
 
 fun View.show() {
   visibility = VISIBLE
 }
 
-fun Collection<View>.show() {
-  forEach(View::show)
+fun View.hide() {
+  visibility = GONE
 }
+
+fun Collection<View>.show(): Unit = forEach(View::show)
+
+fun Collection<View>.hide(): Unit = forEach(View::hide)

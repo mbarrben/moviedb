@@ -40,12 +40,10 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_genres"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_overview"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -53,13 +51,11 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      android:visibility="gone"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_title_genres"
       tools:text="Action, Fantasy, Adventures, Space."
-      tools:visibility="visible"
       />
 
   <TextView
@@ -69,10 +65,8 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_duration"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_genres"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -81,7 +75,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_runtime"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_runtime"
       app:layout_constraintHorizontal_bias="0.0"
@@ -89,7 +82,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_runtime"
       tools:text="121 m"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -124,7 +116,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_release_date"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_release_date"
       app:layout_constraintHorizontal_bias="0.0"
@@ -132,7 +123,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_release_date"
       tools:text="Released"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -199,13 +189,11 @@
       android:layout_marginRight="8dp"
       android:layout_marginTop="4dp"
       android:textAppearance="@style/TextAppearance.AppTheme.Tagline"
-      android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="@+id/detail_backdrop"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       tools:text="Revolutions are built on hope"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -214,13 +202,11 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_tagline"
       tools:text="http://www.starwars.com"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -230,10 +216,8 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_languages"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_homepage"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -242,7 +226,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_languages"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_languages"
       app:layout_constraintHorizontal_bias="0.0"
@@ -250,7 +233,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_languages"
       tools:text="English, Klingon"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -260,12 +242,10 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_companies"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_title_languages"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -274,7 +254,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_companies"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_companies"
       app:layout_constraintHorizontal_bias="0.0"
@@ -282,7 +261,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_companies"
       tools:text="United States, United Kingdom"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -290,13 +268,11 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      android:visibility="gone"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_title_companies"
       tools:text="Universal Pictures, Twentieth Century Fox."
-      tools:visibility="visible"
       />
 
   <TextView
@@ -306,10 +282,8 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_budget"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_companies"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -318,7 +292,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_budget"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_budget"
       app:layout_constraintHorizontal_bias="0.0"
@@ -326,7 +299,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_budget"
       tools:text="$200,000,000"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -336,10 +308,8 @@
       android:layout_marginTop="16dp"
       android:text="@string/title_revenue"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:visibility="gone"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/detail_title_budget"
-      tools:visibility="visible"
       />
 
   <TextView
@@ -348,7 +318,6 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="8dp"
       android:layout_marginStart="8dp"
-      android:visibility="gone"
       app:layout_constraintBaseline_toBaselineOf="@+id/detail_title_revenue"
       app:layout_constraintBottom_toBottomOf="@+id/detail_title_revenue"
       app:layout_constraintHorizontal_bias="0.0"
@@ -356,7 +325,6 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="@+id/detail_title_revenue"
       tools:text="$442,673,674"
-      tools:visibility="visible"
       />
 
   <Space
