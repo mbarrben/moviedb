@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat.getMediumDateFormat
 import android.text.util.Linkify.WEB_URLS
 import android.util.AttributeSet
+import android.view.View
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.moviesDetail.DetailView
 import com.github.mbarrben.moviedb.extensions.getComponent
+import com.github.mbarrben.moviedb.extensions.hide
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.linkify
 import com.github.mbarrben.moviedb.extensions.load
@@ -50,7 +52,11 @@ import kotlinx.android.synthetic.main.detail_view.view.detail_fab as fab
 import kotlinx.android.synthetic.main.detail_view.view.detail_poster as poster
 import kotlinx.android.synthetic.main.detail_view.view.detail_toolbar as toolbar
 
-class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(context, attrs), DetailView {
+class DetailLayout
+@JvmOverloads constructor(context: Context?,
+                          attrs: AttributeSet? = null,
+                          defStyleAttr: Int = 0) : CoordinatorLayout(context, attrs, defStyleAttr),
+                                                   DetailView {
 
   @Inject lateinit var picasso: Picasso
 
@@ -63,12 +69,32 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
 
   val viewLoaded = PublishSubject<Unit>()
 
+  private val detailViews: List<View>
+
   init {
     inflate(R.layout.detail_view, attachToRoot = true)
+    detailViews = listOf(budgetTitle,
+                         budget,
+                         revenueTitle,
+                         revenue,
+                         companiesTitle,
+                         companies,
+                         countries,
+                         languagesTitle,
+                         languages,
+                         genresTitle,
+                         genres,
+                         tagline,
+                         homepage,
+                         runtimeTitle,
+                         runtime,
+                         releaseStatus)
     inject()
   }
 
   override fun render(movie: Movie) {
+    detailViews.hide()
+
     collapsingToolbar.title = movie.title
     overview.text = movie.overview
     releaseDate.text = getMediumDateFormat(context).format(movie.releaseDate)
@@ -101,23 +127,7 @@ class DetailLayout(context: Context, attrs: AttributeSet) : CoordinatorLayout(co
     runtime.text = context.getString(R.string.detail_runtime_minutes, details.runtime)
     releaseStatus.text = details.status
 
-    listOf(budgetTitle,
-           budget,
-           revenueTitle,
-           revenue,
-           companiesTitle,
-           companies,
-           countries,
-           languagesTitle,
-           languages,
-           genresTitle,
-           genres,
-           tagline,
-           homepage,
-           runtimeTitle,
-           runtime,
-           releaseStatus
-    ).show()
+    detailViews.show()
   }
 
   override fun loaded() = viewLoaded

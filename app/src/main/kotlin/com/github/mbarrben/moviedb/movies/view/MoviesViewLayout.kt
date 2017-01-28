@@ -19,7 +19,11 @@ import com.github.mbarrben.moviedb.movies.view.adapter.Type.MOVIE
 import kotlinx.android.synthetic.main.movies_view.view.moviesRecycler
 import rx.Observable
 
-class MoviesViewLayout(context: Context, attrs: AttributeSet) : RelativeLayout(context, attrs), MoviesView {
+class MoviesViewLayout
+@JvmOverloads constructor(context: Context,
+                          attrs: AttributeSet? = null,
+                          defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr),
+                                                   MoviesView {
 
   companion object {
     private val VISIBLE_THRESHOLD = 4
