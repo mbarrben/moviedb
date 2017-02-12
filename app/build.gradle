@@ -61,8 +61,8 @@ dependencies {
   compile libs.support.design
   compile libs.support.constraint
 
-  compile libs.rxbindings.recyclerview
-  compile libs.rxbindings.basic
+  compile libs.rxbinding.recyclerview
+  compile libs.rxbinding.basic
 
   compile libs.picasso
   compile libs.picasso_downloader
@@ -79,5 +79,5 @@ dependencies {
   provided libs.jsr250
 
   testCompile libs.test.junit
-  testCompile libs.test.junitKotlin
+  testCompile libs.test.junit_kotlin
 }

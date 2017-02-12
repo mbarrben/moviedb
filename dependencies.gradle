@@ -15,32 +15,32 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1.0-beta-17'
+          kotlin: '1.1-M04'
       ],
 
       build_plugins: [
-          gradle: '2.3.0-beta3'
+          gradle: '2.3.0-beta4'
       ],
 
       libs         : [
           anko              : '0.9',
           assertj           : '1.1.1',
           byteunits         : '0.9.1',
-          constraint        : '1.0.0-beta4',
-          dagger            : '2.8',
+          constraint        : '1.0.0-beta5',
+          dagger            : '2.9',
           gson              : '2.8.0',
           inject            : '1',
           jsr250            : '1.0',
           junit             : '4.12',
-          okhttp            : '3.5.0',
+          okhttp            : '3.6.0',
           picasso           : '2.5.2',
           picasso_downloader: '1.1.0',
           retrofit          : '2.1.0',
-          rx_android        : '1.1.0',
+          rx_android        : '1.2.1',
           rx_kotlin         : '0.60.0',
-          rxbindings        : '1.0.0',
+          rxbinding         : '1.0.0',
           support           : '25.1.0',
-          timber            : '4.5.0'
+          timber            : '4.5.1'
       ]
   ]
 
@@ -50,9 +50,9 @@ ext {
   ]
 
   libs = [
-      rxbindings        : [
-          basic       : "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.libs.rxbindings",
-          recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbindings"
+      rxbinding         : [
+          basic       : "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.libs.rxbinding",
+          recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbinding"
       ],
 
       support           : [
@@ -65,7 +65,7 @@ ext {
 
       test              : [
           junit      : "junit:junit:$versions.libs.junit",
-          junitKotlin: "org.jetbrains.kotlin:kotlin-test-junit:$versions.common.kotlin",
+          junit_kotlin: "org.jetbrains.kotlin:kotlin-test-junit:$versions.common.kotlin",
           assertj    : "com.squareup.assertj:assertj-android:$versions.libs.assertj"
       ],
 
