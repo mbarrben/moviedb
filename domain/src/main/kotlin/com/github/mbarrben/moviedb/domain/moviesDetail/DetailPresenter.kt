@@ -8,19 +8,25 @@ import javax.inject.Inject
 class DetailPresenter @Inject constructor(val getDetails: GetDetails, val navigator: Navigator) {
 
   private var subscriptions = CompositeDisposable()
+  private var view: DetailView? = null
 
   fun bind(view: DetailView) {
     checkNotNull(view) { "Set a view before doing anything else in this presenter" }
+
+    this.view = view
 
     val movie = navigator.getMovie()
 
     view.render(movie)
     subscriptions += view.loaded().subscribe {
-      subscriptions += getDetails.get(movie.id).subscribe { view.details(it) }
+      subscriptions += getDetails.get(movie.id).subscribe { this.view?.details(it) }
     }
 
   }
 
-  fun unbind() = subscriptions.dispose()
+  fun unbind() {
+    view?.unbind()
+    subscriptions.dispose()
+  }
 
 }

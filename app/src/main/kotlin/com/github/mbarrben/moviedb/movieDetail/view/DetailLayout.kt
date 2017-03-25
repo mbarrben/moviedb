@@ -10,11 +10,14 @@ import android.util.AttributeSet
 import android.view.View
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.moviesDetail.DetailView
+import com.github.mbarrben.moviedb.extensions.Timber.d
+import com.github.mbarrben.moviedb.extensions.Unbinder
 import com.github.mbarrben.moviedb.extensions.getComponent
 import com.github.mbarrben.moviedb.extensions.hide
 import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.linkify
 import com.github.mbarrben.moviedb.extensions.load
+import com.github.mbarrben.moviedb.extensions.onConfigurationChanged
 import com.github.mbarrben.moviedb.extensions.onEnterTransitionEnd
 import com.github.mbarrben.moviedb.extensions.show
 import com.github.mbarrben.moviedb.extensions.transitionName
@@ -60,11 +63,20 @@ class DetailLayout
 
   @Inject lateinit var picasso: Picasso
 
+  var unbinder: Unbinder? = null
+
   val activity: AppCompatActivity = (context as AppCompatActivity).apply {
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportPostponeEnterTransition()
-    onEnterTransitionEnd { viewLoaded.onNext(Unit) }
+    onEnterTransitionEnd {
+      d { "onEnterTransitionEnd" }
+      viewLoaded.onNext(Unit)
+    }
+    unbinder = onConfigurationChanged {
+      d { "onConfigurationChanged" }
+      viewLoaded.onNext(Unit)
+    }
   }
 
   val viewLoaded: PublishSubject<Unit> = PublishSubject.create<Unit>()
@@ -93,6 +105,7 @@ class DetailLayout
   }
 
   override fun render(movie: Movie) {
+    d { "render" }
     detailViews.hide()
 
     collapsingToolbar.title = movie.title
@@ -115,6 +128,7 @@ class DetailLayout
   }
 
   override fun details(details: Movie.Details) {
+    d { "details" }
     budget.text = NumberFormat.getCurrencyInstance().format(details.budget)
     revenue.text = NumberFormat.getCurrencyInstance().format(details.revenue)
     companies.text = details.productionCompanies.joinToString(postfix = ".") { it.name }
@@ -128,6 +142,10 @@ class DetailLayout
     releaseStatus.text = details.status
 
     detailViews.show()
+  }
+
+  override fun unbind() {
+    unbinder?.unbind()
   }
 
   override fun loaded() = viewLoaded
