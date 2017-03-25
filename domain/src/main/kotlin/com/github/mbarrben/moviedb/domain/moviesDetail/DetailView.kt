@@ -1,7 +1,7 @@
 package com.github.mbarrben.moviedb.domain.moviesDetail
 
 import com.github.mbarrben.moviedb.model.entities.Movie
-import rx.Observable
+import io.reactivex.Observable
 
 interface DetailView {
   fun render(movie: Movie)

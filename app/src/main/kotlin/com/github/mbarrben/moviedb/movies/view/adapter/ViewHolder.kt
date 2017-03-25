@@ -5,7 +5,7 @@ import android.view.View
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.model.entities.Movie.List
 import com.github.mbarrben.moviedb.movies.view.MovieItemLayout
-import rx.Observer
+import io.reactivex.Observer
 
 abstract class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
   abstract fun bind(movies: List, position: Int)

@@ -12,16 +12,16 @@ final class DefaultProperties extends Properties {
     this.defaultValue = defaultValue
   }
 
-  @Override synchronized def Object get(Object o) {
+  @Override synchronized Object get(Object o) {
     return super.get(o, defaultValue)
   }
 
-  @Override def String getProperty(String s) {
+  @Override String getProperty(String s) {
     String result = super.getProperty(s)
     return check(result, defaultValue)
   }
 
-  static def Properties create(Map args) {
+  static Properties create(Map args) {
     args.defaultValue = check(args.defaultValue, DEFAULT_VALUE)
     args.fileName = check(args.fileName, DEFAULT_FILE_NAME)
 
@@ -35,11 +35,11 @@ final class DefaultProperties extends Properties {
     return properties
   }
 
-  static def Properties create(String defaultValue = DEFAULT_VALUE, String fileName = DEFAULT_FILE_NAME) {
+  static Properties create(String defaultValue = DEFAULT_VALUE, String fileName = DEFAULT_FILE_NAME) {
     create(defaultValue: defaultValue, fileName: fileName)
   }
 
-  private static def Object check(Object value, Object defaultValue) {
+  private static Object check(Object value, Object defaultValue) {
     return value != null ? value : defaultValue
   }
 }

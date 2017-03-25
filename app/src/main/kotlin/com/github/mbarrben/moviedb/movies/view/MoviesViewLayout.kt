@@ -16,8 +16,8 @@ import com.github.mbarrben.moviedb.movies.view.adapter.MoviesAdapter
 import com.github.mbarrben.moviedb.movies.view.adapter.Type
 import com.github.mbarrben.moviedb.movies.view.adapter.Type.LOADING
 import com.github.mbarrben.moviedb.movies.view.adapter.Type.MOVIE
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.movies_view.view.moviesRecycler
-import rx.Observable
 
 class MoviesViewLayout
 @JvmOverloads constructor(context: Context,

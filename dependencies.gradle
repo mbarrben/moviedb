@@ -10,24 +10,26 @@ ext {
       build_tools: '25.0.2',
       compile_sdk: 25,
       min_sdk    : 14,
-      target_sdk : 25
+      target_sdk : '25'
   ]
 
   versions = [
       common       : [
-          kotlin: '1.1-M04'
+          kotlin: '1.1.1',
+          gradle: '3.4.1'
       ],
 
       build_plugins: [
-          gradle: '2.3.0-beta4'
+          gradle  : '2.3.0',
+          versions: '0.14.0'
       ],
 
       libs         : [
-          anko              : '0.9',
+          anko              : '0.10.0-beta-2',
           assertj           : '1.1.1',
           byteunits         : '0.9.1',
-          constraint        : '1.0.0-beta5',
-          dagger            : '2.9',
+          constraint        : '1.0.2',
+          dagger            : '2.10',
           gson              : '2.8.0',
           inject            : '1',
           jsr250            : '1.0',
@@ -35,24 +37,24 @@ ext {
           okhttp            : '3.6.0',
           picasso           : '2.5.2',
           picasso_downloader: '1.1.0',
-          retrofit          : '2.1.0',
-          rx_android        : '1.2.1',
-          rx_kotlin         : '0.60.0',
-          rxbinding         : '1.0.0',
+          retrofit          : '2.2.0',
+          rx                : '2.0.0',
+          rxbinding         : '2.0.0',
           support           : '25.1.0',
           timber            : '4.5.1'
       ]
   ]
 
   build_plugins = [
-      gradle: "com.android.tools.build:gradle:$versions.build_plugins.gradle",
-      kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.common.kotlin"
+      gradle  : "com.android.tools.build:gradle:$versions.build_plugins.gradle",
+      kotlin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.common.kotlin",
+      versions: "com.github.ben-manes:gradle-versions-plugin:$versions.build_plugins.versions"
   ]
 
   libs = [
       rxbinding         : [
-          basic       : "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.libs.rxbinding",
-          recyclerview: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbinding"
+          basic       : "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.libs.rxbinding",
+          recyclerview: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbinding"
       ],
 
       support           : [
@@ -64,9 +66,9 @@ ext {
       ],
 
       test              : [
-          junit      : "junit:junit:$versions.libs.junit",
+          junit       : "junit:junit:$versions.libs.junit",
           junit_kotlin: "org.jetbrains.kotlin:kotlin-test-junit:$versions.common.kotlin",
-          assertj    : "com.squareup.assertj:assertj-android:$versions.libs.assertj"
+          assertj     : "com.squareup.assertj:assertj-android:$versions.libs.assertj"
       ],
 
       anko              : "org.jetbrains.anko:anko-sdk15:$versions.libs.anko",
@@ -84,9 +86,10 @@ ext {
       picasso_downloader: "com.jakewharton.picasso:picasso2-okhttp3-downloader:$versions.libs.picasso_downloader",
       retrofit          : "com.squareup.retrofit2:retrofit:$versions.libs.retrofit",
       retrofit_gson     : "com.squareup.retrofit2:converter-gson:$versions.libs.retrofit",
-      retrofit_rx       : "com.squareup.retrofit2:adapter-rxjava:$versions.libs.retrofit",
-      rx_android        : "io.reactivex:rxandroid:$versions.libs.rx_android",
-      rx_kotlin         : "io.reactivex:rxkotlin:$versions.libs.rx_kotlin",
+      retrofit_rx       : "com.squareup.retrofit2:adapter-rxjava2:$versions.libs.retrofit",
+      rx_android        : "io.reactivex.rxjava2:rxandroid:$versions.libs.rx",
+      rx_java           : "io.reactivex.rxjava2:rxjava:$versions.libs.rx",
+      rx_kotlin         : "io.reactivex.rxjava2:rxkotlin:$versions.libs.rx",
       timber            : "com.jakewharton.timber:timber:$versions.libs.timber"
   ]
 }

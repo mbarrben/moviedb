@@ -21,9 +21,9 @@ import com.github.mbarrben.moviedb.extensions.transitionName
 import com.github.mbarrben.moviedb.misc.emojiFlag
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MovieDetailComponent
-import com.jakewharton.rxbinding.view.clicks
+import com.jakewharton.rxbinding2.view.clicks
 import com.squareup.picasso.Picasso
-import rx.lang.kotlin.PublishSubject
+import io.reactivex.subjects.PublishSubject
 import java.text.NumberFormat
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.detail_content.view.detail_backdrop as backdrop
@@ -67,7 +67,7 @@ class DetailLayout
     onEnterTransitionEnd { viewLoaded.onNext(Unit) }
   }
 
-  val viewLoaded = PublishSubject<Unit>()
+  val viewLoaded: PublishSubject<Unit> = PublishSubject.create<Unit>()
 
   private val detailViews: List<View>
 

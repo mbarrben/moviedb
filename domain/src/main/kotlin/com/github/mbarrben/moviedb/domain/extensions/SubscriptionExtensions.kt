@@ -1,9 +1,11 @@
 package com.github.mbarrben.moviedb.domain.extensions
 
-import rx.Subscription
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 /**
- * subscription -= observable.subscribe{}
+ * disposable -= observable.subscribe{}
  */
-operator fun CompositeSubscription.minusAssign(subscription: Subscription) = remove(subscription)
+operator fun CompositeDisposable.minusAssign(disposable: Disposable): Unit {
+  remove(disposable)
+}

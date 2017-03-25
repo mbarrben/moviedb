@@ -10,9 +10,9 @@ import com.github.mbarrben.moviedb.extensions.inflate
 import com.github.mbarrben.moviedb.extensions.load
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movies.di.MoviesListComponent
-import com.jakewharton.rxbinding.view.clicks
+import com.jakewharton.rxbinding2.view.clicks
 import com.squareup.picasso.Picasso
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.movies_item_view.view.movies_item_picture as picture
 

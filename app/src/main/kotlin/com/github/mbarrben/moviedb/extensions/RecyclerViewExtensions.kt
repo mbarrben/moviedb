@@ -3,9 +3,9 @@ package com.github.mbarrben.moviedb.extensions
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.LayoutManager
-import com.jakewharton.rxbinding.support.v7.widget.RecyclerViewScrollEvent
-import com.jakewharton.rxbinding.support.v7.widget.scrollEvents
-import rx.Observable
+import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
+import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
+import io.reactivex.Observable
 
 fun RecyclerView.scrollToEndEvents(visibleThreshold: Int): Observable<RecyclerViewScrollEvent> = scrollEvents()
     .filter { it.isScrollingUp() }

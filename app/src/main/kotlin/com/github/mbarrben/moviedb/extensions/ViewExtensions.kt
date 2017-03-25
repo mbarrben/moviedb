@@ -1,6 +1,6 @@
 package com.github.mbarrben.moviedb.extensions
 
-import android.annotation.TargetApi
+import android.annotation.SuppressLint
 import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
@@ -33,7 +33,7 @@ fun ImageView.load(picasso: Picasso = Picasso.with(context),
 
 fun <T> View.getComponent(componentType: Class<T>): T = componentType.cast((context as HasComponent<*>).component)
 
-@TargetApi(LOLLIPOP)
+@SuppressLint("NewApi")
 fun View.transitionName(name: String) = supports(LOLLIPOP) { this.transitionName = name }
 
 fun View.show() {

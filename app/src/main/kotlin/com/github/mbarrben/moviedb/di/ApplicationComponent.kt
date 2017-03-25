@@ -9,8 +9,8 @@ import com.github.mbarrben.moviedb.movies.view.platform.MoviesActivity
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import dagger.Component
+import io.reactivex.Scheduler
 import okhttp3.OkHttpClient
-import rx.Scheduler
 import javax.inject.Named
 import javax.inject.Singleton
 

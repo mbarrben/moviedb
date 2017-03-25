@@ -1,13 +1,13 @@
 package com.github.mbarrben.moviedb.domain.moviesDetail
 
 import com.github.mbarrben.moviedb.domain.navigation.Navigator
-import rx.lang.kotlin.plusAssign
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
 class DetailPresenter @Inject constructor(val getDetails: GetDetails, val navigator: Navigator) {
 
-  private var subscriptions = CompositeSubscription()
+  private var subscriptions = CompositeDisposable()
 
   fun bind(view: DetailView) {
     checkNotNull(view) { "Set a view before doing anything else in this presenter" }
@@ -21,6 +21,6 @@ class DetailPresenter @Inject constructor(val getDetails: GetDetails, val naviga
 
   }
 
-  fun unbind() = subscriptions.unsubscribe()
+  fun unbind() = subscriptions.dispose()
 
 }
