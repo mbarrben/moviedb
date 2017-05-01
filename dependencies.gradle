@@ -7,7 +7,7 @@ allprojects {
 
 ext {
   android_build = [
-      build_tools: '25.0.2',
+      build_tools: '25.0.3',
       compile_sdk: 25,
       min_sdk    : 14,
       target_sdk : '25'
@@ -15,12 +15,12 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1.1',
-          gradle: '3.4.1'
+          kotlin: '1.1.2-2',
+          gradle: '3.5'
       ],
 
       build_plugins: [
-          gradle  : '2.3.0',
+          gradle  : '2.4.0-alpha7',
           versions: '0.14.0'
       ],
 
