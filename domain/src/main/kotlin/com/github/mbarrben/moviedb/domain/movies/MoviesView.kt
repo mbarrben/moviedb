@@ -11,4 +11,6 @@ interface MoviesView {
 
   fun paginationEvents(): Observable<Int>
   fun movieClicks(): Observable<Movie>
+  fun searchQueries(): Observable<CharSequence>
+  fun searchClosed(): Observable<Unit>
 }

@@ -16,11 +16,10 @@ import io.reactivex.Observable
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.movies_item_view.view.movies_item_picture as picture
 
-class MovieItemLayout @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0) : CardView(context, attrs, defStyleAttr),
-                             MovieView {
+class MovieItemLayout
+@JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+  : CardView(context, attrs, defStyleAttr),
+    MovieView {
 
   @Inject lateinit var picasso: Picasso
 
