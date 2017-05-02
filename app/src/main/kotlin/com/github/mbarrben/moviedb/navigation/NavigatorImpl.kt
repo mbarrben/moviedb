@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import android.view.View
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.domain.navigation.Navigator
-import com.github.mbarrben.moviedb.extensions.fromJson
+import com.github.mbarrben.moviedb.model.extensions.fromJson
 import com.github.mbarrben.moviedb.extensions.to
 import com.github.mbarrben.moviedb.model.entities.Movie
 import com.github.mbarrben.moviedb.movieDetail.view.platform.DetailActivity

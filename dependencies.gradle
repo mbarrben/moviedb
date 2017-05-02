@@ -1,7 +1,7 @@
 allprojects {
   repositories {
-    jcenter()
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+      jcenter()
+      maven { url 'https://maven.google.com' }
   }
 }
 
@@ -15,12 +15,12 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1.2-2',
-          gradle: '3.5'
+          kotlin: '1.1.2-4',
+          gradle: '4.0-milestone-1'
       ],
 
       build_plugins: [
-          gradle  : '2.4.0-alpha7',
+          gradle  : '3.0.0-alpha2',
           versions: '0.14.0'
       ],
 

@@ -18,8 +18,6 @@ class MoviesPresenter
   private var moviesView: MoviesView? = null
 
   fun bind(view: MoviesView) {
-    checkNotNull(view) { "Set a view before doing anything else in this presenter" }
-
     moviesView = view
 
     subscribeGetPagination()

@@ -5,10 +5,12 @@ import com.github.mbarrben.moviedb.BuildConfig
 import com.github.mbarrben.moviedb.extensions.Timber
 import com.github.mbarrben.moviedb.extensions.d
 import com.github.mbarrben.moviedb.model.MovieRepository
+import com.github.mbarrben.moviedb.model.mappers.DetailsMapper
+import com.github.mbarrben.moviedb.model.mappers.MovieMapper
+import com.github.mbarrben.moviedb.model.rest.DateTypeAdapter
 import com.github.mbarrben.moviedb.model.rest.RestMovieRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializer
 import com.jakewharton.byteunits.DecimalByteUnit.MEGABYTES
 import com.jakewharton.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
@@ -22,10 +24,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import java.io.File
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -41,12 +40,22 @@ class ApplicationModule(val context: Context) {
       .listener { _, uri, e -> Timber.e(e) { "Failed to load image: $uri" } }
       .build()
 
-  @Provides @Singleton fun gson(): Gson = GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+  @Provides @Singleton fun gson(): Gson {
+    return GsonBuilder()
+        .registerTypeAdapter(Date::class.java, DateTypeAdapter("yyyy-MM-dd"))
+        .create()
+  }
+
+  @Provides fun movieMapper(): MovieMapper = MovieMapper()
+
+  @Provides fun detailsMapper(): DetailsMapper = DetailsMapper()
 
   @Provides fun movieRepository(
       client: OkHttpClient,
-      gson: Gson
-  ): MovieRepository = RestMovieRepository(client, BuildConfig.API_KEY, gson)
+      gson: Gson,
+      movieMapper: MovieMapper,
+      detailsMapper: DetailsMapper
+  ): MovieRepository = RestMovieRepository(client, BuildConfig.API_KEY, gson, movieMapper, detailsMapper)
 
   private fun createOkHttpClient(context: Context): OkHttpClient.Builder {
     val logger = HttpLoggingInterceptor.Logger({ message -> Timber.tag("Retrofit").d { message } })
