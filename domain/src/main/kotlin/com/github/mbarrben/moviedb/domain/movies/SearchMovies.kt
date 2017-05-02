@@ -5,10 +5,9 @@ import com.github.mbarrben.moviedb.model.entities.Movie
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 
-class GetMovies(val repo: MovieRepository, val subscribeScheduler: Scheduler, val observeScheduler: Scheduler) {
+class SearchMovies(val repo: MovieRepository, val subscribeScheduler: Scheduler, val observeScheduler: Scheduler) {
 
-  fun get(page: Int = 1): Observable<Movie.List> = repo.popular(page)
+  fun search(query: String, page : Int = 1): Observable<Movie.List> = repo.search(query, page)
       .subscribeOn(subscribeScheduler)
       .observeOn(observeScheduler)
-
 }

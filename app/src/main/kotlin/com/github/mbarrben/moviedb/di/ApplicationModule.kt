@@ -8,6 +8,7 @@ import com.github.mbarrben.moviedb.model.MovieRepository
 import com.github.mbarrben.moviedb.model.rest.RestMovieRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializer
 import com.jakewharton.byteunits.DecimalByteUnit.MEGABYTES
 import com.jakewharton.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
@@ -21,6 +22,10 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import java.io.File
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Named
 import javax.inject.Singleton
 
