@@ -16,11 +16,11 @@ ext {
   versions = [
       common       : [
           kotlin: '1.1.2-4',
-          gradle: '4.0-milestone-1'
+          gradle: '4.0-rc-1'
       ],
 
       build_plugins: [
-          gradle  : '3.0.0-alpha2',
+          gradle  : '3.0.0-alpha3',
           versions: '0.14.0'
       ],
 

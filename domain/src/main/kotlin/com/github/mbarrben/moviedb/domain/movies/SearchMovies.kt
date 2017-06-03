@@ -7,7 +7,14 @@ import io.reactivex.Scheduler
 
 class SearchMovies(val repo: MovieRepository, val subscribeScheduler: Scheduler, val observeScheduler: Scheduler) {
 
-  fun search(query: String, page : Int = 1): Observable<Movie.List> = repo.search(query, page)
+  fun search(query: String, page: Int = 1): Observable<Movie.List> = when {
+    query.isEmpty() -> emptyMovieList()
+    else            -> repoSearch(query, page)
+  }
+
+  private fun emptyMovieList() = Observable.just(Movie.List.EMPTY)
+
+  private fun repoSearch(query: String, page: Int = 1) = repo.search(query, page)
       .subscribeOn(subscribeScheduler)
       .observeOn(observeScheduler)
 }

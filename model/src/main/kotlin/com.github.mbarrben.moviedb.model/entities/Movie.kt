@@ -24,6 +24,14 @@ data class Movie(
   fun backdropPath() = POSTER_PREFIX + backdropPathLastSegment
 
   data class List(val page: Int, val movies: kotlin.collections.List<Movie>) : kotlin.collections.List<Movie> by movies {
+
+    companion object {
+      val EMPTY = Movie.List(
+          page = 1,
+          movies = emptyList()
+      )
+    }
+
     operator fun plus(elements: Movie.List) = Movie.List(elements.page, movies + elements.movies)
   }
 

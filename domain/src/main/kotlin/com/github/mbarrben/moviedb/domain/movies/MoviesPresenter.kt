@@ -30,8 +30,10 @@ class MoviesPresenter
         .subscribe { subscribeSearch(it) }
 
     viewSubscriptions += view.searchClosed()
-        .doOnNext { subscribeGetPagination() }
-        .subscribe { subscribeGet() }
+        .subscribe {
+          subscribeGetPagination()
+          subscribeGet()
+        }
   }
 
   fun unbind() {
