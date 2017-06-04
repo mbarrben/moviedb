@@ -9,6 +9,7 @@ interface MoviesView {
   fun showError()
   fun showLoading()
   fun hideLoading()
+  fun showEmpty()
 
   fun paginationEvents(): Observable<Int>
   fun movieClicks(): Observable<Movie>

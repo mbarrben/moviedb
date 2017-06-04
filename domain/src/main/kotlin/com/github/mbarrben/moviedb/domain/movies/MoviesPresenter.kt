@@ -77,7 +77,7 @@ class MoviesPresenter
 
   private fun Observable<Movie.List>.subscribeShow(view: MoviesView?) = view?.let {
     subscribe(
-        { view.showMovies(it) },
+        { view.show(it) },
         { view.showError() }
     )
   }
@@ -87,6 +87,11 @@ class MoviesPresenter
         { view.addMovies(it) },
         { view.showError() }
     )
+  }
+
+  private fun MoviesView.show(movies: Movie.List) = when {
+    movies.isEmpty() -> showEmpty()
+    else             -> showMovies(movies)
   }
 
 }

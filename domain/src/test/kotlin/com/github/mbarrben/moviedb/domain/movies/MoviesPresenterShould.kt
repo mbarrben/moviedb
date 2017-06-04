@@ -81,7 +81,7 @@ class MoviesPresenterShould {
     verify(navigator).detail(A_MOVIE)
   }
 
-  @Test fun searchMoviesWhenUserSearchsAQuery() {
+  @Test fun searchMoviesWhenUserSearchesAQuery() {
     given { view.searchQueries() }.will { Observable.just(A_QUERY) }
 
     presenter.bind(view)
@@ -97,5 +97,13 @@ class MoviesPresenterShould {
 
     verify(getMovies).get(1)
     verify(getMovies).get(2)
+  }
+
+  @Test fun showEmptyViewWhenGetMoviesReturnsAnEmptyList() {
+    given { getMovies.get(any<Int>()) }.will { Observable.just(Movie.List.EMPTY) }
+
+    presenter.bind(view)
+
+    verify(view).showEmpty()
   }
 }

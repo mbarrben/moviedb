@@ -103,9 +103,9 @@ class DetailLayout
 
     poster.contentDescription = movie.title
     poster.transitionName("transition")
-    poster.load(picasso, movie.posterPath()) { activity.supportStartPostponedEnterTransition() }
+    poster.load(picasso, movie.posterPath) { activity.supportStartPostponedEnterTransition() }
 
-    backdrop.load(picasso, movie.backdropPath())
+    backdrop.load(picasso, movie.backdropPath)
 
     fab.clicks().subscribe {
       Snackbar.make(fab, "Replace with your own action ${movie.title}", Snackbar.LENGTH_LONG)

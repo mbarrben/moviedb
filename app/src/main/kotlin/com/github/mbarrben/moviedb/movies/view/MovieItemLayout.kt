@@ -33,7 +33,7 @@ class MovieItemLayout
   override fun render(movie: Movie) {
     this.movie = movie
     picture.contentDescription = movie.title
-    picture.load(picasso, movie.posterPath())
+    picture.load(picasso, movie.posterPath)
   }
 
   override fun movieClicks(): Observable<Movie> = clicks().filter { movie != null }

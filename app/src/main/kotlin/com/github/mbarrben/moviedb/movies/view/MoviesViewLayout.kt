@@ -1,6 +1,7 @@
 package com.github.mbarrben.moviedb.movies.view
 
 import android.content.Context
+import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
@@ -11,9 +12,7 @@ import android.view.KeyEvent.ACTION_UP
 import android.view.KeyEvent.KEYCODE_BACK
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import com.github.mbarrben.moviedb.R
-import com.github.mbarrben.moviedb.R.menu
 import com.github.mbarrben.moviedb.domain.movies.MoviesView
 import com.github.mbarrben.moviedb.extensions.Timber
 import com.github.mbarrben.moviedb.extensions.inflate
@@ -29,12 +28,13 @@ import com.jakewharton.rxbinding2.view.MenuItemActionViewCollapseEvent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit.MILLISECONDS
+import kotlinx.android.synthetic.main.movies_view.view.movies_empty_view as emptyView
 import kotlinx.android.synthetic.main.movies_view.view.movies_recycler as recycler
 import kotlinx.android.synthetic.main.movies_view.view.movies_toolbar as toolbar
 
 class MoviesViewLayout
 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-  : LinearLayout(context, attrs, defStyleAttr),
+  : ConstraintLayout(context, attrs, defStyleAttr),
     MoviesView {
 
   companion object {
@@ -46,8 +46,6 @@ class MoviesViewLayout
   private val searchItem: MenuItem
 
   init {
-    orientation = VERTICAL
-
     inflate(R.layout.movies_view, attachToRoot = true)
 
     searchItem = initSearchItem()
@@ -64,6 +62,7 @@ class MoviesViewLayout
   override fun showMovies(movies: Movie.List) {
     moviesAdapter.movies = movies
     hideLoading()
+    emptyView.visibility = GONE
   }
 
   override fun addMovies(movies: Movie.List) {
@@ -81,8 +80,13 @@ class MoviesViewLayout
 
   override fun showError() {
     hideLoading()
-    Snackbar.make(this, "Couldn't load movies", Snackbar.LENGTH_SHORT)
+    Snackbar.make(this, R.string.error_loading_movies, Snackbar.LENGTH_SHORT)
         .show()
+  }
+
+  override fun showEmpty() {
+    showMovies(Movie.List.EMPTY)
+    emptyView.visibility = VISIBLE
   }
 
   override fun paginationEvents(): Observable<Int> = recycler.scrollToEndEvents(VISIBLE_THRESHOLD)
@@ -95,7 +99,9 @@ class MoviesViewLayout
 
   override fun searchQueries(): Observable<String> = searchView.queryTextChanges()
       .debounce(400, MILLISECONDS)
+      .map { it.trim() }
       .filter { it.isNotEmpty() }
+      .distinct()
       .map { it.toString() }
       .doOnEach { Timber.d { "query $it" } }
       .observeOn(AndroidSchedulers.mainThread())
@@ -107,7 +113,7 @@ class MoviesViewLayout
   fun findMoviePosterView(movie: Movie): View? = recycler.findViewHolderForItemId(movie.id).itemView
 
   private fun initSearchItem(): MenuItem {
-    toolbar.inflateMenu(menu.movies_menu)
+    toolbar.inflateMenu(R.menu.movies_menu)
     return toolbar.menu.findItem(R.id.search)
   }
 

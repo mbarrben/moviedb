@@ -7,21 +7,20 @@ data class Movie(
     val title: String,
     val originalTitle: String,
     val overview: String,
-    val releaseDate: Date,
+    val releaseDate: Date?,
     val originalLanguage: String,
     val voteCount: Int,
     val voteAverage: Float,
-    private val posterPathLastSegment: String,
-    private val backdropPathLastSegment: String
+    private val posterPathLastSegment: String?,
+    private val backdropPathLastSegment: String?
 ) {
 
   companion object {
     private val POSTER_PREFIX = "http://image.tmdb.org/t/p/w500"
   }
 
-  fun posterPath() = POSTER_PREFIX + posterPathLastSegment
-
-  fun backdropPath() = POSTER_PREFIX + backdropPathLastSegment
+  val posterPath = POSTER_PREFIX + posterPathLastSegment
+  val backdropPath = POSTER_PREFIX + backdropPathLastSegment
 
   data class List(val page: Int, val movies: kotlin.collections.List<Movie>) : kotlin.collections.List<Movie> by movies {
 

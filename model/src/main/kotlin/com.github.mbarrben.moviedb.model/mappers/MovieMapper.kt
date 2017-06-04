@@ -11,12 +11,12 @@ class MovieMapper {
         title,
         originalTitle,
         overview,
-        releaseDate!!,
+        releaseDate,
         originalLanguage,
         voteCount,
         voteAverage,
-        posterPath!!,
-        backdropPath ?: ""
+        posterPath,
+        backdropPath
     )
   }
 

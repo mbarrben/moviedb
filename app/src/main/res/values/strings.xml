@@ -1,5 +1,3 @@
 <resources>
   <string name="app_name">MovieDb</string>
-  <string name="search_hint">Type the name of a movie</string>
-  <string name="search_title">Search a movie</string>
 </resources>
