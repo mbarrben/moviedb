@@ -6,8 +6,9 @@ import android.util.AttributeSet
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.extensions.use
 
-
-class ProportionalImageView(context: Context, attrs: AttributeSet) : AppCompatImageView(context, attrs) {
+class ProportionalImageView
+@JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+  : AppCompatImageView(context, attrs, defStyleAttr) {
 
   private var proportionHeight = 1
   private var proportionWidth = 1

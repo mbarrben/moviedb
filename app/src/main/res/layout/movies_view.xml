@@ -1,15 +1,48 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/movies_view_showin"
+    tools:parentTag="android.support.constraint.ConstraintLayout"
     >
 
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/movies_toolbar"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:title="@string/app_name"
+      />
+
   <android.support.v7.widget.RecyclerView
-      android:id="@+id/moviesRecycler"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:id="@+id/movies_recycler"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/movies_toolbar"
+      />
+
+  <TextView
+      android:id="@+id/movies_empty_view"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="@string/empty_movie_list"
+      android:textAppearance="?android:textAppearanceLarge"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/movies_toolbar"
+      tools:visibility="visible"
       />
 
 </merge>

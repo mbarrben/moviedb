@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.extensions
+package com.github.mbarrben.moviedb.model.extensions
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

@@ -1,7 +1,7 @@
 allprojects {
   repositories {
-    jcenter()
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+      jcenter()
+      maven { url 'https://maven.google.com' }
   }
 }
 
@@ -15,12 +15,12 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1.2-2',
-          gradle: '3.5'
+          kotlin: '1.1.2-4',
+          gradle: '4.0-rc-1'
       ],
 
       build_plugins: [
-          gradle  : '2.4.0-alpha7',
+          gradle  : '3.0.0-alpha3',
           versions: '0.14.0'
       ],
 
@@ -40,7 +40,7 @@ ext {
           retrofit          : '2.2.0',
           rx                : '2.0.0',
           rxbinding         : '2.0.0',
-          support           : '25.1.0',
+          support           : '25.3.1',
           timber            : '4.5.1'
       ]
   ]
@@ -53,8 +53,10 @@ ext {
 
   libs = [
       rxbinding         : [
+          appcompat   : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$versions.libs.rxbinding",
           basic       : "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.libs.rxbinding",
-          recyclerview: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbinding"
+          recyclerview: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$versions.libs.rxbinding",
+          support     : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$versions.libs.rxbinding"
       ],
 
       support           : [

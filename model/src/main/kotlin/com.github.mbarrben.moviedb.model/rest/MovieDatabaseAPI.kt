@@ -1,6 +1,6 @@
 package com.github.mbarrben.moviedb.model.rest
 
-import com.github.mbarrben.moviedb.model.entities.Movie
+import com.github.mbarrben.moviedb.model.entities.RestMovie
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,5 +14,11 @@ interface MovieDatabaseAPI {
 
   @GET("movie/popular") fun popular(@Query("api_key") apiKey: String, @Query("page") page: Int = 1): Observable<PopularMoviesApiResponse>
 
-  @GET("movie/{id}") fun details(@Path("id") id: Long, @Query("api_key") apiKey: String): Observable<Movie.Details>
+  @GET("search/movie") fun search(
+      @Query("api_key") apiKey: String,
+      @Query("query") query: String,
+      @Query("page") page: Int = 1
+  ): Observable<PopularMoviesApiResponse>
+
+  @GET("movie/{id}") fun details(@Path("id") id: Long, @Query("api_key") apiKey: String): Observable<RestMovie.RestDetails>
 }
