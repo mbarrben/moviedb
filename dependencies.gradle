@@ -15,17 +15,17 @@ ext {
 
   versions = [
       common       : [
-          kotlin: '1.1.2-4',
-          gradle: '4.0-rc-1'
+          kotlin: '1.1.2-5',
+          gradle: '4.0'
       ],
 
       build_plugins: [
-          gradle  : '3.0.0-alpha3',
+          gradle  : '3.0.0-alpha4',
           versions: '0.14.0'
       ],
 
       libs         : [
-          anko              : '0.10.0-beta-2',
+          anko              : '0.10.1',
           assertj           : '1.1.1',
           byteunits         : '0.9.1',
           constraint        : '1.0.2',
