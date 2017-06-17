@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion android_build.compile_sdk
@@ -46,10 +47,6 @@ android {
   lintOptions {
     lintConfig file("../quality/lint.xml")
   }
-}
-
-kapt {
-  generateStubs = true
 }
 
 dependencies {
