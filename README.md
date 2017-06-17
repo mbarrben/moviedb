@@ -1,4 +1,4 @@
-# Movie DB Android MVP Project
+# Movie DB Android MVP Project [![Build Status](https://travis-ci.org/mbarrben/moviedb.svg?branch=master)](https://travis-ci.org/mbarrben/moviedb)
 
 
 ## Summary
