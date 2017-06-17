@@ -19,10 +19,6 @@ abstract class BaseFragment(@LayoutRes val layoutRes: Int) : Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
       = inflater.inflate(layoutRes, container)
 
-  // Override empty method to workaround lint bug wrongly stating that BaseFragment children who implements onDestroyView must call super
-  // method even when they're actually calling it
-  override fun onDestroyView() = super.onDestroyView()
-
   fun <T> getComponent(componentType: Class<T>): T = componentType.cast((activity as HasComponent<*>).component)
 
   abstract fun inject()
