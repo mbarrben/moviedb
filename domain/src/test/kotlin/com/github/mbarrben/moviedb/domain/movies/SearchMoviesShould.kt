@@ -8,8 +8,8 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import io.reactivex.Observable
-import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.Schedulers.single
 import org.junit.Test
 import java.util.Date
 
@@ -41,25 +41,23 @@ class SearchMoviesShould {
     on { search(any<String>(), any<Int>()) } doReturn Observable.just(A_MOVIE_LIST)
   }
 
-  val searchMovies: SearchMovies = SearchMovies(repo, Schedulers.single(), Schedulers.single())
+  val searchMovies: SearchMovies = SearchMovies(repo, Schedulers.trampoline(), Schedulers.trampoline())
 
   @Test fun returnEmptyListWhenQueryIsEmpty() {
-    val observer = TestObserver<Movie.List>()
-
-    searchMovies.search("").subscribe(observer)
-
-    verifyNoMoreInteractions(repo)
-    observer.assertValue(Movie.List.EMPTY)
-    observer.assertComplete()
+    searchMovies.search("")
+        .test()
+        .assertNoErrors()
+        .assertValues(Movie.List.EMPTY)
+        .assertComplete()
+        .assertOf { verifyNoMoreInteractions(repo) }
   }
 
-  @Test fun returnsMoviesFromRepoWhenQueryIsNotEmpty() {
-    val observer = TestObserver<Movie.List>()
-
-    searchMovies.search(A_QUERY, 1).subscribe(observer)
-
-    verify(repo).search(A_QUERY, 1)
-    observer.assertValue(A_MOVIE_LIST)
-    observer.assertComplete()
+  @Test fun returnMoviesFromRepoWhenQueryIsNotEmpty() {
+    searchMovies.search(A_QUERY, 1)
+        .test()
+        .assertNoErrors()
+        .assertValue(A_MOVIE_LIST)
+        .assertComplete()
+        .assertOf { verify(repo).search(A_QUERY, 1) }
   }
 }
