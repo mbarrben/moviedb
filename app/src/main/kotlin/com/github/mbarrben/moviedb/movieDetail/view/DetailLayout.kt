@@ -55,8 +55,9 @@ import kotlinx.android.synthetic.main.detail_view.view.detail_toolbar as toolbar
 class DetailLayout
 @JvmOverloads constructor(context: Context?,
                           attrs: AttributeSet? = null,
-                          defStyleAttr: Int = 0) : CoordinatorLayout(context, attrs, defStyleAttr),
-                                                   DetailView {
+                          defStyleAttr: Int = 0)
+  : CoordinatorLayout(context, attrs, defStyleAttr),
+    DetailView {
 
   @Inject lateinit var picasso: Picasso
 
