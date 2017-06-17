@@ -1,7 +1,8 @@
 package com.github.mbarrben.moviedb.extensions
 
+import android.support.v4.text.util.LinkifyCompat
+import android.support.v4.text.util.LinkifyCompat.LinkifyMask
 import android.text.util.Linkify.ALL
-import android.text.util.Linkify.addLinks
 import android.widget.TextView
 
-fun TextView.linkify(mask: Int = ALL) = addLinks(this, mask)
+fun TextView.linkify(@LinkifyMask mask: Int = ALL) = LinkifyCompat.addLinks(this, mask)
