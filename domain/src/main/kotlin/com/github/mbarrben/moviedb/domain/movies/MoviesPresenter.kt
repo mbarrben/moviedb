@@ -23,11 +23,14 @@ class MoviesPresenter
     subscribeGetPagination()
     subscribeGet()
 
-    viewSubscriptions += view.movieClicks().subscribe { navigator.detail(it) }
+    viewSubscriptions += view.movieClicks()
+        .subscribe { navigator.detail(it) }
 
     viewSubscriptions += view.searchQueries()
-        .doOnNext { subscribeSearchPagination(it) }
-        .subscribe { subscribeSearch(it) }
+        .subscribe {
+          subscribeSearchPagination(it)
+          subscribeSearch(it)
+        }
 
     viewSubscriptions += view.searchClosed()
         .subscribe {
@@ -52,42 +55,43 @@ class MoviesPresenter
 
   private fun subscribeGetPagination() = moviesView?.let { view ->
     paginationSubscription.dispose()
-    paginationSubscription = view.paginationEvents().subscribe { page -> addGetMoviesPage(page) }
+    paginationSubscription = view.paginationEvents()
+        .subscribe { page -> addGetMoviesPage(page) }
   }
 
   private fun addGetMoviesPage(page: Int) {
     moviesSubscription.dispose()
-    moviesSubscription = getMovies.get(page).subscribeAdd(moviesView)
+    moviesSubscription = getMovies.get(page)
+        .subscribeAdd(moviesView)
   }
 
   private fun subscribeSearch(query: String) {
     moviesSubscription.dispose()
-    moviesSubscription = searchMovies.search(query).subscribeShow(moviesView)
+    moviesSubscription = searchMovies.search(query)
+        .subscribeShow(moviesView)
   }
 
   private fun subscribeSearchPagination(query: String) = moviesView?.let { view ->
     paginationSubscription.dispose()
-    paginationSubscription = view.paginationEvents().subscribe { page -> addSearchMoviesPage(query, page) }
+    paginationSubscription = view.paginationEvents()
+        .subscribe { page -> addSearchMoviesPage(query, page) }
   }
 
   private fun addSearchMoviesPage(query: String, page: Int) {
     moviesSubscription.dispose()
-    moviesSubscription = searchMovies.search(query, page).subscribeAdd(moviesView)
+    moviesSubscription = searchMovies.search(query, page)
+        .subscribeAdd(moviesView)
   }
 
-  private fun Observable<Movie.List>.subscribeShow(view: MoviesView?) = view?.let {
-    subscribe(
-        { view.show(it) },
-        { view.showError() }
-    )
-  }
+  private fun Observable<Movie.List>.subscribeShow(view: MoviesView?) = subscribe(
+      { view?.show(it) },
+      { view?.showError() }
+  )
 
-  private fun Observable<Movie.List>.subscribeAdd(view: MoviesView?) = view?.let {
-    subscribe(
-        { view.addMovies(it) },
-        { view.showError() }
-    )
-  }
+  private fun Observable<Movie.List>.subscribeAdd(view: MoviesView?) = subscribe(
+      { view?.addMovies(it) },
+      { view?.showError() }
+  )
 
   private fun MoviesView.show(movies: Movie.List) = when {
     movies.isEmpty() -> showEmpty()
