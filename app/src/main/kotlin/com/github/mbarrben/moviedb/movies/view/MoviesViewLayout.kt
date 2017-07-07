@@ -106,6 +106,8 @@ class MoviesViewLayout
       .observeOn(AndroidSchedulers.mainThread())
 
   override fun searchClosed(): Observable<Unit> = searchItem.actionViewEvents()
+      .skipWhile { it is MenuItemActionViewCollapseEvent }
+      .distinctUntilChanged()
       .filter { it is MenuItemActionViewCollapseEvent }
       .map { Unit }
 
