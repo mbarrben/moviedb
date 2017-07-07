@@ -101,7 +101,6 @@ class MoviesViewLayout
       .debounce(400, MILLISECONDS)
       .map { it.trim() }
       .filter { it.isNotEmpty() }
-      .distinct()
       .map { it.toString() }
       .doOnEach { Timber.d { "query $it" } }
       .observeOn(AndroidSchedulers.mainThread())
