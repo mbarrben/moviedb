@@ -1,24 +1,19 @@
 package com.github.mbarrben.moviedb
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.fragment.app.Fragment
+import com.github.mbarrben.moviedb.commons.observe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class MoviesView(
-    private val getPopularMovies: GetPopularMovies = GetPopularMovies(),
-    private val context: CoroutineContext = Dispatchers.Default
-): CoroutineScope by MainScope() {
+    private val viewModelProvider: MoviesViewModel.Provider = MoviesViewModel.Provider()
+) {
 
-    fun onCreate() {
-        launch {
-            val movies = withContext(context) { getPopularMovies() }
-            Timber.d("Result: $movies")
+    fun onCreate(fragment: Fragment) {
+        val viewModel = viewModelProvider.of(fragment)
+        fragment.observe(viewModel.status) {
+            Timber.tag("status").d("Status = $it")
         }
     }
 }
