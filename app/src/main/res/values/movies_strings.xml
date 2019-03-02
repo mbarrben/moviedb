@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="movies_item_picture_description">Movie picture</string>
-  <string name="search_hint">Type the name of a movie</string>
-  <string name="search_title">Search a movie</string>
-  <string name="empty_movie_list">Can\'t find any movie</string>
-  <string name="error_loading_movies">Couldn\'t load movies</string>
-</resources>

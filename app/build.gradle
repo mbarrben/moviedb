@@ -1,83 +1,71 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
-  compileSdkVersion android_build.compile_sdk
-  buildToolsVersion android_build.build_tools
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.github.mbarrben.moviedb"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-  defaultConfig {
-    applicationId "com.github.mbarrben.moviedb"
-    minSdkVersion android_build.min_sdk
-    targetSdkVersion android_build.target_sdk
-    versionCode 1
-    versionName "1.0"
-    vectorDrawables.useSupportLibrary = true
+        Properties privateProperties = DefaultProperties.create()
 
-    Properties privateProperties = DefaultProperties.create()
-
-    buildConfigField "String", "API_KEY", "\"${privateProperties['API_KEY']}\""
-    buildConfigField "String", "API_READ_ACCESS_TOKEN", "\"${privateProperties['API_READ_ACCESS_TOKEN']}\""
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        buildConfigField "String", "API_KEY", "\"${privateProperties['API_KEY']}\""
+        buildConfigField "String", "API_READ_ACCESS_TOKEN", "\"${privateProperties['API_READ_ACCESS_TOKEN']}\""
     }
-  }
 
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-    test.java.srcDirs += 'src/test/kotlin'
-  }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 
-  packagingOptions {
-    exclude 'META-INF/services/javax.annotation.processing.Processor'
-    exclude 'META-INF/LICENSE.txt'
-    exclude 'META-INF/NOTICE.txt'
-  }
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
 
-  dexOptions {
-    preDexLibraries true
-    javaMaxHeapSize '4G'
-  }
-
-  lintOptions {
-    lintConfig file("../quality/lint.xml")
-  }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
-  compile project(':common')
-  compile project(':domain')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-rc02'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-rc02'
+    implementation 'io.arrow-kt:arrow-core:0.8.2'
+    implementation 'io.arrow-kt:arrow-instances-core:0.8.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.13.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.13.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'
+    implementation 'com.squareup.moshi:moshi:1.8.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
-  compile libs.support.appcompat
-  compile libs.support.cardview
-  compile libs.support.recyclerview
-  compile libs.support.design
-  compile libs.support.constraint
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.24.5'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.1.0'
+    testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
+    testImplementation 'commons-io:commons-io:2.6'
 
-  compile libs.rxbinding.appcompat
-  compile libs.rxbinding.basic
-  compile libs.rxbinding.recyclerview
-  compile libs.rxbinding.support
-
-  compile libs.picasso
-  compile libs.picasso_downloader
-  compile libs.timber
-  compile libs.byteunits
-
-  compile libs.anko
-  compile libs.anko_support
-  compile libs.rx_android
-  compile libs.rx_kotlin
-
-  kapt libs.dagger_compiler
-  compile libs.dagger
-  provided libs.jsr250
-
-  testCompile libs.test.junit
-  testCompile libs.test.junit_kotlin
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
