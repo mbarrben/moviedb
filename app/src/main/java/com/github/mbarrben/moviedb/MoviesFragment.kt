@@ -15,20 +15,15 @@ import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-class MoviesFragment : Fragment(), CoroutineScope by MainScope() {
+class MoviesFragment : Fragment() {
 
-    private val getPopularMovies: GetPopularMovies = GetPopularMovies()
-    private val context: CoroutineContext = Dispatchers.Default
+    private val view: MoviesView = MoviesView()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        launch {
-            val movies = withContext(context) { getPopularMovies() }
-            Timber.d("Result: $movies")
-        }
+        this.view.onCreate()
     }
 }
