@@ -5,25 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.github.mbarrben.moviedb.commons.inflateBinding
+import com.github.mbarrben.moviedb.databinding.FragmentMoviesBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class MoviesFragment : Fragment() {
 
     private val view: MoviesView = MoviesView()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_movies, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        this.view.onCreate(this)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = inflater.inflateBinding<FragmentMoviesBinding>(R.layout.fragment_movies, container)
+        view.onCreate(fragment = this, binding = binding)
+        return binding.root
     }
 }

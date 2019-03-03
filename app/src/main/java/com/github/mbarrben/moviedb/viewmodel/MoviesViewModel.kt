@@ -1,9 +1,10 @@
-package com.github.mbarrben.moviedb
+package com.github.mbarrben.moviedb.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.mbarrben.moviedb.GetPopularMovies
 import com.github.mbarrben.moviedb.commons.buildViewModel
 import com.github.mbarrben.moviedb.network.model.Dto
 import kotlinx.coroutines.CoroutineScope
@@ -51,6 +52,13 @@ class MoviesViewModel(
         data class Success(val movies: List<Dto.Movie>) : Status()
         object NoMoviesFound : Status()
         object ConnectionError : Status()
+
+        val isLoading: Boolean
+            get() = this == Loading
+        val isError: Boolean
+            get() = this == NoMoviesFound || this == ConnectionError
+        val isSuccess: Boolean
+            get() = this is Success
     }
 
     class Provider {

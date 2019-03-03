@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Movie DB</string>
-
-    <string name="hello_blank_fragment">Hello movies fragment</string>
 </resources>
