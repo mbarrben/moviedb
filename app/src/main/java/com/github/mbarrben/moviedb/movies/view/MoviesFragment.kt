@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.inflateBinding
-import com.github.mbarrben.moviedb.databinding.FragmentMoviesBinding
+import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -17,7 +17,7 @@ class MoviesFragment : Fragment() {
         MoviesView()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = inflater.inflateBinding<FragmentMoviesBinding>(R.layout.fragment_movies, container)
+        val binding = inflater.inflateBinding<MoviesFragmentBinding>(R.layout.movies_fragment, container)
         view.onCreate(fragment = this, binding = binding)
         return binding.root
     }

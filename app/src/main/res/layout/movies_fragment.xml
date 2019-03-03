@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel" type="com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel"/>
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".movies.view.MoviesFragment">
+
+        <include
+                layout="@layout/movies_loading"
+                bind:viewModel="@{viewModel}"
+        />
+
+        <include
+                layout="@layout/movies_content"
+                bind:viewModel="@{viewModel}"
+        />
+
+        <include
+                layout="@layout/movies_error"
+                bind:viewModel="@{viewModel}"
+        />
+
+    </FrameLayout>
+
+</layout>

@@ -2,7 +2,7 @@ package com.github.mbarrben.moviedb.movies.view
 
 import androidx.fragment.app.Fragment
 import com.github.mbarrben.moviedb.commons.observe
-import com.github.mbarrben.moviedb.databinding.FragmentMoviesBinding
+import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
 import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
@@ -12,7 +12,7 @@ class MoviesView(
     private val viewModelProvider: MoviesViewModel.Provider = MoviesViewModel.Provider()
 ) {
 
-    fun onCreate(fragment: Fragment, binding: FragmentMoviesBinding) {
+    fun onCreate(fragment: Fragment, binding: MoviesFragmentBinding) {
         val viewModel = viewModelProvider.of(fragment)
 
         binding.lifecycleOwner = fragment

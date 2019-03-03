@@ -9,7 +9,7 @@
             android:id="@+id/moviesFragment"
             android:name="com.github.mbarrben.moviedb.movies.view.MoviesFragment"
             android:label="fragment_movies"
-            tools:layout="@layout/fragment_movies"
+            tools:layout="@layout/movies_fragment"
     >
     </fragment>
 
