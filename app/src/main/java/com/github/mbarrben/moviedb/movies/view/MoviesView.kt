@@ -1,7 +1,6 @@
 package com.github.mbarrben.moviedb.movies.view
 
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.observe
@@ -25,7 +24,6 @@ class MoviesView(
 
         binding.root.findViewById<RecyclerView>(R.id.movies_recycler).apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(fragment.context, 2)
             adapter = moviesAdapter
         }
 
