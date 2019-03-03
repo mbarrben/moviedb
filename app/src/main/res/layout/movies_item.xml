@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             android:scaleType="centerCrop"
-            android:onClickListener="@{() -> viewModel.clickAction.invoke()}"
+            android:onClickListener="@{(view) -> viewModel.clickAction.invoke(view)}"
             bind:url="@{viewModel.posterPath}"
             app:ratio="332:497"
             tools:src="@tools:sample/avatars"

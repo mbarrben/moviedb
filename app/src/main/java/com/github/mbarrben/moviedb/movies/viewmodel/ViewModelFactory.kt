@@ -1,13 +1,15 @@
 package com.github.mbarrben.moviedb.movies.viewmodel
 
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
-import timber.log.Timber
+import com.github.mbarrben.moviedb.movies.domain.NavigateToDetail
 
-class ViewModelFactory {
+class ViewModelFactory(
+    private val navigateToDetail: NavigateToDetail = NavigateToDetail()
+) {
     fun build(dto: Dto.Movie): MovieViewModel = MovieViewModel(
         id = dto.id,
         title = dto.title,
         posterPath = dto.posterPath?.url,
-        clickAction = { Timber.tag("click").d("click on ${dto.title}") }
+        clickAction = { navigateToDetail(it) }
     )
 }

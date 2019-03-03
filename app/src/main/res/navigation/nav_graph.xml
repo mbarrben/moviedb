@@ -9,8 +9,30 @@
             android:id="@+id/moviesFragment"
             android:name="com.github.mbarrben.moviedb.movies.view.MoviesFragment"
             android:label="fragment_movies"
-            tools:layout="@layout/movies_fragment"
-    >
+            tools:layout="@layout/movies_fragment">
+
+        <action
+                android:id="@+id/action_movies_to_detail"
+                app:destination="@id/detailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        />
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/detailFragment"
+            android:name="com.github.mbarrben.moviedb.detail.DetailFragment"
+            android:label="fragment_detail"
+            tools:layout="@layout/detail_fragment">
+
+        <!--<argument -->
+                <!--android:name="movie" -->
+                <!--app:argType="com.github.mbarrben.moviedb.movies.viewmodel"-->
+        <!--/>-->
+
     </fragment>
 
 </navigation>
