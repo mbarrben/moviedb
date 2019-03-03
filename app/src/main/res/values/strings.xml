@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie DB</string>
+    <string name="movies_error">"There was an error trying to load movies.\nPlease try again later"</string>
+    <string name="retry_button_content_description">Retry button</string>
 </resources>

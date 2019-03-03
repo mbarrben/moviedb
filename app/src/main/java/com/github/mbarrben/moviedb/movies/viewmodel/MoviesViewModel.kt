@@ -28,18 +28,21 @@ class MoviesViewModel(
         get() = mutableStatus
 
     init {
+        retrieveMovies()
+    }
+
+    fun retry() {
+        retrieveMovies()
+    }
+
+    private fun retrieveMovies() {
         mutableStatus.value = Status.Loading
 
         launch {
             val result = withContext(context) { getPopularMovies() }
 
             mutableStatus.value = result.fold(
-                ifLeft = { error ->
-                    when (error) {
-                        Dto.Error.NoResultFound -> Status.NoMoviesFound
-                        Dto.Error.NoInternetConnection -> Status.ConnectionError
-                    }
-                },
+                ifLeft = { Status.Error },
                 ifRight = { movies ->
                     Status.Success(movies)
                 }
@@ -50,13 +53,12 @@ class MoviesViewModel(
     sealed class Status {
         object Loading : Status()
         data class Success(val movies: List<Dto.Movie>) : Status()
-        object NoMoviesFound : Status()
-        object ConnectionError : Status()
+        object Error : Status()
 
         val isLoading: Boolean
             get() = this == Loading
         val isError: Boolean
-            get() = this == NoMoviesFound || this == ConnectionError
+            get() = this == Error
         val isSuccess: Boolean
             get() = this is Success
     }

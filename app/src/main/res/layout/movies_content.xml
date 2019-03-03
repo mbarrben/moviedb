@@ -4,15 +4,18 @@
         xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewModel" type="com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel"/>
+        <variable
+                name="viewModel"
+                type="com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel"
+        />
     </data>
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Movies"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-            android:gravity="center"
             bind:goneUnless="@{viewModel.status.isSuccess}"
             tools:showIn="@layout/movies_fragment"
     />
