@@ -7,7 +7,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.github.mbarrben.moviedb.movies.data.network.model.Dto.Movie"
+                type="com.github.mbarrben.moviedb.movies.viewmodel.MovieViewModel"
         />
     </data>
 
@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             android:scaleType="centerCrop"
-            bind:url="@{viewModel.posterPath.url}"
+            android:onClickListener="@{() -> viewModel.clickAction.invoke()}"
+            bind:url="@{viewModel.posterPath}"
             app:ratio="332:497"
             tools:src="@tools:sample/avatars"
             tools:ignore="ContentDescription,UnusedAttribute"

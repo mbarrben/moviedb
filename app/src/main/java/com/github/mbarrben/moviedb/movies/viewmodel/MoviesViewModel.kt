@@ -4,9 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.commons.buildViewModel
-import com.github.mbarrben.moviedb.movies.data.network.model.Dto
+import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,7 +17,8 @@ import kotlin.coroutines.CoroutineContext
 @ExperimentalCoroutinesApi
 class MoviesViewModel(
     private val getPopularMovies: GetPopularMovies = GetPopularMovies(),
-    private val context: CoroutineContext = Dispatchers.Default
+    private val context: CoroutineContext = Dispatchers.Default,
+    private val viewModelFactory: ViewModelFactory = ViewModelFactory()
 ) : ViewModel(),
     CoroutineScope by MainScope() {
 
@@ -41,18 +41,19 @@ class MoviesViewModel(
         launch {
             val result = withContext(context) { getPopularMovies() }
 
-            mutableStatus.value = result.fold(
-                ifLeft = { Status.Error },
-                ifRight = { movies ->
-                    Status.Success(movies)
-                }
-            )
+            mutableStatus.value = result.map { movies -> movies.map { viewModelFactory.build(it) } }
+                .fold(
+                    ifLeft = { Status.Error },
+                    ifRight = { movies ->
+                        Status.Success(movies)
+                    }
+                )
         }
     }
 
     sealed class Status {
         object Loading : Status()
-        data class Success(val movies: List<Dto.Movie>) : Status()
+        data class Success(val movies: List<MovieViewModel>) : Status()
         object Error : Status()
 
         val isLoading: Boolean

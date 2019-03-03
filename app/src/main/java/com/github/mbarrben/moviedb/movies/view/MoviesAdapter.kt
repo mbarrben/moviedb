@@ -7,11 +7,12 @@ import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.inflateBinding
 import com.github.mbarrben.moviedb.databinding.MoviesItemBinding
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
+import com.github.mbarrben.moviedb.movies.viewmodel.MovieViewModel
 import kotlin.properties.Delegates
 
 class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
-    var movies: List<Dto.Movie> by Delegates.observable(emptyList()) { _, old, new ->
+    var movies: List<MovieViewModel> by Delegates.observable(emptyList()) { _, old, new ->
         DiffUtil.calculateDiff(MoviesDiffCallback(old, new))
             .dispatchUpdatesTo(this)
     }
@@ -37,14 +38,14 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 class MovieViewHolder(
     private val binding: MoviesItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: Dto.Movie) {
+    fun bind(movie: MovieViewModel) {
         binding.viewModel = movie
     }
 }
 
 class MoviesDiffCallback(
-    private val old: List<Dto.Movie>,
-    private val new: List<Dto.Movie>
+    private val old: List<MovieViewModel>,
+    private val new: List<MovieViewModel>
 ) : DiffUtil.Callback() {
     override fun areItemsTheSame(oldPosition: Int, newPosition: Int) = old[oldPosition].id == new[newPosition].id
 
