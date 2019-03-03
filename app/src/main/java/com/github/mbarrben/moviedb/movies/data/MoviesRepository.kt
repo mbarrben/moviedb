@@ -1,8 +1,9 @@
-package com.github.mbarrben.moviedb
+package com.github.mbarrben.moviedb.movies.data
 
 import arrow.core.Either
-import com.github.mbarrben.moviedb.network.MoviesDatabaseApiClient
-import com.github.mbarrben.moviedb.network.model.Dto
+import com.github.mbarrben.moviedb.BuildConfig
+import com.github.mbarrben.moviedb.movies.data.network.MoviesDatabaseApiClient
+import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 
 class MoviesRepository(
     private val apiClient: MoviesDatabaseApiClient = MoviesDatabaseApiClient(),

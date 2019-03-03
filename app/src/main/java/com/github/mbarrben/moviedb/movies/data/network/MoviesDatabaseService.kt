@@ -1,6 +1,6 @@
-package com.github.mbarrben.moviedb.network
+package com.github.mbarrben.moviedb.movies.data.network
 
-import com.github.mbarrben.moviedb.network.model.Dto
+import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -53,7 +53,7 @@ interface MoviesDatabaseService {
                 val moshiConverterFactory = MoshiConverterFactory.create(moshi)
 
                 return Retrofit.Builder()
-                    .baseUrl(MoviesDatabaseService.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(moshiConverterFactory)
                     .client(client)
                     .build()

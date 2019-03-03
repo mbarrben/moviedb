@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.network
+package com.github.mbarrben.moviedb.movies.data.network
 
 import arrow.core.Either
 import arrow.core.left

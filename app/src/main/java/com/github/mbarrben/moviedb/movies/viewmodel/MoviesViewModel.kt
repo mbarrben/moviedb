@@ -1,12 +1,12 @@
-package com.github.mbarrben.moviedb.viewmodel
+package com.github.mbarrben.moviedb.movies.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.mbarrben.moviedb.GetPopularMovies
+import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.commons.buildViewModel
-import com.github.mbarrben.moviedb.network.model.Dto
+import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.network
+package com.github.mbarrben.moviedb.movies.data.network
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson

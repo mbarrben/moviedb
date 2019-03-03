@@ -4,13 +4,13 @@
         xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewModel" type="com.github.mbarrben.moviedb.viewmodel.MoviesViewModel"/>
+        <variable name="viewModel" type="com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel"/>
     </data>
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MoviesFragment">
+            tools:context=".movies.view.MoviesFragment">
 
         <TextView
                 android:layout_width="match_parent"

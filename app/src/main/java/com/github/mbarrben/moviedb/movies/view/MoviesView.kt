@@ -1,9 +1,9 @@
-package com.github.mbarrben.moviedb
+package com.github.mbarrben.moviedb.movies.view
 
 import androidx.fragment.app.Fragment
 import com.github.mbarrben.moviedb.commons.observe
 import com.github.mbarrben.moviedb.databinding.FragmentMoviesBinding
-import com.github.mbarrben.moviedb.viewmodel.MoviesViewModel
+import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 

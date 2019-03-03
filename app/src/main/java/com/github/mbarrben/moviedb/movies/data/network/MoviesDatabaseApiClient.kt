@@ -1,7 +1,7 @@
-package com.github.mbarrben.moviedb.network
+package com.github.mbarrben.moviedb.movies.data.network
 
 import arrow.core.Either
-import com.github.mbarrben.moviedb.network.model.Dto
+import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 
 
 class MoviesDatabaseApiClient(
