@@ -9,6 +9,7 @@ import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.inflateBinding
 import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.android.synthetic.main.movies_content.view.movies_recycler as moviesRecycler
 
 @ExperimentalCoroutinesApi
 class MoviesFragment : Fragment() {

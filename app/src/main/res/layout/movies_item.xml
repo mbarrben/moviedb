@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.github.mbarrben.moviedb.movies.data.network.model.Dto.Movie"
+        />
+    </data>
+
+    <com.github.mbarrben.moviedb.widget.ProportionalImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:scaleType="centerCrop"
+            bind:url="@{viewModel.posterPath.url}"
+            app:ratio="332:497"
+            tools:src="@tools:sample/avatars"
+            tools:ignore="ContentDescription,UnusedAttribute"
+    />
+
+</layout>

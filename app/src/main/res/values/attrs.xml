@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProportionalImageView">
+        <attr
+                format="string"
+                name="ratio"
+        />
+    </declare-styleable>
+
+</resources>

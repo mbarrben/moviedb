@@ -19,5 +19,5 @@ fun <T : ViewDataBinding> Context.inflateBinding(
     attachToParent: Boolean = false
 ): T = LayoutInflater.from(this).inflateBinding(layoutRes, parent, attachToParent)
 
-fun <T : ViewDataBinding> ViewGroup.inflateBinding(@LayoutRes layoutRes: Int): T =
-    context.inflateBinding(layoutRes, this, true)
+fun <T : ViewDataBinding> ViewGroup.inflateBinding(@LayoutRes layoutRes: Int, attachToParent: Boolean = true): T =
+    context.inflateBinding(layoutRes, this, attachToParent)

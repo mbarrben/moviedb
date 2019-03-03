@@ -29,8 +29,8 @@ class Dto {
         @Json(name = "original_language") val originalLanguage: String,
         @Json(name = "vote_count") val voteCount: Int,
         @Json(name = "vote_average") val voteAverage: Float,
-        @Json(name = "poster_path") val posterPath: String?,
-        @Json(name = "backdrop_path") val backdropPath: String?
+        @Json(name = "poster_path") val posterPath: ImageUrl?,
+        @Json(name = "backdrop_path") val backdropPath: ImageUrl?
     ) {
 
         @JsonClass(generateAdapter = true)
@@ -72,3 +72,7 @@ class Dto {
         )
     }
 }
+
+data class ImageUrl(
+    val url: String
+)

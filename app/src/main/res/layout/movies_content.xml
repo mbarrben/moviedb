@@ -10,14 +10,13 @@
         />
     </data>
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movies_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Movies"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             bind:goneUnless="@{viewModel.status.isSuccess}"
             tools:showIn="@layout/movies_fragment"
+            tools:listitem="@layout/movies_item"
     />
 
 </layout>

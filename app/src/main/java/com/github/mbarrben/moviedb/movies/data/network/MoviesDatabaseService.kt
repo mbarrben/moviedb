@@ -16,6 +16,7 @@ interface MoviesDatabaseService {
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val POSTER_PREFIX = "https://image.tmdb.org/t/p/w500"
     }
 
     @GET("movie/popular")
@@ -49,6 +50,7 @@ interface MoviesDatabaseService {
 
                 val moshi = Moshi.Builder()
                     .add(DateAdapter("yyyy-MM-dd"))
+                    .add(ImageUrlAdapter(POSTER_PREFIX))
                     .build()
                 val moshiConverterFactory = MoshiConverterFactory.create(moshi)
 
