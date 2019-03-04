@@ -6,8 +6,8 @@ import com.github.mbarrben.moviedb.movies.view.MoviesFragmentDirections
 
 class NavigateToDetail {
 
-    operator fun invoke(view: View) {
-        val action = MoviesFragmentDirections.actionMoviesToDetail()
+    operator fun invoke(view: View, movie: Movie) {
+        val action = MoviesFragmentDirections.actionMoviesToDetail(movie)
         view.findNavController().navigate(action)
     }
 }

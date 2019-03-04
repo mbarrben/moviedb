@@ -42,6 +42,10 @@ android {
         enabled = true
         enabledForTests = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
