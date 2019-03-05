@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.commons.buildViewModel
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import kotlinx.coroutines.CoroutineScope
@@ -19,8 +20,7 @@ class MoviesViewModel(
     private val getPopularMovies: GetPopularMovies = GetPopularMovies(),
     private val context: CoroutineContext = Dispatchers.Default,
     private val viewModelFactory: ViewModelFactory = ViewModelFactory()
-) : ViewModel(),
-    CoroutineScope by MainScope() {
+) : ViewModel() {
 
     private val mutableStatus: MutableLiveData<Status> = MutableLiveData()
 
@@ -38,7 +38,7 @@ class MoviesViewModel(
     private fun retrieveMovies() {
         mutableStatus.value = Status.Loading
 
-        launch {
+        viewModelScope.launch {
             val result = withContext(context) { getPopularMovies() }
 
             mutableStatus.value = result.map { movies -> movies.map { viewModelFactory.build(it) } }
