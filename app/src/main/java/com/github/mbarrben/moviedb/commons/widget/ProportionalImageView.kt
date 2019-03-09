@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.widget
+package com.github.mbarrben.moviedb.commons.widget
 
 import android.content.Context
 import android.util.AttributeSet

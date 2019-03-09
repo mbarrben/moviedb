@@ -5,7 +5,7 @@ import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 
 
 class MoviesDatabaseApiClient(
-    private val service: MoviesDatabaseService = MoviesDatabaseService.Provider.create()
+    private val service: MoviesDatabaseService
 ) {
     fun popular(apiKey: String): Either<Dto.Error, Dto.MoviesResponse> = service.popular(apiKey).toEither(
         notFoundError = Dto.Error.NoResultFound,

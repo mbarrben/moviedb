@@ -5,15 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.mbarrben.moviedb.commons.buildViewModel
+import com.github.mbarrben.moviedb.commons.extensions.buildViewModel
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MoviesViewModel(
-    private val getPopularMovies: GetPopularMovies = GetPopularMovies(),
-    private val viewModelFactory: ViewModelFactory = ViewModelFactory()
+    private val getPopularMovies: GetPopularMovies,
+    private val viewModelFactory: ViewModelFactory
 ) : ViewModel() {
 
     private val mutableStatus: MutableLiveData<Status> = MutableLiveData()
@@ -57,9 +57,15 @@ class MoviesViewModel(
             get() = this is Success
     }
 
-    class Provider {
+    class Provider(
+        private val getPopularMovies: GetPopularMovies,
+        private val viewModelFactory: ViewModelFactory
+    ) {
         fun of(fragment: Fragment) = fragment.buildViewModel {
-            MoviesViewModel()
+            MoviesViewModel(
+                getPopularMovies,
+                viewModelFactory
+            )
         }
     }
 }

@@ -37,30 +37,4 @@ interface MoviesDatabaseService {
         @Path("id") id: Long,
         @Query("api_key") apiKey: String
     ): Call<Dto.Movie.Details>
-
-    class Provider {
-        companion object {
-            fun create(): MoviesDatabaseService {
-                val logger = HttpLoggingInterceptor.Logger { message -> Timber.tag("Retrofit").d(message) }
-                val loggingInterceptor = HttpLoggingInterceptor(logger).setLevel(HttpLoggingInterceptor.Level.BODY)
-                val client = OkHttpClient.Builder()
-                    .addInterceptor(loggingInterceptor)
-                    .addInterceptor(DefaultHeadersInterceptor())
-                    .build()
-
-                val moshi = Moshi.Builder()
-                    .add(DateAdapter("yyyy-MM-dd"))
-                    .add(ImageUrlAdapter(POSTER_PREFIX))
-                    .build()
-                val moshiConverterFactory = MoshiConverterFactory.create(moshi)
-
-                return Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(moshiConverterFactory)
-                    .client(client)
-                    .build()
-                    .create(MoviesDatabaseService::class.java)
-            }
-        }
-    }
 }

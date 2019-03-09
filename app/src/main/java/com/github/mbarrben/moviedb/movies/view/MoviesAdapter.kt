@@ -4,9 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.R
-import com.github.mbarrben.moviedb.commons.inflateBinding
+import com.github.mbarrben.moviedb.commons.extensions.inflateBinding
 import com.github.mbarrben.moviedb.databinding.MoviesItemBinding
-import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import com.github.mbarrben.moviedb.movies.viewmodel.MovieViewModel
 import kotlin.properties.Delegates
 

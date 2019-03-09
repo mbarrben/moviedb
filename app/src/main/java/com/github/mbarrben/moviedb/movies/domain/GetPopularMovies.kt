@@ -7,8 +7,8 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class GetPopularMovies(
-    private val moviesRepository: MoviesRepository = MoviesRepository(),
-    private val context: CoroutineContext = Dispatchers.IO
+    private val moviesRepository: MoviesRepository,
+    private val context: CoroutineContext
 ) {
     suspend operator fun invoke(): Either<Error, List<Movie>> = withContext(context) {
         moviesRepository.popular()

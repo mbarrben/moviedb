@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.commons
+package com.github.mbarrben.moviedb.commons.extensions
 
 import android.content.Context
 import android.view.LayoutInflater

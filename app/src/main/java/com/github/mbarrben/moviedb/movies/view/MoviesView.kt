@@ -3,7 +3,7 @@ package com.github.mbarrben.moviedb.movies.view
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.R
-import com.github.mbarrben.moviedb.commons.observe
+import com.github.mbarrben.moviedb.commons.extensions.observe
 import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
 import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel
 import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel.Status.Success
@@ -12,8 +12,8 @@ import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 class MoviesView(
-    private val viewModelProvider: MoviesViewModel.Provider = MoviesViewModel.Provider(),
-    private val moviesAdapter: MoviesAdapter = MoviesAdapter()
+    private val viewModelProvider: MoviesViewModel.Provider,
+    private val moviesAdapter: MoviesAdapter
 ) {
 
     fun onCreate(fragment: Fragment, binding: MoviesFragmentBinding) {

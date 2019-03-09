@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.commons
+package com.github.mbarrben.moviedb.commons.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
