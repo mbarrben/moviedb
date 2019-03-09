@@ -7,18 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.commons.buildViewModel
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class MoviesViewModel(
     private val getPopularMovies: GetPopularMovies = GetPopularMovies(),
-    private val context: CoroutineContext = Dispatchers.Default,
     private val viewModelFactory: ViewModelFactory = ViewModelFactory()
 ) : ViewModel() {
 
@@ -39,17 +33,16 @@ class MoviesViewModel(
         mutableStatus.value = Status.Loading
 
         viewModelScope.launch {
-            val result = withContext(context) { getPopularMovies() }
-
-            mutableStatus.value = result.map { movies -> movies.map { viewModelFactory.build(it) } }
-                .fold(
-                    ifLeft = { Status.Error },
-                    ifRight = { movies ->
-                        Status.Success(movies)
-                    }
-                )
+            mutableStatus.value = doRetrieveMovies()
         }
     }
+
+    private suspend fun doRetrieveMovies(): Status = getPopularMovies()
+        .map { movies -> movies.map { viewModelFactory.build(it) } }
+        .fold(
+            ifLeft = { Status.Error },
+            ifRight = { movies -> Status.Success(movies) }
+        )
 
     sealed class Status {
         object Loading : Status()
