@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.data.network
+package com.github.mbarrben.moviedb.commons.network
 
 import okhttp3.Interceptor
 import okhttp3.Response

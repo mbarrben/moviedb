@@ -6,15 +6,15 @@
 
     <data>
         <variable
-                name="movie"
-                type="com.github.mbarrben.moviedb.movies.domain.Movie"
+                name="viewModel"
+                type="com.github.mbarrben.moviedb.detail.ui.viewmodel.DetailViewModel"
         />
     </data>
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".detail.DetailFragment">
+            tools:context=".detail.ui.view.DetailFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:ratio="332:497"
-                    bind:url="@{movie.posterPath}"
+                    bind:url="@{viewModel.status.posterPath}"
                     tools:src="@tools:sample/avatars"
             />
 
@@ -41,7 +41,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:text="@{movie.title}"
+                    android:text="@{viewModel.status.title}"
                     app:layout_constraintTop_toBottomOf="@+id/detail_poster"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:text="@{movie.originalTitle}"
+                    android:text="@{viewModel.status.originalTitle}"
                     app:layout_constraintTop_toBottomOf="@+id/detail_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:text="@{movie.originalLanguage}"
+                    android:text="@{viewModel.status.originalLanguage}"
                     app:layout_constraintTop_toBottomOf="@+id/detail_original_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:text="4.3"
+                    android:text="@{viewModel.status.voteAverageText}"
                     app:layout_constraintTop_toBottomOf="@+id/detail_info"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="4.3"
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="10dp"
-                    android:rating="@{movie.voteAverage}"
+                    android:rating="@{viewModel.status.voteAverage}"
                     app:layout_constraintBottom_toBottomOf="@+id/detail_vote_average"
                     app:layout_constraintStart_toEndOf="@+id/detail_vote_average"
                     style="@style/Widget.AppCompat.RatingBar.Small"
@@ -112,7 +112,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="1234 votes"
+                    android:text="@{viewModel.status.voteCount}"
                     app:layout_constraintBottom_toBottomOf="@+id/detail_ratingbar"
                     app:layout_constraintStart_toEndOf="@+id/detail_ratingbar"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +143,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:text="@{movie.overview}"
+                    android:text="@{viewModel.status.overview}"
                     app:layout_constraintTop_toBottomOf="@+id/detail_overview_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -151,19 +151,37 @@
             />
             
             <ImageView
+                    android:id="@+id/detail_backdrop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintTop_toBottomOf="@+id/detail_overview"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    bind:url="@{movie.backdropPath}"
+                    bind:url="@{viewModel.status.backdropPath}"
                     tools:src="@tools:sample/backgrounds/scenic"
+            />
+
+            <TextView
+                    android:id="@+id/detail_tagline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{viewModel.status.tagline}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textStyle="italic"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_backdrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="@tools:sample/lorem"
             />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

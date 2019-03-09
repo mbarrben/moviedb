@@ -7,7 +7,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.github.mbarrben.moviedb.movies.viewmodel.MovieViewModel"
+                type="com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel"
         />
     </data>
 

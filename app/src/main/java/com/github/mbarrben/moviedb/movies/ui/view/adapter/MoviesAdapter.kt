@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.view
+package com.github.mbarrben.moviedb.movies.ui.view.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.extensions.inflateBinding
 import com.github.mbarrben.moviedb.databinding.MoviesItemBinding
-import com.github.mbarrben.moviedb.movies.viewmodel.MovieViewModel
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import kotlin.properties.Delegates
 
 class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
@@ -34,23 +34,3 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
     }
 }
 
-class MovieViewHolder(
-    private val binding: MoviesItemBinding
-) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: MovieViewModel) {
-        binding.viewModel = movie
-    }
-}
-
-class MoviesDiffCallback(
-    private val old: List<MovieViewModel>,
-    private val new: List<MovieViewModel>
-) : DiffUtil.Callback() {
-    override fun areItemsTheSame(oldPosition: Int, newPosition: Int) = old[oldPosition].id == new[newPosition].id
-
-    override fun getOldListSize() = old.size
-
-    override fun getNewListSize() = new.size
-
-    override fun areContentsTheSame(oldPosition: Int, newPosition: Int) = old[oldPosition] == new[newPosition]
-}

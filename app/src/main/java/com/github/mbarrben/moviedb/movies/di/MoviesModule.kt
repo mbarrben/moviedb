@@ -1,47 +1,38 @@
 package com.github.mbarrben.moviedb.movies.di
 
-import com.github.mbarrben.moviedb.BuildConfig
 import com.github.mbarrben.moviedb.movies.data.MoviesRepository
-import com.github.mbarrben.moviedb.movies.data.network.DateAdapter
-import com.github.mbarrben.moviedb.movies.data.network.DefaultHeadersInterceptor
-import com.github.mbarrben.moviedb.movies.data.network.ImageUrlAdapter
-import com.github.mbarrben.moviedb.movies.data.network.MoviesDatabaseApiClient
-import com.github.mbarrben.moviedb.movies.data.network.MoviesDatabaseService
+import com.github.mbarrben.moviedb.movies.data.network.MoviesApiClient
+import com.github.mbarrben.moviedb.movies.data.network.MoviesService
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.movies.domain.NavigateToDetail
-import com.github.mbarrben.moviedb.movies.view.MoviesAdapter
-import com.github.mbarrben.moviedb.movies.view.MoviesView
-import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel
-import com.github.mbarrben.moviedb.movies.viewmodel.ViewModelFactory
-import com.squareup.moshi.Moshi
+import com.github.mbarrben.moviedb.movies.ui.view.adapter.MoviesAdapter
+import com.github.mbarrben.moviedb.movies.ui.view.MoviesView
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.ViewModelFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import okhttp3.Cache
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.rewedigital.katana.createModule
 import org.rewedigital.katana.dsl.compact.factory
-import org.rewedigital.katana.dsl.compact.singleton
 import org.rewedigital.katana.dsl.get
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import timber.log.Timber
-import java.io.File
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 val moviesModule = createModule("moviesModule") {
 
     factory {
-        val service: MoviesDatabaseService = get()
-        MoviesDatabaseApiClient(service)
-    }
+        val retrofit: Retrofit = get()
 
-    factory("API_KEY") {
-        BuildConfig.API_KEY
+        retrofit.create(MoviesService::class.java)
     }
 
     factory {
-        val apiClient: MoviesDatabaseApiClient = get()
+        val service: MoviesService = get()
+
+        MoviesApiClient(service)
+    }
+
+    factory {
+        val apiClient: MoviesApiClient = get()
         val apiKey: String = get("API_KEY")
 
         MoviesRepository(
@@ -66,6 +57,7 @@ val moviesModule = createModule("moviesModule") {
 
     factory {
         val navigateToDetail: NavigateToDetail = get()
+
         ViewModelFactory(navigateToDetail)
     }
 

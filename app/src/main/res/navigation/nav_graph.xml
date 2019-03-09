@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/moviesFragment"
-            android:name="com.github.mbarrben.moviedb.movies.view.MoviesFragment"
+            android:name="com.github.mbarrben.moviedb.movies.ui.view.MoviesFragment"
             android:label="fragment_movies"
             tools:layout="@layout/movies_fragment">
 
@@ -24,7 +24,7 @@
 
     <fragment
             android:id="@+id/detailFragment"
-            android:name="com.github.mbarrben.moviedb.detail.DetailFragment"
+            android:name="com.github.mbarrben.moviedb.detail.ui.view.DetailFragment"
             android:label="fragment_detail"
             tools:layout="@layout/detail_fragment">
 

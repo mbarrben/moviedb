@@ -1,17 +1,18 @@
-package com.github.mbarrben.moviedb.movies.view
+package com.github.mbarrben.moviedb.movies.ui.view
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.commons.extensions.observe
 import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
-import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel
-import com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel.Status.Success
+import com.github.mbarrben.moviedb.movies.ui.view.adapter.MoviesAdapter
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.Status.Success
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 
 @ExperimentalCoroutinesApi
-class MoviesView(
+internal class MoviesView(
     private val viewModelProvider: MoviesViewModel.Provider,
     private val moviesAdapter: MoviesAdapter
 ) {
@@ -27,8 +28,8 @@ class MoviesView(
             adapter = moviesAdapter
         }
 
-        fragment.observe(viewModel.status) {status ->
-            Timber.tag("status").d("Status = $status")
+        fragment.observe(viewModel.status) { status ->
+            Timber.d("Status = $status")
             when (status) {
                 is Success -> moviesAdapter.movies = status.movies
             }

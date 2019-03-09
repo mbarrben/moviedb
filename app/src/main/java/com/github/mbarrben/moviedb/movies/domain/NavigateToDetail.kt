@@ -2,7 +2,7 @@ package com.github.mbarrben.moviedb.movies.domain
 
 import android.view.View
 import androidx.navigation.findNavController
-import com.github.mbarrben.moviedb.movies.view.MoviesFragmentDirections
+import com.github.mbarrben.moviedb.movies.ui.view.MoviesFragmentDirections
 
 class NavigateToDetail {
 

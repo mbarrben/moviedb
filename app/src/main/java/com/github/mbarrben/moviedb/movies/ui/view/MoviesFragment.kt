@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.view
+package com.github.mbarrben.moviedb.movies.ui.view
 
 import com.github.mbarrben.moviedb.commons.BaseFragment
 import com.github.mbarrben.moviedb.R

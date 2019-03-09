@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.viewmodel
+package com.github.mbarrben.moviedb.movies.ui.viewmodel
 
 import android.view.View
 

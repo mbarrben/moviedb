@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.data.network
+package com.github.mbarrben.moviedb.commons.network
 
 import com.github.mbarrben.moviedb.movies.data.network.model.ImageUrl
 import com.squareup.moshi.FromJson

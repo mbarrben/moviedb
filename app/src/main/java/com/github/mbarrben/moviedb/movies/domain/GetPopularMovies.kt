@@ -2,7 +2,6 @@ package com.github.mbarrben.moviedb.movies.domain
 
 import arrow.core.Either
 import com.github.mbarrben.moviedb.movies.data.MoviesRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 

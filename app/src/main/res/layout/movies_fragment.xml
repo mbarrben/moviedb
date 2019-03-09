@@ -6,14 +6,14 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.github.mbarrben.moviedb.movies.viewmodel.MoviesViewModel"
+                type="com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel"
         />
     </data>
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".movies.view.MoviesFragment">
+            tools:context=".movies.ui.view.MoviesFragment">
 
         <include
                 layout="@layout/movies_loading"
