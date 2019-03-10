@@ -1,5 +1,7 @@
 package com.github.mbarrben.moviedb.detail.di
 
+import com.github.mbarrben.moviedb.app.di.CoroutinesModule.IO
+import com.github.mbarrben.moviedb.app.di.NetworkModule.API_KEY
 import com.github.mbarrben.moviedb.detail.data.DetailRepository
 import com.github.mbarrben.moviedb.detail.data.network.DetailApiClient
 import com.github.mbarrben.moviedb.detail.data.network.DetailService
@@ -11,60 +13,37 @@ import org.rewedigital.katana.createModule
 import org.rewedigital.katana.dsl.compact.factory
 import org.rewedigital.katana.dsl.get
 import retrofit2.Retrofit
-import kotlin.coroutines.CoroutineContext
 
 val detailModule = createModule("detailModule") {
 
     factory {
-        val retrofit: Retrofit = get()
-
-        retrofit.create(DetailService::class.java)
+        get<Retrofit>().create(DetailService::class.java)
     }
 
-    factory {
-        val service: DetailService = get()
-
-        DetailApiClient(service)
-    }
+    factory { DetailApiClient(service = get()) }
 
     factory {
-        val apiClient: DetailApiClient = get()
-        val apiKey: String = get("API_KEY")
-
         DetailRepository(
-            apiClient,
-            apiKey
+            apiClient = get(),
+            apiKey = get(API_KEY)
         )
     }
 
     factory {
-        val repository: DetailRepository = get()
-        val context: CoroutineContext = get("IO")
-
         GetDetail(
-            repository,
-            context
+            repository = get(),
+            context = get(IO)
         )
     }
 
-    factory {
-        ViewModelFactory()
-    }
+    factory { ViewModelFactory() }
 
     factory {
-        val getDetail: GetDetail = get()
-        val viewModelFactory: ViewModelFactory = get()
-
         DetailViewModel.Provider(
-            getDetail,
-            viewModelFactory
+            getDetail = get(),
+            viewModelFactory = get()
         )
     }
 
-    factory {
-        val viewModelProvider: DetailViewModel.Provider = get()
-
-        DetailView(viewModelProvider)
-    }
-
+    factory { DetailView(viewModelProvider = get()) }
 }
