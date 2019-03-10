@@ -16,7 +16,6 @@ import org.rewedigital.katana.dsl.get
 import retrofit2.Retrofit
 import kotlin.coroutines.CoroutineContext
 
-@ExperimentalCoroutinesApi
 val moviesModule = createModule("moviesModule") {
 
     factory {

@@ -7,10 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.commons.extensions.buildViewModel
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
-@ExperimentalCoroutinesApi
 class MoviesViewModel(
     private val getPopularMovies: GetPopularMovies,
     private val viewModelFactory: ViewModelFactory

@@ -8,10 +8,8 @@ import com.github.mbarrben.moviedb.databinding.MoviesFragmentBinding
 import com.github.mbarrben.moviedb.movies.ui.view.adapter.MoviesAdapter
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.Status.Success
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 
-@ExperimentalCoroutinesApi
 internal class MoviesView(
     private val viewModelProvider: MoviesViewModel.Provider,
     private val moviesAdapter: MoviesAdapter
