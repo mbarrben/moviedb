@@ -3,15 +3,19 @@
 
 ## Summary
 
-Android project following MVP architecture heavily based on https://github.com/saulmm/Material-Movies
+Android project following MVVM architecture
 
 
 ## Features
 
-* MVP architecture with separate Java modules for model and domain.
-* Asynchronous communication between modules implemented with [RxJava][1] and [RxAndroid][2].
-* Dependency injection implemented with [Dagger][3].
-* Rest API from [The Movie Db][4].
+* MVVM architecture with vertical features separated by packages:
+** [DataBinding][1]
+** [ViewModel][2]
+** [LiveData][3]
+* Asynchrony implemented with [coroutines][4].
+* Dependency injection implemented with [Katana][5].
+* Navigation implemented with Android architecture [navigation components][6]
+* Rest API from [The Movie Db][7].
 
 
 ## Usage
@@ -26,15 +30,10 @@ Android project following MVP architecture heavily based on https://github.com/s
 API_KEY = <YOUR API KEY HERE>
 ```
 
-## Bibliography
-
-* [A useful stack on android][5] by [Saul MM][6] for MVP architecture and UI
-* [EffectiveAndroidUI][7] by [Pedro Vicente Gómez Sánchez][8] for dependency injection
-
 
 ## License
 
-    Copyright 2015 Miguel Barrios Benito
+    Copyright 2019 Miguel Barrios Benito
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -49,11 +48,10 @@ API_KEY = <YOUR API KEY HERE>
     limitations under the License.
 
 
-[1]: https://github.com/ReactiveX/RxJava
-[2]: https://github.com/ReactiveX/RxAndroid
-[3]: http://square.github.io/dagger/
-[4]: https://www.themoviedb.org/
-[5]: http://saulmm.github.io/2015/02/02/A%20useful%20stack%20on%20android%20%231,%20architecture/
-[6]: https://github.com/saulmm
-[7]: https://github.com/pedrovgs/EffectiveAndroidUI
-[8]: https://github.com/pedrovgs
+[1]: https://developer.android.com/topic/libraries/data-binding
+[2]: https://developer.android.com/topic/libraries/architecture/viewmodel
+[3]: https://developer.android.com/topic/libraries/architecture/livedata
+[4]: https://kotlinlang.org/docs/reference/coroutines-overview.html
+[5]: https://github.com/rewe-digital/katana
+[6]: https://developer.android.com/guide/navigation/
+[7]: https://www.themoviedb.org/
