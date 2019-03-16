@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
 import org.junit.Test
+import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 
@@ -20,47 +21,45 @@ class MoviesApiClientTest {
 
     @Test
     fun `Returns an api response with a list of movies when the service returns a successful call`() {
-        whenever(serviceMock.popular(API_KEY)).thenReturn(ANY_SUCCESSFUL_CALL)
+        givenServiceReturns(ANY_SUCCESSFUL_CALL)
 
-        sut.popular(API_KEY)
-            .fold(
-                ifLeft = { fail() },
-                ifRight = { result -> assertEquals(ANY_RESPONSE, result) }
-            )
+        val result = whenRetrievesPopularMovies()
+
+        assertEquals(ANY_RESPONSE, result)
     }
 
     @Test
     fun `Returns a not found error when the service returns an empty call`() {
-        whenever(serviceMock.popular(API_KEY)).thenReturn(ANY_EMPTY_SUCCESSFUL_CALL)
+        givenServiceReturns(ANY_EMPTY_SUCCESSFUL_CALL)
 
-        sut.popular(API_KEY)
-            .fold(
-                ifLeft = { error -> assertEquals(ANY_NOT_FOUND_ERROR, error) },
-                ifRight = { fail() }
-            )
+        val result = whenRetrievesPopularMovies()
+
+        assertEquals(ANY_NOT_FOUND_ERROR, result)
     }
 
     @Test
     fun `Returns a not found error when the service returns a not found error call`() {
-        whenever(serviceMock.popular(API_KEY)).thenReturn(ANY_NOT_FOUND_CALL)
+        givenServiceReturns(ANY_NOT_FOUND_CALL)
 
-        sut.popular(API_KEY)
-            .fold(
-                ifLeft = { error -> assertEquals(ANY_NOT_FOUND_ERROR, error) },
-                ifRight = { fail() }
-            )
+        val result = whenRetrievesPopularMovies()
+
+        assertEquals(ANY_NOT_FOUND_ERROR, result)
     }
 
     @Test
     fun `Returns a no connection error when the service returns a no connection error call`() {
-        whenever(serviceMock.popular(API_KEY)).thenReturn(ANY_NO_CONNECTION_CALL)
+        givenServiceReturns(ANY_NO_CONNECTION_CALL)
 
-        sut.popular(API_KEY)
-            .fold(
-                ifLeft = { error -> assertEquals(ANY_NO_CONNECTION_ERROR, error) },
-                ifRight = { fail() }
-            )
+        val result = whenRetrievesPopularMovies()
+
+        assertEquals(ANY_NO_CONNECTION_ERROR, result)
     }
+
+    private fun givenServiceReturns(call: Call<Dto.MoviesResponse>) {
+        whenever(serviceMock.popular(API_KEY)).thenReturn(call)
+    }
+
+    private fun whenRetrievesPopularMovies(): Any = sut.popular(API_KEY).fold({ it }, { it })
 
     private companion object {
         const val API_KEY = "api key"
