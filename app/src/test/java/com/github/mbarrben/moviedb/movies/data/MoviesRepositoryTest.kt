@@ -25,7 +25,7 @@ class MoviesRepositoryTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_MOVIE_LIST, result)
+        assertEquals(ANY_MOVIE_LIST.right(), result)
     }
 
     @Test
@@ -34,14 +34,14 @@ class MoviesRepositoryTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_ERROR, result)
+        assertEquals(ANY_ERROR.left(), result)
     }
 
     private fun givenApiClientReturns(apiResult: Either<Dto.Error, Dto.MoviesResponse>) {
         whenever(apiClientMock.popular(API_KEY)).thenReturn(apiResult)
     }
 
-    private fun whenRetrievesPopularMovies() = sut.popular().fold({ it }, { it })
+    private fun whenRetrievesPopularMovies() = sut.popular()
 
     private companion object {
         const val API_KEY = "api key"

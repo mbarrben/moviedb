@@ -1,5 +1,7 @@
 package com.github.mbarrben.moviedb.movies.data.network
 
+import arrow.core.left
+import arrow.core.right
 import com.github.mbarrben.moviedb.movies.data.DtoMother
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import com.nhaarman.mockitokotlin2.mock
@@ -25,7 +27,7 @@ class MoviesApiClientTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_RESPONSE, result)
+        assertEquals(ANY_RESPONSE.right(), result)
     }
 
     @Test
@@ -34,7 +36,7 @@ class MoviesApiClientTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_NOT_FOUND_ERROR, result)
+        assertEquals(Dto.Error.NoResultFound.left(), result)
     }
 
     @Test
@@ -43,7 +45,7 @@ class MoviesApiClientTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_NOT_FOUND_ERROR, result)
+        assertEquals(Dto.Error.NoResultFound.left(), result)
     }
 
     @Test
@@ -52,14 +54,14 @@ class MoviesApiClientTest {
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_NO_CONNECTION_ERROR, result)
+        assertEquals(Dto.Error.NoInternetConnection.left(), result)
     }
 
     private fun givenServiceReturns(call: Call<Dto.MoviesResponse>) {
         whenever(serviceMock.popular(API_KEY)).thenReturn(call)
     }
 
-    private fun whenRetrievesPopularMovies(): Any = sut.popular(API_KEY).fold({ it }, { it })
+    private fun whenRetrievesPopularMovies() = sut.popular(API_KEY)
 
     private companion object {
         const val API_KEY = "api key"
@@ -79,9 +81,6 @@ class MoviesApiClientTest {
             totalPages = 123,
             totalMovies = 14092
         )
-
-        val ANY_NOT_FOUND_ERROR = Dto.Error.NoResultFound
-        val ANY_NO_CONNECTION_ERROR = Dto.Error.NoInternetConnection
 
         val ANY_SUCCESSFUL_CALL = CallMother.aCall {
             Response.success(ANY_RESPONSE)
