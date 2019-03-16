@@ -32,5 +32,7 @@ internal class MoviesView(
                 is Success -> moviesAdapter.movies = status.movies
             }
         }
+
+        viewModel.start()
     }
 }

@@ -9,17 +9,19 @@ import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 
+@ExperimentalCoroutinesApi
 class GetPopularMoviesTest {
     private val repositoryMock: MoviesRepository = mock()
 
     private val sut = GetPopularMovies(
         moviesRepository = repositoryMock,
-        context = Dispatchers.Default
+        context = Dispatchers.Unconfined
     )
 
     @Test

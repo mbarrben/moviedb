@@ -10,5 +10,5 @@ dependencies {
   implementation localGroovy()
 
   testImplementation 'junit:junit:4.12'
-  testImplementation('com.squareup.assertj:assertj-android:+') { exclude module: 'support-annotations' }
+  testImplementation('com.squareup.assertj:assertj-android:1.2.0') { exclude module: 'support-annotations' }
 }

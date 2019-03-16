@@ -19,8 +19,10 @@ class MoviesViewModel(
     val status: LiveData<Status>
         get() = mutableStatus
 
-    init {
-        retrieveMovies()
+    fun start() {
+        if (mutableStatus.value !is Status.Success) {
+            retrieveMovies()
+        }
     }
 
     fun retry() {
