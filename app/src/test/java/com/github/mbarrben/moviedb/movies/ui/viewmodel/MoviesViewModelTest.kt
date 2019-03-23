@@ -5,9 +5,6 @@ import arrow.core.Either
 import arrow.core.left
 import arrow.core.right
 import com.github.mbarrben.moviedb.TestCoroutinesRule
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_ID
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_POSTER_PATH
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_TITLE
 import com.github.mbarrben.moviedb.movies.domain.DomainMother
 import com.github.mbarrben.moviedb.movies.domain.Error
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
@@ -146,12 +143,7 @@ class MoviesViewModelTest {
             ANY_MOVIE
         )
 
-        val ANY_MOVIE_VIEW_MODEL = MovieViewModel(
-            id = ANY_ID,
-            title = ANY_TITLE,
-            posterPath = ANY_POSTER_PATH,
-            clickAction = {}
-        )
+        val ANY_MOVIE_VIEW_MODEL = ViewModelMother.aMovie()
 
         val ANY_MOVIE_VIEW_MODEL_LIST = listOf(
             ANY_MOVIE_VIEW_MODEL,

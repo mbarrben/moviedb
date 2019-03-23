@@ -15,6 +15,6 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(
     private val view: MoviesView by inject()
 
     override fun onBind(binding: MoviesFragmentBinding) {
-        view.onCreate(fragment = this, binding = binding)
+        view.onCreate(fragment = this, binding = binding.toAdapter())
     }
 }

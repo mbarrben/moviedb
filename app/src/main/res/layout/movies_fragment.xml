@@ -16,16 +16,19 @@
             tools:context=".movies.ui.view.MoviesFragment">
 
         <include
+                android:id="@+id/movies_loading"
                 layout="@layout/movies_loading"
                 bind:viewModel="@{viewModel}"
         />
 
         <include
+                android:id="@+id/movies_content"
                 layout="@layout/movies_content"
                 bind:viewModel="@{viewModel}"
         />
 
         <include
+                android:id="@+id/movies_error"
                 layout="@layout/movies_error"
                 bind:viewModel="@{viewModel}"
         />
