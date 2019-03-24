@@ -1,4 +1,4 @@
-package com.github.mbarrben.moviedb.movies.data.network
+package com.github.mbarrben.moviedb.commons.network
 
 import retrofit2.Call
 import retrofit2.Callback

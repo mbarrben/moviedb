@@ -8,7 +8,6 @@ import com.squareup.moshi.ToJson
 class ImageUrlAdapter(
     private val baseUrl: String
 ) {
-
     @ToJson
     fun toJson(imageUrl: ImageUrl): String = imageUrl.url.substring(baseUrl.length)
 

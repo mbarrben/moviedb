@@ -2,12 +2,12 @@ package com.github.mbarrben.moviedb.movies.data.network
 
 import arrow.core.left
 import arrow.core.right
+import com.github.mbarrben.moviedb.commons.network.CallMother
 import com.github.mbarrben.moviedb.movies.data.DtoMother
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
-import org.junit.Assert.fail
 import org.junit.Test
 import retrofit2.Call
 import retrofit2.Response

@@ -8,7 +8,6 @@ import com.github.mbarrben.moviedb.movies.domain.Movie
 internal class DetailView(
     private val viewModelProvider: DetailViewModel.Provider
 ) {
-
     fun onCreate(fragment: Fragment, binding: DetailFragmentBinding, movie: Movie) {
         binding.lifecycleOwner = fragment
         binding.viewModel = viewModelProvider.of(fragment, movie)
