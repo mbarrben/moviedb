@@ -1,9 +1,9 @@
 package com.github.mbarrben.moviedb.movies.ui.viewmodel
 
 import android.view.View
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_ID
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_POSTER_PATH
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_TITLE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ID
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_POSTER_PATH
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_TITLE
 import com.github.mbarrben.moviedb.movies.domain.DomainMother
 import com.github.mbarrben.moviedb.movies.domain.NavigateToDetail
 import com.nhaarman.mockitokotlin2.mock
@@ -19,7 +19,7 @@ class ViewModelFactoryTest {
     )
 
     @Test
-    fun `Returns a view model with correct fields when builds ir from a movie`() {
+    fun `Returns a view model with correct fields when builds it from a movie`() {
         val result = sut.build(ANY_MOVIE)
 
         assertEquals(ANY_ID, result.id)

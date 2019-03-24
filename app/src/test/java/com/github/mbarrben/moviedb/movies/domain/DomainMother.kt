@@ -1,18 +1,18 @@
 package com.github.mbarrben.moviedb.movies.domain
 
 
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_BACKDROP_PATH
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_ID
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_ORIGINAL_LANGUAGE
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_ORIGINAL_TITLE
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_OVERVIEW
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_POSTER_PATH
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_RELEASE_DATE
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_TITLE
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_VOTE_AVERAGE
-import com.github.mbarrben.moviedb.movies.CommonConstants.Companion.ANY_VOTE_COUNT
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_BACKDROP_PATH
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ID
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ORIGINAL_LANGUAGE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ORIGINAL_TITLE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_OVERVIEW
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_POSTER_PATH
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_RELEASE_DATE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_TITLE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_VOTE_AVERAGE
+import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_VOTE_COUNT
 
-class DomainMother {
+internal class DomainMother {
     companion object {
         fun aMovie() = Movie(
             id = ANY_ID,

@@ -26,13 +26,13 @@ object Dto {
 
     @JsonClass(generateAdapter = true)
     data class Genre(
-        @Json(name = "id") val id: Int,
+        @Json(name = "id") val id: Long,
         @Json(name = "name") val name: String
     )
 
     @JsonClass(generateAdapter = true)
     data class Company(
-        @Json(name = "id") val id: Int,
+        @Json(name = "id") val id: Long,
         @Json(name = "name") val name: String
     )
 
