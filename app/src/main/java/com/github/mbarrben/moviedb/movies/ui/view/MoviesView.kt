@@ -1,6 +1,8 @@
 package com.github.mbarrben.moviedb.movies.ui.view
 
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mbarrben.moviedb.commons.extensions.observe
 import com.github.mbarrben.moviedb.movies.ui.view.adapter.MoviesAdapter
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
@@ -21,6 +23,11 @@ internal class MoviesView(
         binding.moviesRecycler.apply {
             setHasFixedSize(true)
             adapter = moviesAdapter
+            addOnScrollListener(object : EndlessScrollListener(layoutManager!!) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                    Timber.d("onLoadMore. page = $page, totalItemsCount = $totalItemsCount")
+                }
+            })
         }
 
         fragment.observe(viewModel.status) { status ->
