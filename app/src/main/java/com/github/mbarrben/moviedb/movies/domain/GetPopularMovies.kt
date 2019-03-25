@@ -9,8 +9,8 @@ class GetPopularMovies(
     private val moviesRepository: MoviesRepository,
     private val context: CoroutineContext
 ) {
-    suspend operator fun invoke(): Either<Error, List<Movie>> = withContext(context) {
-        moviesRepository.popular()
+    suspend operator fun invoke(page: Int): Either<Error, List<Movie>> = withContext(context) {
+        moviesRepository.popular(page)
             .mapLeft { Error }
             .map { movies -> movies.map { movie -> movie.toDomain() } }
     }

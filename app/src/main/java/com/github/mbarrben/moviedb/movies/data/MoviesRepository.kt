@@ -8,6 +8,6 @@ class MoviesRepository(
     private val apiClient: MoviesApiClient,
     private val apiKey: String
 ) {
-    fun popular(): Either<Dto.Error, List<Dto.Movie>> = apiClient.popular(apiKey)
+    fun popular(page: Int): Either<Dto.Error, List<Dto.Movie>> = apiClient.popular(apiKey, page)
         .map { it.movies }
 }

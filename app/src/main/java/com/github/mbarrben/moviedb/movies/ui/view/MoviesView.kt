@@ -26,6 +26,7 @@ internal class MoviesView(
             addOnScrollListener(object : EndlessScrollListener(layoutManager!!) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                     Timber.d("onLoadMore. page = $page, totalItemsCount = $totalItemsCount")
+                    viewModel.loadPage(page)
                 }
             })
         }

@@ -21,28 +21,44 @@ class MoviesViewModel(
 
     fun start() {
         if (mutableStatus.value !is Status.Success) {
+            mutableStatus.value = Status.Loading
             retrieveMovies()
         }
     }
 
     fun retry() {
+        mutableStatus.value = Status.Loading
         retrieveMovies()
     }
 
-    private fun retrieveMovies() {
-        mutableStatus.value = Status.Loading
+    fun loadPage(page: Int) {
+        retrieveMovies(page)
+    }
 
+    private fun retrieveMovies(page: Int = 1) {
         viewModelScope.launch {
-            mutableStatus.value = doRetrieveMovies()
+            mutableStatus.value = doRetrieveMovies(page)
         }
     }
 
-    private suspend fun doRetrieveMovies(): Status = getPopularMovies()
+    private suspend fun doRetrieveMovies(page: Int): Status = getPopularMovies(page)
         .map { movies -> movies.map { viewModelFactory.build(it) } }
         .fold(
             ifLeft = { Status.Error },
-            ifRight = { movies -> Status.Success(movies) }
+            ifRight = { movies -> status + Status.Success(movies) }
         )
+
+    private operator fun LiveData<MoviesViewModel.Status>.plus(newStatus: Status.Success): Status.Success =
+        when (val currentStatus = value) {
+            null -> newStatus
+            Status.Error -> newStatus
+            Status.Loading -> newStatus
+            is Status.Success -> currentStatus + newStatus
+        }
+
+    private operator fun Status.Success.plus(newStatus: Status.Success): Status.Success = Status.Success(
+        movies = movies + newStatus.movies
+    )
 
     sealed class Status {
         object Loading : Status()
@@ -69,4 +85,3 @@ class MoviesViewModel(
         }
     }
 }
-

@@ -13,7 +13,7 @@ fun View.setGoneUnless(isVisible: Boolean) {
 }
 
 @BindingAdapter("url")
-fun ImageView.setUrl(url: String) {
+fun ImageView.setUrl(url: String?) {
     Picasso.get()
         .load(url)
         .into(this)
