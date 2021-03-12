@@ -17,11 +17,6 @@ fun MoviesScreen(state: MoviesViewModel.State) {
 }
 
 @Composable
-fun MoviesErrorScreen() {
-    Text(text = "Error")
-}
-
-@Composable
 fun MoviesSuccessScreen() {
     Text(text = "Success")
 }

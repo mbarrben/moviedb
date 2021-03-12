@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">moviedb</string>
+    <string name="app_name">Movie DB</string>
+    <string name="movies_error">There was an error loading the list of movies, please try again later.</string>
 </resources>
