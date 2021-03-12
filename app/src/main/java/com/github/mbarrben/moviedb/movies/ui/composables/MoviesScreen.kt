@@ -1,6 +1,5 @@
 package com.github.mbarrben.moviedb.movies.ui.composables
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
@@ -12,13 +11,8 @@ fun MoviesScreen(state: MoviesViewModel.State) {
     when (state) {
         is Loading -> MoviesLoadingScreen()
         is Error -> MoviesErrorScreen()
-        is Success -> MoviesSuccessScreen()
+        is Success -> MoviesSuccessScreen(state.movies)
     }
-}
-
-@Composable
-fun MoviesSuccessScreen() {
-    Text(text = "Success")
 }
 
 @Preview(
