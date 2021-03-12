@@ -2,13 +2,13 @@ package com.github.mbarrben.moviedb.movies.data.network.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.util.Date
+import java.util.*
 
 object Dto {
 
-    sealed class Error {
-        object NoResultFound : Error()
-        object NoInternetConnection : Error()
+    enum class Error {
+        NoResultFound,
+        NoInternetConnection
     }
 
     @JsonClass(generateAdapter = true)
@@ -16,7 +16,7 @@ object Dto {
         @Json(name = "results") val movies: List<Movie>,
         @Json(name = "page") val page: Int,
         @Json(name = "total_pages") val totalPages: Int,
-        @Json(name = "total_results") val totalMovies: Int
+        @Json(name = "total_results") val totalMovies: Int,
     )
 
     @JsonClass(generateAdapter = true)
@@ -30,10 +30,10 @@ object Dto {
         @Json(name = "vote_count") val voteCount: Int,
         @Json(name = "vote_average") val voteAverage: Float,
         @Json(name = "poster_path") val posterPath: ImageUrl?,
-        @Json(name = "backdrop_path") val backdropPath: ImageUrl?
+        @Json(name = "backdrop_path") val backdropPath: ImageUrl?,
     )
 }
 
 data class ImageUrl(
-    val url: String
+    val url: String,
 )

@@ -2,8 +2,8 @@ package com.github.mbarrben.moviedb.movies.domain
 
 import android.os.Parcelable
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
-import kotlinx.android.parcel.Parcelize
 import java.util.Date
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movie(

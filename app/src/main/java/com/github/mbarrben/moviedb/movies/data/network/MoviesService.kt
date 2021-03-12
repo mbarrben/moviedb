@@ -10,13 +10,13 @@ interface MoviesService {
     @GET("movie/popular")
     fun popular(
         @Query("api_key") apiKey: String,
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
     ): Call<Dto.MoviesResponse>
 
     @GET("search/movie")
     fun search(
         @Query("api_key") apiKey: String,
         @Query("query") query: String,
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
     ): Call<Dto.MoviesResponse>
 }
