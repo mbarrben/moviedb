@@ -31,9 +31,12 @@ class MoviesActivity : ComponentActivity() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+)
 @Composable
-fun DefaultPreview() {
+private fun DefaultPreview() {
     MovieDbTheme {
         MoviesScreen(state = MoviesViewModel.State.Loading)
     }
