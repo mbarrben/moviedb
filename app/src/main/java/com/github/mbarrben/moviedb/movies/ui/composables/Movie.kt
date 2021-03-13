@@ -1,6 +1,12 @@
 package com.github.mbarrben.moviedb.movies.ui.composables
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -19,17 +25,19 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun Movie(modifier: Modifier = Modifier, movie: MovieViewModel) {
-    if (movie.posterPath != null) {
-        PosterMovie(
-            modifier = modifier,
-            title = movie.title,
-            posterPath = movie.posterPath
-        )
-    } else {
-        NoPosterMovie(
-            modifier = modifier,
-            title = movie.title
-        )
+    Box(modifier = modifier
+        .clickable { movie.clickAction.invoke() }
+    ) {
+        if (movie.posterPath != null) {
+            PosterMovie(
+                title = movie.title,
+                posterPath = movie.posterPath
+            )
+        } else {
+            NoPosterMovie(
+                title = movie.title
+            )
+        }
     }
 }
 
@@ -37,7 +45,7 @@ fun Movie(modifier: Modifier = Modifier, movie: MovieViewModel) {
 fun PosterMovie(
     modifier: Modifier = Modifier,
     title: String,
-    posterPath: String
+    posterPath: String,
 ) {
     CoilImage(
         modifier = modifier,
