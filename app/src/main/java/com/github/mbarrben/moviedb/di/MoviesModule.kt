@@ -9,7 +9,6 @@ import com.github.mbarrben.moviedb.movies.data.MoviesRepository
 import com.github.mbarrben.moviedb.movies.data.network.MoviesApiClient
 import com.github.mbarrben.moviedb.movies.data.network.MoviesService
 import com.jakewharton.byteunits.DecimalByteUnit
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -63,7 +62,6 @@ object ApplicationModule {
         val retrofit = Retrofit.Builder()
             .baseUrl(NetworkModule.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okhttpClient)
             .build()
 
