@@ -9,11 +9,9 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -40,17 +38,6 @@ fun MoviesSuccessScreen(
     }
 }
 
-@Composable
-fun Movie(modifier: Modifier = Modifier, movie: MovieViewModel) {
-    CoilImage(
-        modifier = modifier,
-        data = movie.posterPath!!,
-        contentDescription = movie.title,
-        contentScale = ContentScale.Crop,
-        fadeIn = true,
-    )
-}
-
 @Preview(
     showBackground = true,
     showSystemUi = true,
@@ -68,7 +55,7 @@ private fun DefaultPreview() {
                 ),
                 MovieViewModel(
                     id = 0,
-                    title = "Tom & Jerry",
+                    title = "Miraculous World: New York, United HeroeZ",
                     posterPath = null,
                     clickAction = {}
                 ),
