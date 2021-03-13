@@ -1,7 +1,6 @@
 package com.github.mbarrben.moviedb.di
 
 import android.content.Context
-import android.util.Log
 import com.github.mbarrben.moviedb.commons.network.DateAdapter
 import com.github.mbarrben.moviedb.commons.network.DefaultHeadersInterceptor
 import com.github.mbarrben.moviedb.commons.network.ImageUrlAdapter
@@ -20,6 +19,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import timber.log.Timber
 import java.io.File
 
 @Module
@@ -48,7 +48,7 @@ object ApplicationModule {
 
         val logger = object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
-                Log.d("Retrofit", message)
+                Timber.tag("Retrofit").d(message)
             }
         }
         val loggingInterceptor = HttpLoggingInterceptor(logger).setLevel(HttpLoggingInterceptor.Level.BODY)

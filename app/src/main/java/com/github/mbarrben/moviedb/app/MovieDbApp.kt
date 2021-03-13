@@ -8,5 +8,6 @@ class MovieDbApp : Application() {
     override fun onCreate() {
         super.onCreate()
         initStrictMode()
+        initLogger()
     }
 }
