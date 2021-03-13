@@ -1,26 +1,32 @@
 package com.github.mbarrben.moviedb.movies.ui.composables
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
+import dev.chrisbanes.accompanist.coil.CoilImage
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MoviesSuccessScreen(movies: List<MovieViewModel>) {
-    LazyColumn(
+    LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
+        cells = GridCells.Fixed(2),
     ) {
         items(items = movies) { movie ->
             Movie(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(3 / 4F),
                 movie = movie,
             )
         }
@@ -29,17 +35,13 @@ fun MoviesSuccessScreen(movies: List<MovieViewModel>) {
 
 @Composable
 fun Movie(modifier: Modifier = Modifier, movie: MovieViewModel) {
-    Box(
-        modifier = modifier
-            .height(54.dp)
-            .padding(horizontal = 16.dp),
-        contentAlignment = Alignment.CenterStart,
-    ) {
-        Text(
-            text = movie.title,
-            style = MaterialTheme.typography.h6,
-        )
-    }
+    CoilImage(
+        modifier = modifier,
+        data = movie.posterPath!!,
+        contentDescription = movie.title,
+        contentScale = ContentScale.Crop,
+        fadeIn = true,
+    )
 }
 
 @Preview(
