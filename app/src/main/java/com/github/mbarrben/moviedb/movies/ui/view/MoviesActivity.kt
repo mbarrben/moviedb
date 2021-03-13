@@ -24,7 +24,10 @@ class MoviesActivity : ComponentActivity() {
             MovieDbTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MoviesScreen(state = viewModel.state)
+                    MoviesScreen(
+                        state = viewModel.state,
+                        onScrollToEnd = viewModel::loadNextPage
+                    )
                 }
             }
         }
@@ -38,6 +41,9 @@ class MoviesActivity : ComponentActivity() {
 @Composable
 private fun DefaultPreview() {
     MovieDbTheme {
-        MoviesScreen(state = MoviesViewModel.State.Loading)
+        MoviesScreen(
+            state = MoviesViewModel.State.Loading,
+            onScrollToEnd = {}
+        )
     }
 }

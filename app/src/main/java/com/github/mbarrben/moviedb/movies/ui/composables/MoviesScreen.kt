@@ -7,11 +7,17 @@ import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.*
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 
 @Composable
-fun MoviesScreen(state: MoviesViewModel.State) {
+fun MoviesScreen(
+    state: MoviesViewModel.State,
+    onScrollToEnd: () -> Unit,
+) {
     when (state) {
         is Loading -> MoviesLoadingScreen()
         is Error -> MoviesErrorScreen()
-        is Success -> MoviesSuccessScreen(state.movies)
+        is Success -> MoviesSuccessScreen(
+            movies = state.movies,
+            onScrollToEnd = onScrollToEnd,
+        )
     }
 }
 
@@ -22,6 +28,9 @@ fun MoviesScreen(state: MoviesViewModel.State) {
 @Composable
 private fun DefaultPreview() {
     MovieDbTheme {
-        MoviesScreen(state = Loading)
+        MoviesScreen(
+            state = Loading,
+            onScrollToEnd = {},
+        )
     }
 }

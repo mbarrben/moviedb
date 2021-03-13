@@ -17,6 +17,7 @@ class MoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     var state: State by mutableStateOf(State.Loading)
+    var page = 1
 
     init {
         if (state !is State.Success) {
@@ -30,7 +31,8 @@ class MoviesViewModel @Inject constructor(
         retrieveMovies()
     }
 
-    fun loadPage(page: Int) {
+    fun loadNextPage() {
+        page++
         retrieveMovies(page)
     }
 

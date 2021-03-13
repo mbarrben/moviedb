@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -17,18 +17,25 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MoviesSuccessScreen(movies: List<MovieViewModel>) {
+fun MoviesSuccessScreen(
+    movies: List<MovieViewModel>,
+    onScrollToEnd: () -> Unit,
+) {
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         cells = GridCells.Fixed(2),
     ) {
-        items(items = movies) { movie ->
+        itemsIndexed(items = movies) { index, movie ->
             Movie(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(3 / 4F),
                 movie = movie,
             )
+
+            if (index == movies.lastIndex) {
+                onScrollToEnd()
+            }
         }
     }
 }
@@ -83,7 +90,8 @@ private fun DefaultPreview() {
                     posterPath = null,
                     clickAction = {}
                 ),
-            )
+            ),
+            onScrollToEnd = {},
         )
     }
 }
