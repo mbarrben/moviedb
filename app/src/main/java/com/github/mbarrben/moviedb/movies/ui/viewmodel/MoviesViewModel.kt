@@ -26,7 +26,7 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
-    fun retry() {
+    fun refresh() {
         state = State.Loading
         retrieveMovies()
     }

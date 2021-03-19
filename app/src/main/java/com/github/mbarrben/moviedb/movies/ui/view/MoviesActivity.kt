@@ -26,7 +26,8 @@ class MoviesActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     MoviesScreen(
                         state = viewModel.state,
-                        onScrollToEnd = viewModel::loadNextPage
+                        onScrollToEnd = viewModel::loadNextPage,
+                        onRefresh = viewModel::refresh,
                     )
                 }
             }
@@ -36,14 +37,14 @@ class MoviesActivity : ComponentActivity() {
 
 @Preview(
     showBackground = true,
-    showSystemUi = true,
 )
 @Composable
 private fun DefaultPreview() {
     MovieDbTheme {
         MoviesScreen(
             state = MoviesViewModel.State.Loading,
-            onScrollToEnd = {}
+            onScrollToEnd = {},
+            onRefresh = {},
         )
     }
 }
