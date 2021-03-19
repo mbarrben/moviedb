@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
+import dev.chrisbanes.accompanist.coil.CoilImageDefaults
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -63,30 +63,35 @@ private fun DefaultPreview() {
                     id = 0,
                     title = "Raya and the last dragon",
                     posterPath = null,
+                    imageLoader = CoilImageDefaults.defaultImageLoader(),
                     clickAction = {}
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Miraculous World: New York, United HeroeZ",
                     posterPath = null,
+                    imageLoader = CoilImageDefaults.defaultImageLoader(),
                     clickAction = {}
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Coming 2 America",
                     posterPath = null,
+                    imageLoader = CoilImageDefaults.defaultImageLoader(),
                     clickAction = {}
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Monster Hunter",
                     posterPath = null,
+                    imageLoader = CoilImageDefaults.defaultImageLoader(),
                     clickAction = {}
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Wonder Woman 1984",
                     posterPath = null,
+                    imageLoader = CoilImageDefaults.defaultImageLoader(),
                     clickAction = {}
                 ),
             ),

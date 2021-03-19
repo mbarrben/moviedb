@@ -1,6 +1,7 @@
 package com.github.mbarrben.moviedb.di
 
 import android.content.Context
+import coil.ImageLoader
 import com.github.mbarrben.moviedb.BuildConfig
 import com.github.mbarrben.moviedb.commons.network.DateAdapter
 import com.github.mbarrben.moviedb.commons.network.DefaultHeadersInterceptor
@@ -19,6 +20,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import java.io.File
+import javax.inject.Qualifier
+import javax.inject.Singleton
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class Images
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class Api
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -29,7 +40,7 @@ object NetworkModule {
     private const val POSTER_PREFIX = "https://image.tmdb.org/t/p/w500"
 
     @Provides
-    fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
+    fun provideRetrofit(@Api okHttpClient: OkHttpClient): Retrofit {
         val dateAdapter = DateAdapter("yyyy-MM-dd")
         val imageUrlAdapter = ImageUrlAdapter(POSTER_PREFIX)
 
@@ -38,6 +49,26 @@ object NetworkModule {
             .add(imageUrlAdapter)
             .build()
 
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideImageLoader(
+        @ApplicationContext context: Context,
+        @Images okHttpClient: OkHttpClient,
+    ): ImageLoader = ImageLoader.Builder(context)
+        .crossfade(true)
+        .okHttpClient(okHttpClient)
+        .build()
+
+    @Api
+    @Provides
+    fun provideOkHttpClientForApi(@ApplicationContext context: Context): OkHttpClient {
         val cache = Cache(
             File(context.cacheDir, "http"),
             DecimalByteUnit.MEGABYTES.toBytes(50)
@@ -45,21 +76,36 @@ object NetworkModule {
 
         val logger = object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
-                Timber.tag("Retrofit").d(message)
+                Timber.tag("Api").d(message)
             }
         }
         val loggingInterceptor = HttpLoggingInterceptor(logger).setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val okhttpClient = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(DefaultHeadersInterceptor())
             .cache(cache)
             .build()
+    }
 
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .client(okhttpClient)
+    @Images
+    @Provides
+    fun provideOkHttpClientForImageLoading(@ApplicationContext context: Context): OkHttpClient {
+        val cache = Cache(
+            File(context.cacheDir, "images"),
+            DecimalByteUnit.MEGABYTES.toBytes(250)
+        )
+
+        val logger = object : HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                Timber.tag("ImageLoading").d(message)
+            }
+        }
+        val loggingInterceptor = HttpLoggingInterceptor(logger).setLevel(HttpLoggingInterceptor.Level.BASIC)
+
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .cache(cache)
             .build()
     }
 }
