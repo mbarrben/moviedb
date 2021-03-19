@@ -3,7 +3,9 @@ package com.github.mbarrben.moviedb.movies.ui.composables
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
-import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.*
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Error
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Loading
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Success
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 
 @Composable

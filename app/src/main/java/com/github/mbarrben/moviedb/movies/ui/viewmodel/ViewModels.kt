@@ -1,5 +1,6 @@
 package com.github.mbarrben.moviedb.movies.ui.viewmodel
 
+import android.content.Context
 import coil.ImageLoader
 
 data class MovieViewModel(
@@ -7,5 +8,5 @@ data class MovieViewModel(
     val title: String,
     val posterPath: String?,
     val imageLoader: ImageLoader,
-    val clickAction: () -> Unit,
+    val clickAction: (Context) -> Unit,
 )
