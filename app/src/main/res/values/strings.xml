@@ -2,4 +2,6 @@
     <string name="app_name">Movie DB</string>
     <string name="movies_error">There was an error loading the list of movies, please try again later.</string>
     <string name="refresh">Refresh</string>
+    <string name="search">Search</string>
+    <string name="search_off">End search</string>
 </resources>

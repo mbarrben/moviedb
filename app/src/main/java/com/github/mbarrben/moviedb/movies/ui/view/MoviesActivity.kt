@@ -28,6 +28,7 @@ class MoviesActivity : ComponentActivity() {
                         state = viewModel.state,
                         onScrollToEnd = viewModel::loadNextPage,
                         onRefresh = viewModel::refresh,
+                        onSearchValueChanged = viewModel::search
                     )
                 }
             }
@@ -45,6 +46,7 @@ private fun DefaultPreview() {
             state = MoviesViewModel.State.Loading,
             onScrollToEnd = {},
             onRefresh = {},
+            onSearchValueChanged = {},
         )
     }
 }

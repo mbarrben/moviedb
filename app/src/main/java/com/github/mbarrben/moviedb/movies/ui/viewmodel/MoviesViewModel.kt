@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +30,10 @@ class MoviesViewModel @Inject constructor(
     fun refresh() {
         state = State.Loading
         retrieveMovies()
+    }
+
+    fun search(value: String) {
+        Timber.tag("MoviesViewModel").d("""search: "$value"""")
     }
 
     fun loadNextPage() {
