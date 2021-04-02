@@ -58,13 +58,14 @@ class MoviesApiClientTest {
     }
 
     private fun givenServiceReturns(call: Call<Dto.MoviesResponse>) {
-        whenever(serviceMock.popular(API_KEY)).thenReturn(call)
+        whenever(serviceMock.popular(API_KEY, ANY_PAGE)).thenReturn(call)
     }
 
-    private fun whenRetrievesPopularMovies() = sut.popular(API_KEY)
+    private fun whenRetrievesPopularMovies() = sut.popular(API_KEY, ANY_PAGE)
 
     private companion object {
         const val API_KEY = "api key"
+        const val ANY_PAGE = 3
 
         val ANY_MOVIE = DtoMother.aMovieDto()
 

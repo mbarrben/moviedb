@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.movies.domain.GetSearchMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +25,8 @@ class MoviesViewModel @Inject constructor(
 
     private var page = 1
 
+    private var debounceSearchJob: Job? = null
+
     init {
         if (state !is State.Success) {
             refresh()
@@ -36,8 +40,11 @@ class MoviesViewModel @Inject constructor(
 
     fun search(query: String) {
         this.query = query
-        resetState()
-        searchMovies(query, page)
+        debounceSearchJob?.cancel()
+        debounceSearchJob = viewModelScope.launch {
+            delay(SEARCH_DEBOUNCE_DELAY)
+            refresh()
+        }
     }
 
     fun loadNextPage() {
@@ -95,5 +102,9 @@ class MoviesViewModel @Inject constructor(
         object Loading : State()
         data class Success(val movies: List<MovieViewModel>) : State()
         object Error : State()
+    }
+
+    companion object {
+        const val SEARCH_DEBOUNCE_DELAY = 500L
     }
 }

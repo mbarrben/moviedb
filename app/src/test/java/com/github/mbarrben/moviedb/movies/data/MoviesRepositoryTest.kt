@@ -38,13 +38,14 @@ class MoviesRepositoryTest {
     }
 
     private fun givenApiClientReturns(apiResult: Either<Dto.Error, Dto.MoviesResponse>) {
-        whenever(apiClientMock.popular(API_KEY)).thenReturn(apiResult)
+        whenever(apiClientMock.popular(API_KEY, ANY_PAGE)).thenReturn(apiResult)
     }
 
-    private fun whenRetrievesPopularMovies() = sut.popular()
+    private fun whenRetrievesPopularMovies() = sut.popular(ANY_PAGE)
 
     private companion object {
         const val API_KEY = "api key"
+        const val ANY_PAGE = 4
 
         val ANY_MOVIE_LIST = listOf(
             DtoMother.aMovieDto(),
