@@ -12,6 +12,13 @@ class MoviesApiClient @Inject constructor(
         .popular(apiKey, page)
         .toEither(
             notFoundError = Dto.Error.NoResultFound,
-            connectionError = Dto.Error.NoInternetConnection
+            connectionError = Dto.Error.NoInternetConnection,
+        )
+
+    fun search(apiKey: String, query: String, page: Int): Either<Dto.Error, Dto.MoviesResponse> = service
+        .search(apiKey, query, page)
+        .toEither(
+            notFoundError = Dto.Error.NoResultFound,
+            connectionError = Dto.Error.NoInternetConnection,
         )
 }

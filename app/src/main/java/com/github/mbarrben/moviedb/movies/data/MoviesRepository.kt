@@ -12,4 +12,8 @@ class MoviesRepository @Inject constructor(
     fun popular(page: Int): Either<Dto.Error, List<Dto.Movie>> = apiClient
         .popular(apiKey, page)
         .map { it.movies }
+
+    fun search(query: String, page: Int): Either<Dto.Error, List<Dto.Movie>> = apiClient
+        .search(apiKey, query, page)
+        .map { it.movies }
 }
