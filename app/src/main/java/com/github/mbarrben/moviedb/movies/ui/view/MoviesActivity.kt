@@ -28,7 +28,8 @@ class MoviesActivity : ComponentActivity() {
                         state = viewModel.state,
                         onScrollToEnd = viewModel::loadNextPage,
                         onRefresh = viewModel::refresh,
-                        onSearchValueChanged = viewModel::search
+                        onSearchValueChanged = viewModel::search,
+                        query = viewModel.query,
                     )
                 }
             }
@@ -47,6 +48,7 @@ private fun DefaultPreview() {
             onScrollToEnd = {},
             onRefresh = {},
             onSearchValueChanged = {},
+            query = ""
         )
     }
 }

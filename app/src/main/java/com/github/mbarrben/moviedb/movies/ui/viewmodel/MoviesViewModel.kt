@@ -6,44 +6,72 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
+import com.github.mbarrben.moviedb.movies.domain.GetSearchMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
     private val getPopularMovies: GetPopularMovies,
+    private val getSearchMovies: GetSearchMovies,
     private val viewModelFactory: ViewModelFactory,
 ) : ViewModel() {
 
     var state: State by mutableStateOf(State.Loading)
-    var page = 1
+    var query: String by mutableStateOf("")
+
+    private var page = 1
 
     init {
         if (state !is State.Success) {
-            state = State.Loading
-            retrieveMovies()
+            refresh()
         }
     }
 
     fun refresh() {
-        state = State.Loading
-        retrieveMovies()
+        resetState()
+        launchRequests()
     }
 
-    fun search(value: String) {
-        Timber.tag("MoviesViewModel").d("""search: "$value"""")
+    fun search(query: String) {
+        this.query = query
+        resetState()
+        searchMovies(query, page)
     }
 
     fun loadNextPage() {
         page++
-        retrieveMovies(page)
+        launchRequests()
+    }
+
+    private fun resetState() {
+        state = State.Loading
+        page = 1
+    }
+
+    private fun launchRequests() {
+        if (query.isEmpty()) {
+            retrieveMovies(page)
+        } else {
+            searchMovies(query, page)
+        }
     }
 
     private fun retrieveMovies(page: Int = 1) {
         viewModelScope.launch {
             state = getPopularMovies(page)
+                .map { movies -> movies.map { viewModelFactory.build(it) } }
+                .fold(
+                    ifLeft = { State.Error },
+                    ifRight = { movies -> state + State.Success(movies) }
+                )
+        }
+    }
+
+    private fun searchMovies(query: String, page: Int = 1) {
+        viewModelScope.launch {
+            state = getSearchMovies(query, page)
                 .map { movies -> movies.map { viewModelFactory.build(it) } }
                 .fold(
                     ifLeft = { State.Error },

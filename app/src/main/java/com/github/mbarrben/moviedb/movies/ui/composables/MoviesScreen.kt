@@ -15,10 +15,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -27,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
@@ -42,12 +39,14 @@ fun MoviesScreen(
     onScrollToEnd: () -> Unit,
     onRefresh: () -> Unit,
     onSearchValueChanged: (String) -> Unit,
+    query: String,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 onRefresh = onRefresh,
                 onSearchValueChanged = onSearchValueChanged,
+                query = query,
             )
         }
     ) {
@@ -66,6 +65,7 @@ fun MoviesScreen(
 private fun TopAppBar(
     onRefresh: () -> Unit,
     onSearchValueChanged: (String) -> Unit,
+    query: String,
 ) {
     val search = remember { mutableStateOf(false) }
 
@@ -73,6 +73,7 @@ private fun TopAppBar(
         SearchAppBar(
             onSearchValueChanged = onSearchValueChanged,
             onCancelSearch = { search.value = false },
+            query = query,
         )
     } else {
         DefaultAppBar(
@@ -105,19 +106,16 @@ fun DefaultAppBar(
 fun SearchAppBar(
     onSearchValueChanged: (String) -> Unit,
     onCancelSearch: () -> Unit,
+    query: String,
 ) {
     TopAppBar(
         title = {
             val keyboardController = LocalSoftwareKeyboardController.current
-            var text by remember { mutableStateOf(TextFieldValue()) }
             val focusRequester = FocusRequester()
             TextField(
                 modifier = Modifier.focusRequester(focusRequester),
-                value = text,
-                onValueChange = { newValue ->
-                    text = newValue
-                    onSearchValueChanged(newValue.text)
-                },
+                value = query,
+                onValueChange = onSearchValueChanged,
                 colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Transparent),
                 maxLines = 1,
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
@@ -127,7 +125,7 @@ fun SearchAppBar(
             )
             DisposableEffect(Unit) {
                 focusRequester.requestFocus()
-                onDispose { focusRequester.freeFocus() }
+                onDispose {}
             }
         },
         actions = {
@@ -149,6 +147,7 @@ private fun DefaultPreview() {
             onScrollToEnd = {},
             onRefresh = {},
             onSearchValueChanged = {},
+            query = "",
         )
     }
 }
