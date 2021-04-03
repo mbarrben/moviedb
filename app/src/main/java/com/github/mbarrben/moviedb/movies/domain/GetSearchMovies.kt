@@ -11,9 +11,9 @@ class GetSearchMovies @Inject constructor(
     private val moviesRepository: MoviesRepository,
     @IO private val context: CoroutineContext,
 ) {
-    suspend operator fun invoke(query: String, page: Int): Either<Error, List<Movie>> = withContext(context) {
+    suspend operator fun invoke(query: String, page: Int): Either<Error, Content> = withContext(context) {
         moviesRepository.search(query, page)
             .mapLeft { Error }
-            .map { movies -> movies.map { movie -> movie.toDomain() } }
+            .map { response -> response.toDomain() }
     }
 }

@@ -2,8 +2,13 @@ package com.github.mbarrben.moviedb.movies.domain
 
 import android.os.Parcelable
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
-import java.util.Date
 import kotlinx.parcelize.Parcelize
+import java.util.Date
+
+data class Content(
+    val page: Int,
+    val movies: List<Movie>,
+)
 
 @Parcelize
 data class Movie(
@@ -16,12 +21,17 @@ data class Movie(
     val voteCount: Int,
     val voteAverage: Float,
     val posterPath: String?,
-    val backdropPath: String?
+    val backdropPath: String?,
 ) : Parcelable
 
 object Error
 
-fun Dto.Movie.toDomain() = Movie(
+fun Dto.MoviesResponse.toDomain() = Content(
+    page = page,
+    movies = movies.map { it.toDomain() }
+)
+
+private fun Dto.Movie.toDomain() = Movie(
     id = id,
     title = title,
     originalTitle = originalTitle,
@@ -31,5 +41,5 @@ fun Dto.Movie.toDomain() = Movie(
     voteCount = voteCount,
     voteAverage = voteAverage,
     posterPath = posterPath?.url,
-    backdropPath = backdropPath?.url
+    backdropPath = backdropPath?.url,
 )

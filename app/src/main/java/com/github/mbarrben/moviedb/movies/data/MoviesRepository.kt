@@ -9,11 +9,9 @@ class MoviesRepository @Inject constructor(
     private val apiClient: MoviesApiClient,
     private val apiKey: String
 ) {
-    fun popular(page: Int): Either<Dto.Error, List<Dto.Movie>> = apiClient
+    fun popular(page: Int): Either<Dto.Error, Dto.MoviesResponse> = apiClient
         .popular(apiKey, page)
-        .map { it.movies }
 
-    fun search(query: String, page: Int): Either<Dto.Error, List<Dto.Movie>> = apiClient
+    fun search(query: String, page: Int): Either<Dto.Error, Dto.MoviesResponse> = apiClient
         .search(apiKey, query, page)
-        .map { it.movies }
 }

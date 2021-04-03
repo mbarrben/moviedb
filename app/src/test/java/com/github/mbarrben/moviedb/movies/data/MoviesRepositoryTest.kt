@@ -20,12 +20,12 @@ class MoviesRepositoryTest {
     )
 
     @Test
-    fun `Returns a list of movies when api client call succeeds`() {
+    fun `Returns a the whole response when api client call succeeds`() {
         givenApiClientReturns(ANY_RESPONSE.right())
 
         val result = whenRetrievesPopularMovies()
 
-        assertEquals(ANY_MOVIE_LIST.right(), result)
+        assertEquals(ANY_RESPONSE.right(), result)
     }
 
     @Test
