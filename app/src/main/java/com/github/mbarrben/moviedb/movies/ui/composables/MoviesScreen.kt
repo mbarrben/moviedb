@@ -15,8 +15,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -28,33 +26,39 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.R
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
-import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Error
-import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Loading
-import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.State.Success
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Error
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Loading
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Success
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.SearchState.Active
+import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.SearchState.Inactive
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 
 @Composable
 fun MoviesScreen(
-    state: MoviesViewModel.State,
+    contentState: MoviesViewModel.ContentState,
+    searchState: MoviesViewModel.SearchState,
     onScrollToEnd: () -> Unit,
     onRefresh: () -> Unit,
+    onStartSearch: () -> Unit,
+    onStopSearch: () -> Unit,
     onSearchValueChanged: (String) -> Unit,
-    query: String,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
+                searchState = searchState,
                 onRefresh = onRefresh,
+                onStartSearch = onStartSearch,
+                onStopSearch = onStopSearch,
                 onSearchValueChanged = onSearchValueChanged,
-                query = query,
             )
         }
     ) {
-        when (state) {
+        when (contentState) {
             is Loading -> MoviesLoadingScreen()
             is Error -> MoviesErrorScreen()
             is Success -> MoviesSuccessScreen(
-                movies = state.movies,
+                movies = contentState.movies,
                 onScrollToEnd = onScrollToEnd,
             )
         }
@@ -63,23 +67,26 @@ fun MoviesScreen(
 
 @Composable
 private fun TopAppBar(
+    searchState: MoviesViewModel.SearchState,
     onRefresh: () -> Unit,
+    onStartSearch: () -> Unit,
+    onStopSearch: () -> Unit,
     onSearchValueChanged: (String) -> Unit,
-    query: String,
 ) {
-    val search = remember { mutableStateOf(false) }
-
-    if (search.value) {
-        SearchAppBar(
-            onSearchValueChanged = onSearchValueChanged,
-            onCancelSearch = { search.value = false },
-            query = query,
-        )
-    } else {
-        DefaultAppBar(
-            onRefresh = onRefresh,
-            onSearch = { search.value = true }
-        )
+    when (searchState) {
+        is Active -> {
+            SearchAppBar(
+                onSearchValueChanged = onSearchValueChanged,
+                onCancelSearch = onStopSearch,
+                query = searchState.query,
+            )
+        }
+        is Inactive -> {
+            DefaultAppBar(
+                onRefresh = onRefresh,
+                onSearch = onStartSearch
+            )
+        }
     }
 }
 
@@ -143,11 +150,13 @@ fun SearchAppBar(
 private fun DefaultPreview() {
     MovieDbTheme {
         MoviesScreen(
-            state = Loading,
+            contentState = Loading,
+            searchState = Inactive,
             onScrollToEnd = {},
             onRefresh = {},
+            onStartSearch = {},
+            onStopSearch = {},
             onSearchValueChanged = {},
-            query = "",
         )
     }
 }

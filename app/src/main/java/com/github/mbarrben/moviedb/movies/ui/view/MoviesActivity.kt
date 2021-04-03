@@ -25,11 +25,13 @@ class MoviesActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     MoviesScreen(
-                        state = viewModel.state,
+                        contentState = viewModel.contentState,
+                        searchState = viewModel.searchState,
                         onScrollToEnd = viewModel::loadNextPage,
                         onRefresh = viewModel::refresh,
+                        onStartSearch = viewModel::startSearch,
+                        onStopSearch = viewModel::stopSearch,
                         onSearchValueChanged = viewModel::search,
-                        query = viewModel.query,
                     )
                 }
             }
@@ -44,11 +46,13 @@ class MoviesActivity : ComponentActivity() {
 private fun DefaultPreview() {
     MovieDbTheme {
         MoviesScreen(
-            state = MoviesViewModel.State.Loading,
+            contentState = MoviesViewModel.ContentState.Loading,
+            searchState = MoviesViewModel.SearchState.Inactive,
             onScrollToEnd = {},
             onRefresh = {},
+            onStartSearch = {},
+            onStopSearch = {},
             onSearchValueChanged = {},
-            query = ""
         )
     }
 }

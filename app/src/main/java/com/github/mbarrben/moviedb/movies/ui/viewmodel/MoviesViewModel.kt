@@ -20,17 +20,26 @@ class MoviesViewModel @Inject constructor(
     private val viewModelFactory: ViewModelFactory,
 ) : ViewModel() {
 
-    var state: State by mutableStateOf(State.Loading)
-    var query: String by mutableStateOf("")
+    var contentState: ContentState by mutableStateOf(ContentState.Loading)
+    var searchState: SearchState by mutableStateOf(SearchState.Inactive)
 
     private var page = 1
 
     private var debounceSearchJob: Job? = null
 
     init {
-        if (state !is State.Success) {
+        if (contentState !is ContentState.Success) {
             refresh()
         }
+    }
+
+    fun startSearch() {
+        searchState = SearchState.Active("")
+    }
+
+    fun stopSearch() {
+        searchState = SearchState.Inactive
+        refresh()
     }
 
     fun refresh() {
@@ -39,7 +48,7 @@ class MoviesViewModel @Inject constructor(
     }
 
     fun search(query: String) {
-        this.query = query
+        searchState = SearchState.Active(query)
         debounceSearchJob?.cancel()
         debounceSearchJob = viewModelScope.launch {
             delay(SEARCH_DEBOUNCE_DELAY)
@@ -53,55 +62,65 @@ class MoviesViewModel @Inject constructor(
     }
 
     private fun resetState() {
-        state = State.Loading
+        contentState = ContentState.Loading
         page = 1
     }
 
     private fun launchRequests() {
-        if (query.isEmpty()) {
-            retrieveMovies(page)
-        } else {
-            searchMovies(query, page)
+        when (val state = searchState) {
+            is SearchState.Inactive -> retrieveMovies(page)
+            is SearchState.Active -> {
+                if (state.query.isEmpty()) {
+                    retrieveMovies(page)
+                } else {
+                    searchMovies(state.query, page)
+                }
+            }
         }
     }
 
     private fun retrieveMovies(page: Int = 1) {
         viewModelScope.launch {
-            state = getPopularMovies(page)
+            contentState = getPopularMovies(page)
                 .map { movies -> movies.map { viewModelFactory.build(it) } }
                 .fold(
-                    ifLeft = { State.Error },
-                    ifRight = { movies -> state + State.Success(movies) }
+                    ifLeft = { ContentState.Error },
+                    ifRight = { movies -> contentState + ContentState.Success(movies) }
                 )
         }
     }
 
     private fun searchMovies(query: String, page: Int = 1) {
         viewModelScope.launch {
-            state = getSearchMovies(query, page)
+            contentState = getSearchMovies(query, page)
                 .map { movies -> movies.map { viewModelFactory.build(it) } }
                 .fold(
-                    ifLeft = { State.Error },
-                    ifRight = { movies -> state + State.Success(movies) }
+                    ifLeft = { ContentState.Error },
+                    ifRight = { movies -> contentState + ContentState.Success(movies) }
                 )
         }
     }
 
-    private operator fun State.plus(newState: State.Success): State.Success =
+    private operator fun ContentState.plus(newState: ContentState.Success): ContentState.Success =
         when (this) {
-            State.Error -> newState
-            State.Loading -> newState
-            is State.Success -> this + newState
+            ContentState.Error -> newState
+            ContentState.Loading -> newState
+            is ContentState.Success -> this + newState
         }
 
-    private operator fun State.Success.plus(newState: State.Success): State.Success = State.Success(
+    private operator fun ContentState.Success.plus(newState: ContentState.Success): ContentState.Success = ContentState.Success(
         movies = movies + newState.movies
     )
 
-    sealed class State {
-        object Loading : State()
-        data class Success(val movies: List<MovieViewModel>) : State()
-        object Error : State()
+    sealed class ContentState {
+        object Loading : ContentState()
+        data class Success(val movies: List<MovieViewModel>) : ContentState()
+        object Error : ContentState()
+    }
+
+    sealed class SearchState {
+        object Inactive : SearchState()
+        data class Active(val query: String) : SearchState()
     }
 
     companion object {
