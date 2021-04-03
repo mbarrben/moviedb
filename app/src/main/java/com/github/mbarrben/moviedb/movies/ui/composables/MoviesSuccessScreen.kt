@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 import dev.chrisbanes.accompanist.coil.CoilImageDefaults
@@ -21,6 +22,7 @@ import dev.chrisbanes.accompanist.coil.CoilImageDefaults
 fun MoviesSuccessScreen(
     movies: List<MovieViewModel>,
     onScrollToEnd: () -> Unit,
+    onMovieSelected: (Movie) -> Unit,
 ) {
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
@@ -32,6 +34,7 @@ fun MoviesSuccessScreen(
                     .fillMaxWidth()
                     .aspectRatio(3 / 4F),
                 movie = movie,
+                onMovieSelected = onMovieSelected,
             )
 
             if (index == movies.lastIndex) {
@@ -56,6 +59,18 @@ private fun numberOfColumns(): Int {
 )
 @Composable
 private fun DefaultPreview() {
+    val movie = Movie(
+        id = 0,
+        title = "",
+        originalTitle = "",
+        overview = "",
+        releaseDate = null,
+        originalLanguage = "",
+        voteCount = 0,
+        voteAverage = 0F,
+        posterPath = null,
+        backdropPath = null
+    )
     MovieDbTheme {
         MoviesSuccessScreen(
             listOf(
@@ -64,38 +79,39 @@ private fun DefaultPreview() {
                     title = "Raya and the last dragon",
                     posterPath = null,
                     imageLoader = CoilImageDefaults.defaultImageLoader(),
-                    clickAction = {}
+                    model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Miraculous World: New York, United HeroeZ",
                     posterPath = null,
                     imageLoader = CoilImageDefaults.defaultImageLoader(),
-                    clickAction = {}
+                    model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Coming 2 America",
                     posterPath = null,
                     imageLoader = CoilImageDefaults.defaultImageLoader(),
-                    clickAction = {}
+                    model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Monster Hunter",
                     posterPath = null,
                     imageLoader = CoilImageDefaults.defaultImageLoader(),
-                    clickAction = {}
+                    model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Wonder Woman 1984",
                     posterPath = null,
                     imageLoader = CoilImageDefaults.defaultImageLoader(),
-                    clickAction = {}
+                    model = movie,
                 ),
             ),
             onScrollToEnd = {},
+            onMovieSelected = {},
         )
     }
 }

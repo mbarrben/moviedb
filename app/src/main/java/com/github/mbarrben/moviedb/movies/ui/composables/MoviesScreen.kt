@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.R
+import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Error
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Loading
@@ -42,6 +43,7 @@ fun MoviesScreen(
     onStartSearch: () -> Unit,
     onStopSearch: () -> Unit,
     onSearchValueChanged: (String) -> Unit,
+    onMovieSelected: (Movie) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -60,6 +62,7 @@ fun MoviesScreen(
             is Success -> MoviesSuccessScreen(
                 movies = contentState.movies,
                 onScrollToEnd = onScrollToEnd,
+                onMovieSelected = onMovieSelected,
             )
         }
     }
@@ -74,19 +77,15 @@ private fun TopAppBar(
     onSearchValueChanged: (String) -> Unit,
 ) {
     when (searchState) {
-        is Active -> {
-            SearchAppBar(
-                onSearchValueChanged = onSearchValueChanged,
-                onCancelSearch = onStopSearch,
-                query = searchState.query,
-            )
-        }
-        is Inactive -> {
-            DefaultAppBar(
-                onRefresh = onRefresh,
-                onSearch = onStartSearch
-            )
-        }
+        is Active -> SearchAppBar(
+            onSearchValueChanged = onSearchValueChanged,
+            onCancelSearch = onStopSearch,
+            query = searchState.query,
+        )
+        is Inactive -> DefaultAppBar(
+            onRefresh = onRefresh,
+            onSearch = onStartSearch
+        )
     }
 }
 
@@ -157,6 +156,7 @@ private fun DefaultPreview() {
             onStartSearch = {},
             onStopSearch = {},
             onSearchValueChanged = {},
+            onMovieSelected = {},
         )
     }
 }

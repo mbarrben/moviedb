@@ -17,23 +17,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
+import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.coil.CoilImageDefaults
 
 @Composable
-fun Movie(modifier: Modifier = Modifier, movie: MovieViewModel) {
-    val context = LocalContext.current
-
+fun Movie(
+    modifier: Modifier = Modifier,
+    movie: MovieViewModel,
+    onMovieSelected: (Movie) -> Unit,
+) {
     Box(
         modifier = modifier
-            .clickable { movie.clickAction(context) },
+            .clickable { onMovieSelected(movie.model) },
     ) {
         if (movie.posterPath != null) {
             PosterMovie(
@@ -54,7 +55,7 @@ fun PosterMovie(
     modifier: Modifier = Modifier,
     title: String,
     posterPath: String,
-    imageLoader: ImageLoader = CoilImageDefaults.defaultImageLoader(),
+    imageLoader: ImageLoader,
 ) {
     CoilImage(
         modifier = modifier,
