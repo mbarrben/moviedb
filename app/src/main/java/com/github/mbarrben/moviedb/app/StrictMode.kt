@@ -6,7 +6,7 @@ internal fun initStrictMode() {
     StrictMode.setVmPolicy(
         StrictMode.VmPolicy.Builder()
             .detectActivityLeaks()
-            .detectLeakedClosableObjects()
+//                .detectLeakedClosableObjects()
             .penaltyLog()
             .penaltyDeath()
             .build()
