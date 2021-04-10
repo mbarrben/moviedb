@@ -4,7 +4,9 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -35,7 +37,21 @@ import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.SearchSta
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 
 @Composable
-fun MoviesScreen(
+fun MoviesScreen(viewModel: MoviesViewModel) {
+    MoviesScreen(
+        contentState = viewModel.contentState,
+        searchState = viewModel.searchState,
+        onScrollToEnd = viewModel::loadNextPage,
+        onRefresh = viewModel::refresh,
+        onStartSearch = viewModel::startSearch,
+        onStopSearch = viewModel::stopSearch,
+        onSearchValueChanged = viewModel::search,
+        onMovieSelected = { movie -> viewModel.navigateToDetail(movie) }
+    )
+}
+
+@Composable
+private fun MoviesScreen(
     contentState: MoviesViewModel.ContentState,
     searchState: MoviesViewModel.SearchState,
     onScrollToEnd: () -> Unit,
@@ -45,25 +61,27 @@ fun MoviesScreen(
     onSearchValueChanged: (String) -> Unit,
     onMovieSelected: (Movie) -> Unit,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                searchState = searchState,
-                onRefresh = onRefresh,
-                onStartSearch = onStartSearch,
-                onStopSearch = onStopSearch,
-                onSearchValueChanged = onSearchValueChanged,
-            )
-        }
-    ) {
-        when (contentState) {
-            is Loading -> MoviesLoadingScreen()
-            is Error -> MoviesErrorScreen()
-            is Success -> MoviesSuccessScreen(
-                movies = contentState.movies,
-                onScrollToEnd = onScrollToEnd,
-                onMovieSelected = onMovieSelected,
-            )
+    Surface(color = MaterialTheme.colors.background) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    searchState = searchState,
+                    onRefresh = onRefresh,
+                    onStartSearch = onStartSearch,
+                    onStopSearch = onStopSearch,
+                    onSearchValueChanged = onSearchValueChanged,
+                )
+            }
+        ) {
+            when (contentState) {
+                is Loading -> MoviesLoadingScreen()
+                is Error -> MoviesErrorScreen()
+                is Success -> MoviesSuccessScreen(
+                    movies = contentState.movies,
+                    onScrollToEnd = onScrollToEnd,
+                    onMovieSelected = onMovieSelected,
+                )
+            }
         }
     }
 }

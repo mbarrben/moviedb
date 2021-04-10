@@ -4,6 +4,7 @@ import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ID
 import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_POSTER_PATH
 import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_TITLE
 import com.github.mbarrben.moviedb.FakeImageLoader
+import com.github.mbarrben.moviedb.movies.domain.DomainMother
 
 internal class ViewModelMother {
     companion object {
@@ -12,7 +13,7 @@ internal class ViewModelMother {
             title = ANY_TITLE,
             posterPath = ANY_POSTER_PATH,
             imageLoader = FakeImageLoader,
-            clickAction = {}
+            model = DomainMother.aMovie(),
         )
     }
 }

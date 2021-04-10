@@ -3,6 +3,7 @@ package com.github.mbarrben.moviedb.detail
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,16 +15,18 @@ import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
 
 @Composable
 fun DetailScreen(movie: Movie) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = movie.title,
-            style = MaterialTheme.typography.h6.copy(
-                textAlign = TextAlign.Center,
+    Surface(color = MaterialTheme.colors.background) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = movie.title,
+                style = MaterialTheme.typography.h6.copy(
+                    textAlign = TextAlign.Center,
+                )
             )
-        )
+        }
     }
 }
 

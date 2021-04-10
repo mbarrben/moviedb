@@ -7,11 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.movies.domain.GetSearchMovies
+import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Error
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Loading
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.ContentState.Success
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.SearchState.Active
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MoviesViewModel.SearchState.Inactive
+import com.github.mbarrben.moviedb.navigation.Navigation
+import com.github.mbarrben.moviedb.navigation.NavigationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -23,6 +26,7 @@ class MoviesViewModel @Inject constructor(
     private val getPopularMovies: GetPopularMovies,
     private val getSearchMovies: GetSearchMovies,
     private val viewModelFactory: ViewModelFactory,
+    private val navigationManager: NavigationManager,
 ) : ViewModel() {
 
     var contentState: ContentState by mutableStateOf(Loading)
@@ -78,6 +82,10 @@ class MoviesViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun navigateToDetail(movie: Movie) {
+        navigationManager.navigate(Navigation.Detail(movie.title))
     }
 
     private fun resetState() {

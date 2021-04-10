@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviedb">
         <activity
-            android:name=".movies.ui.view.MoviesActivity"
+            android:name=".app.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Moviedb.NoActionBar">

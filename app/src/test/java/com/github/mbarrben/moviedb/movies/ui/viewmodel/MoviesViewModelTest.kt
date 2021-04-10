@@ -5,6 +5,7 @@ import com.github.mbarrben.moviedb.TestCoroutinesRule
 import com.github.mbarrben.moviedb.movies.domain.Error
 import com.github.mbarrben.moviedb.movies.domain.GetPopularMovies
 import com.github.mbarrben.moviedb.movies.domain.GetSearchMovies
+import com.github.mbarrben.moviedb.navigation.NavigationManager
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
@@ -30,12 +31,14 @@ class MoviesViewModelTest {
         onBlocking { invoke(any(), any()) } doReturn Error.left()
     }
     private val viewModelFactoryMock: ViewModelFactory = mock()
+    private val navigationManagerMock: NavigationManager = mock()
 
     private val sut by lazy {
         MoviesViewModel(
             getPopularMovies = getPopularMoviesMock,
             getSearchMovies = getSearchMoviesMock,
             viewModelFactory = viewModelFactoryMock,
+            navigationManager = navigationManagerMock,
         )
     }
 
