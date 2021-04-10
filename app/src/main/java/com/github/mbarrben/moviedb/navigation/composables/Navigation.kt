@@ -18,7 +18,9 @@ fun Navigation(navigationManager: NavigationManager) {
     val navController = rememberNavController()
 
     val destination = navigationManager.commands.value.destination
+    val arguments = navigationManager.commands.value.bundle
     if (destination.isNotEmpty()) {
+        navController.currentBackStackEntry?.arguments?.putAll(arguments)
         navController.navigate(destination)
     }
 
@@ -27,22 +29,9 @@ fun Navigation(navigationManager: NavigationManager) {
         composable(
             route = Detail.route,
             arguments = Detail.arguments,
-        ) { backStackEntry ->
-            val movieTitle = backStackEntry.arguments?.getString(Detail.KEY_TITLE)!!
-            DetailScreen(
-                Movie(
-                    id = 0,
-                    title = movieTitle,
-                    originalTitle = "",
-                    overview = "",
-                    releaseDate = null,
-                    originalLanguage = "",
-                    voteCount = 0,
-                    voteAverage = 0F,
-                    posterPath = null,
-                    backdropPath = null
-                )
-            )
+        ) {
+            val movie = navController.previousBackStackEntry?.arguments?.getParcelable<Movie>(Detail.KEY_MOVIE)!!
+            DetailScreen(movie)
         }
     }
 }

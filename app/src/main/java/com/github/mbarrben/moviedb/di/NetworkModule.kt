@@ -40,21 +40,25 @@ object NetworkModule {
     private const val POSTER_PREFIX = "https://image.tmdb.org/t/p/w500"
 
     @Provides
-    fun provideRetrofit(@Api okHttpClient: OkHttpClient): Retrofit {
+    fun providesMoshi(): Moshi {
         val dateAdapter = DateAdapter("yyyy-MM-dd")
         val imageUrlAdapter = ImageUrlAdapter(POSTER_PREFIX)
 
-        val moshi = Moshi.Builder()
+        return Moshi.Builder()
             .add(dateAdapter)
             .add(imageUrlAdapter)
             .build()
-
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .client(okHttpClient)
-            .build()
     }
+
+    @Provides
+    fun provideRetrofit(
+        @Api okHttpClient: OkHttpClient,
+        moshi: Moshi,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .client(okHttpClient)
+        .build()
 
     @Singleton
     @Provides

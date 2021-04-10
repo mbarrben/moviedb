@@ -85,7 +85,7 @@ class MoviesViewModel @Inject constructor(
     }
 
     fun navigateToDetail(movie: Movie) {
-        navigationManager.navigate(Navigation.Detail(movie.title))
+        navigationManager.navigate(Navigation.Detail(movie))
     }
 
     private fun resetState() {

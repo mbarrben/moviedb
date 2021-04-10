@@ -2,6 +2,7 @@ package com.github.mbarrben.moviedb.movies.domain
 
 import android.os.Parcelable
 import com.github.mbarrben.moviedb.movies.data.network.model.Dto
+import com.github.mbarrben.moviedb.movies.data.network.model.ImageUrl
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 
@@ -31,7 +32,7 @@ fun Dto.MoviesResponse.toDomain() = Content(
     movies = movies.map { it.toDomain() }
 )
 
-private fun Dto.Movie.toDomain() = Movie(
+fun Dto.Movie.toDomain() = Movie(
     id = id,
     title = title,
     originalTitle = originalTitle,
@@ -42,4 +43,17 @@ private fun Dto.Movie.toDomain() = Movie(
     voteAverage = voteAverage,
     posterPath = posterPath?.url,
     backdropPath = backdropPath?.url,
+)
+
+fun Movie.toDto() = Dto.Movie(
+    id = id,
+    title = title,
+    originalTitle = originalTitle,
+    overview = overview,
+    releaseDate = releaseDate,
+    originalLanguage = originalLanguage,
+    voteCount = voteCount,
+    voteAverage = voteAverage,
+    posterPath = posterPath?.let { ImageUrl(it) },
+    backdropPath = backdropPath?.let { ImageUrl(it) },
 )
