@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
-import dev.chrisbanes.accompanist.coil.CoilImageDefaults
+import com.google.accompanist.coil.CoilPainterDefaults
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -78,35 +78,35 @@ private fun DefaultPreview() {
                     id = 0,
                     title = "Raya and the last dragon",
                     posterPath = null,
-                    imageLoader = CoilImageDefaults.defaultImageLoader(),
+                    imageLoader = CoilPainterDefaults.defaultImageLoader(),
                     model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Miraculous World: New York, United HeroeZ",
                     posterPath = null,
-                    imageLoader = CoilImageDefaults.defaultImageLoader(),
+                    imageLoader = CoilPainterDefaults.defaultImageLoader(),
                     model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Coming 2 America",
                     posterPath = null,
-                    imageLoader = CoilImageDefaults.defaultImageLoader(),
+                    imageLoader = CoilPainterDefaults.defaultImageLoader(),
                     model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Monster Hunter",
                     posterPath = null,
-                    imageLoader = CoilImageDefaults.defaultImageLoader(),
+                    imageLoader = CoilPainterDefaults.defaultImageLoader(),
                     model = movie,
                 ),
                 MovieViewModel(
                     id = 0,
                     title = "Wonder Woman 1984",
                     posterPath = null,
-                    imageLoader = CoilImageDefaults.defaultImageLoader(),
+                    imageLoader = CoilPainterDefaults.defaultImageLoader(),
                     model = movie,
                 ),
             ),

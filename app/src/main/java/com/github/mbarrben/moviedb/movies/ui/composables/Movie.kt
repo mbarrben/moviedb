@@ -1,5 +1,6 @@
 package com.github.mbarrben.moviedb.movies.ui.composables
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +25,11 @@ import coil.ImageLoader
 import com.github.mbarrben.moviedb.movies.domain.Movie
 import com.github.mbarrben.moviedb.movies.ui.viewmodel.MovieViewModel
 import com.github.mbarrben.moviedb.ui.theme.MovieDbTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.imageloading.ImageLoadState.Empty
+import com.google.accompanist.imageloading.ImageLoadState.Error
+import com.google.accompanist.imageloading.ImageLoadState.Loading
+import com.google.accompanist.imageloading.ImageLoadState.Success
 
 @Composable
 fun Movie(
@@ -57,16 +62,23 @@ fun PosterMovie(
     posterPath: String,
     imageLoader: ImageLoader,
 ) {
-    CoilImage(
-        modifier = modifier,
+    val painter = rememberCoilPainter(
+        request = posterPath,
         imageLoader = imageLoader,
-        data = posterPath,
+        fadeIn = true,
+    )
+    when (painter.loadState) {
+        is Success -> Unit
+        is Loading -> NoPosterMovie(title = title)
+        is Error -> NoPosterMovie(title = title)
+        is Empty -> NoPosterMovie(title = title)
+    }
+    Image(
+        modifier = modifier
+            .fillMaxSize(),
+        painter = painter,
         contentDescription = title,
         contentScale = ContentScale.Crop,
-        fadeIn = true,
-        error = {
-            NoPosterMovie(title = title)
-        }
     )
 }
 
