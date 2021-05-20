@@ -1,10 +1,9 @@
 package com.github.mbarrben.moviedb.navigation.composables
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.github.mbarrben.moviedb.detail.DetailScreen
 import com.github.mbarrben.moviedb.movies.domain.Movie
@@ -25,7 +24,7 @@ fun Navigation(navigationManager: NavigationManager) {
     }
 
     NavHost(navController, startDestination = Movies.destination) {
-        composable(Movies.route) { MoviesScreen(hiltNavGraphViewModel()) }
+        composable(Movies.route) { MoviesScreen(hiltViewModel()) }
         composable(
             route = Detail.route,
             arguments = Detail.arguments,
