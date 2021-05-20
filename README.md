@@ -1,3 +1,6 @@
+[![Build](https://github.com/mbarrben/moviedb/actions/workflows/build.yaml/badge.svg)](https://github.com/mbarrben/moviedb/actions/workflows/build.yaml)
+
+
 # Movie DB Android Jetpack Compose Project
 
 
