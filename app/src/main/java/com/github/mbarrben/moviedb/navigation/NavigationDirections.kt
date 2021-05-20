@@ -26,7 +26,7 @@ sealed class Navigation(
         override val bundle: Bundle = Bundle.EMPTY
     }
 
-    data class Detail(val movie: Movie) : Navigation("detail/${movie.id}") {
+    data class Detail(val movie: Movie) : Navigation("detail/movie") {
         override val bundle: Bundle = Bundle().apply {
             putParcelable(KEY_MOVIE, movie)
         }
@@ -35,6 +35,7 @@ sealed class Navigation(
             const val KEY_MOVIE = "movie"
             override val route = "detail/{$KEY_MOVIE}"
 
+            // Parcelable arguments still not very well supported
             // override val arguments = listOf(navArgument(KEY_MOVIE) { type = NavType.ParcelableType(Movie::class.java) })
             override val arguments: List<NamedNavArgument> = emptyList()
         }

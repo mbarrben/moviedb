@@ -19,7 +19,7 @@ fun Navigation(navigationManager: NavigationManager) {
     val destination = navigationManager.commands.value.destination
     val arguments = navigationManager.commands.value.bundle
     if (destination.isNotEmpty()) {
-        navController.currentBackStackEntry?.arguments?.putAll(arguments)
+        navController.currentBackStackEntry?.arguments = arguments
         navController.navigate(destination)
     }
 
