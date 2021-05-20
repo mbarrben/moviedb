@@ -1,16 +1,14 @@
 apply plugin: 'groovy'
-apply plugin: 'java'
 
 repositories {
-  mavenCentral()
+  google()
+  jcenter()
 }
 
 dependencies {
-  apply from: '../dependencies.gradle'
+  implementation gradleApi()
+  implementation localGroovy()
 
-  compile gradleApi()
-  compile localGroovy()
-
-  testCompile libs.test.junit
-  testCompile(libs.test.assertj) { exclude module: 'support-annotations' }
+  testImplementation 'junit:junit:4.12'
+  testImplementation('com.squareup.assertj:assertj-android:1.2.0') { exclude module: 'support-annotations' }
 }

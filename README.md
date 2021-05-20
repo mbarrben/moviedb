@@ -1,22 +1,24 @@
-# Movie DB Android MVP Project [![Build Status](https://travis-ci.org/mbarrben/moviedb.svg?branch=master)](https://travis-ci.org/mbarrben/moviedb)
+# Movie DB Android Jetpack Compose Project
 
 
 ## Summary
 
-Android project following MVP architecture heavily based on https://github.com/saulmm/Material-Movies
+Android playground project following Unidirectional Data Flow architecture
 
 
 ## Features
 
-* MVP architecture with separate Java modules for model and domain.
-* Asynchronous communication between modules implemented with [RxJava][1] and [RxAndroid][2].
-* Dependency injection implemented with [Dagger][3].
-* Rest API from [The Movie Db][4].
+* Unidirectional Data Flow architecture.
+* [Jetpack Compose](https://developer.android.com/jetpack/compose) for the UI.
+* [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for dependency injection.
+* Asynchrony implemented with [coroutines](https://developer.android.com/kotlin/coroutines).
+* Navigation implemented with [Jetpack Navigation](https://developer.android.com/jetpack/compose/navigation).
+* Rest API from [The Movie Db](https://www.themoviedb.org/).
 
 
 ## Usage
 
-1. Checkout and import into *Android Studio*.
+1. Checkout and import into *Android Studio Arctic Fox*.
 2. Get a *The Movie Db* API key from https://www.themoviedb.org/documentation/api
 3. Add a file named `private.properties` to the project root directory.
 4. Add the API key to the `private.properties` file as follows:
@@ -26,15 +28,10 @@ Android project following MVP architecture heavily based on https://github.com/s
 API_KEY = <YOUR API KEY HERE>
 ```
 
-## Bibliography
-
-* [A useful stack on android][5] by [Saul MM][6] for MVP architecture and UI
-* [EffectiveAndroidUI][7] by [Pedro Vicente Gómez Sánchez][8] for dependency injection
-
 
 ## License
 
-    Copyright 2015 Miguel Barrios Benito
+    Copyright 2021 Miguel Barrios Benito
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -47,13 +44,3 @@ API_KEY = <YOUR API KEY HERE>
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-[1]: https://github.com/ReactiveX/RxJava
-[2]: https://github.com/ReactiveX/RxAndroid
-[3]: http://square.github.io/dagger/
-[4]: https://www.themoviedb.org/
-[5]: http://saulmm.github.io/2015/02/02/A%20useful%20stack%20on%20android%20%231,%20architecture/
-[6]: https://github.com/saulmm
-[7]: https://github.com/pedrovgs/EffectiveAndroidUI
-[8]: https://github.com/pedrovgs

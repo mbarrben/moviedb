@@ -1,50 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.mbarrben.moviedb">
 
-  <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-  <application
-      android:name=".MovieDbApp"
-      android:allowBackup="true"
-      android:fullBackupContent="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:theme="@style/AppTheme.NoActionBar">
+    <application
+        android:name=".app.MovieDbApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Moviedb">
+        <activity
+            android:name=".app.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Moviedb.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity
-        android:name=".movies.view.platform.MoviesActivity">
-
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-
-        <data android:scheme="moviedb"/>
-      </intent-filter>
-
-    </activity>
-
-    <activity
-        android:name=".movieDetail.view.platform.DetailActivity"
-        android:parentActivityName=".movies.view.platform.MoviesActivity"
-        tools:targetApi="jelly_bean">
-
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.github.mbarrben.moviedb.movies.view.platform.MoviesActivity"
-          />
-
-    </activity>
-
-  </application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

@@ -1,1 +1,14 @@
-include ':app', ':domain', ':model', ':common'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter {
+            content {
+                includeModule("org.jetbrains.kotlinx", "kotlinx-collections-immutable-jvm")
+            }
+        } // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "moviedb"
+include ':app'

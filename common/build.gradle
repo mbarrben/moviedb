@@ -1,7 +1,0 @@
-apply plugin: 'kotlin'
-
-dependencies {
-  compile libs.kotlin
-  compile libs.rx_kotlin
-  compile libs.inject
-}
