@@ -3,7 +3,6 @@ package com.github.mbarrben.moviedb.movies.ui.viewmodel
 import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_ID
 import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_POSTER_PATH
 import com.github.mbarrben.moviedb.CommonConstants.Companion.ANY_TITLE
-import com.github.mbarrben.moviedb.FakeImageLoader
 import com.github.mbarrben.moviedb.movies.domain.DomainMother
 
 internal class ViewModelMother {
@@ -12,7 +11,6 @@ internal class ViewModelMother {
             id = ANY_ID,
             title = ANY_TITLE,
             posterPath = ANY_POSTER_PATH,
-            imageLoader = FakeImageLoader,
             model = DomainMother.aMovie(),
         )
     }

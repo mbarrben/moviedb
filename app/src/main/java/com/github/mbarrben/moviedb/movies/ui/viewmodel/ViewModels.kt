@@ -7,6 +7,5 @@ data class MovieViewModel(
     val id: Long,
     val title: String,
     val posterPath: String?,
-    val imageLoader: ImageLoader,
     val model: Movie,
 )

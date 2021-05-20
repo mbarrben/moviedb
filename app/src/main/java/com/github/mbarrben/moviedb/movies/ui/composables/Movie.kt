@@ -45,7 +45,6 @@ fun Movie(
             PosterMovie(
                 title = movie.title,
                 posterPath = movie.posterPath,
-                imageLoader = movie.imageLoader,
             )
         } else {
             NoPosterMovie(
@@ -60,11 +59,9 @@ fun PosterMovie(
     modifier: Modifier = Modifier,
     title: String,
     posterPath: String,
-    imageLoader: ImageLoader,
 ) {
     val painter = rememberCoilPainter(
         request = posterPath,
-        imageLoader = imageLoader,
         fadeIn = true,
     )
     when (painter.loadState) {
