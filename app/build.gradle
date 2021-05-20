@@ -45,6 +45,16 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
+    lintOptions {
+        disable "LogNotTimber",
+                "StringFormatInTimber",
+                "ThrowableNotAtBeginning",
+                "BinaryOperationInTimber",
+                "TimberArgCount",
+                "TimberArgTypes",
+                "TimberTagLength",
+                "TimberExceptionLogging"
+    }
 }
 
 dependencies {
